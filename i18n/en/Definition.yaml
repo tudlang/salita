@@ -1,0 +1,45 @@
+snackbar:
+  entryNotExist: Entry \"${title}\" doesn't exist yet.
+
+
+
+html:
+  quotations:
+    title: Quotations
+    button: View quotations
+  translations:
+    title: Translations
+    button: View translations
+  pronounciations:
+    title: Pronounciations
+    button: View pronounciations
+  termlist:
+    title: Terms
+    button: View terms
+
+namespace:
+  dictionary:
+    name: Dictionary
+  thesaurus:
+    name: Thesaurus
+  rhymes:
+    name: Rhymes
+  reconstruction:
+    name: Reconstruction
+  concordance:
+    name: Concordance
+  citations:
+    name: Citations
+  signgloss:
+    name: Sign language gloss
+  appendix:
+    name: Appendix
+  index:
+    name: Index
+  inflection:
+    name: Inflection
+  root:
+    name: Root
+  
+  
+  

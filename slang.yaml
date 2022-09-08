@@ -1,0 +1,10 @@
+fallback_strategy: base_locale
+flutter_integration: false
+input_directory: i18n
+input_file_pattern: .yaml
+output_directory: lib
+output_file_name: strings.g.dart
+translate_var: strings
+namespaces: true
+timestamp: false
+string_interpolation: dart

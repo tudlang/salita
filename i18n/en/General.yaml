@@ -1,0 +1,9 @@
+tooltip:
+  openInBrowser: Open in browser
+  refresh: Refresh
+  search: Search
+  copyToClipboard: Copy to clipboard
+
+snackbar:
+  copyToClipboard: Copied \"${message}\" to clipboard
+  noDescription: No description provided

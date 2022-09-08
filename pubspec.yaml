@@ -1,0 +1,650 @@
+name: salita
+description: The all-in-one dictionary app.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: "0.1.0+1"
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+
+dependencies:
+  characters: ^1.2.0
+  flutter:
+    sdk: flutter
+  flutter_localizations: # add this
+    sdk: flutter
+  flutter_html_all: ^3.0.0-alpha.5
+  flutter_html: ^3.0.0-alpha.5
+  go_router: ^4.1.0
+  html: ^0.15.0
+  http: ^0.13.4
+  slang: ^2.6.1
+  intl: ^0.17.0
+  sqflite: ^2.0.3
+  sqflite_common_ffi: ^2.1.1+1
+  provider: ^6.0.3
+  url_launcher: ^6.1.4
+  material_design_icons_flutter: ^5.0.6996
+  share_plus: ^4.0.10
+  rich_clipboard: ^1.0.0
+  shared_preferences: ^2.0.15
+  google_mobile_ads: ^1.3.0
+  animated_background: ^2.0.0
+  marquee: ^2.2.3
+  flutter_svg: ^1.1.1+1
+  flutter_widget_from_html: ^0.8.5
+  adaptive_breakpoints: ^0.1.4
+  dual_screen: ^1.0.3
+  animations: ^2.0.3
+  from_css_color: ^2.0.0
+  csslib: ^0.17.2
+  new_keyboard_shortcuts: ^0.1.4
+  menubar:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/menubar
+      ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
+  bitsdojo_window: ^0.1.2
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  shelf: ^1.3.1
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+  build_runner: ^2.2.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/svg/definition_search_none.svg
+    - assets/svg/definition_search_type.svg
+
+
+
+  fonts:
+    - family: Raleway
+      fonts:
+      - asset: assets/fonts/raleway_regular.ttf
+    - family: NotoSans-Regular
+      fonts:
+      - asset: assets/fonts/NotoSans-Regular.ttf
+    - family: NotoKufiArabic-Regular
+      fonts:
+        - asset: assets/fonts/NotoKufiArabic-Regular.ttf
+    - family: NotoMusic-Regular
+      fonts:
+        - asset: assets/fonts/NotoMusic-Regular.ttf
+    - family: NotoNaskhArabic-Regular
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
+    - family: NotoNastaliqUrdu-Regular
+      fonts:
+        - asset: assets/fonts/NotoNastaliqUrdu-Regular.ttf
+    - family: NotoRashiHebrew-Regular
+      fonts:
+        - asset: assets/fonts/NotoRashiHebrew-Regular.ttf
+    - family: NotoSansAdlam-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansAdlam-Regular.ttf
+    - family: NotoSansAdlamUnjoined-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansAdlamUnjoined-Regular.ttf
+    - family: NotoSansAnatolianHieroglyphs-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansAnatolianHieroglyphs-Regular.ttf
+    - family: NotoSansArabic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansArabic-Regular.ttf
+    - family: NotoSansArabicUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansArabicUI-Regular.ttf
+    - family: NotoSansArmenian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansArmenian-Regular.ttf
+    - family: NotoSansAvestan-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansAvestan-Regular.ttf
+    - family: NotoSansBalinese-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBalinese-Regular.ttf
+    - family: NotoSansBamum-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBamum-Regular.ttf
+    - family: NotoSansBassaVah-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBassaVah-Regular.ttf
+    - family: NotoSansBatak-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBatak-Regular.ttf
+    - family: NotoSansBengali-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBengali-Regular.ttf
+    - family: NotoSansBengaliUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBengaliUI-Regular.ttf
+    - family: NotoSansBhaiksuki-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBhaiksuki-Regular.ttf
+    - family: NotoSansBrahmi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBrahmi-Regular.ttf
+    - family: NotoSansBuginese-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBuginese-Regular.ttf
+    - family: NotoSansBuhid-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansBuhid-Regular.ttf
+    - family: NotoSansCanadianAboriginal-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCanadianAboriginal-Regular.ttf
+    - family: NotoSansCarian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCarian-Regular.ttf
+    - family: NotoSansCaucasianAlbanian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCaucasianAlbanian-Regular.ttf
+    - family: NotoSansChakma-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansChakma-Regular.ttf
+    - family: NotoSansCham-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCham-Regular.ttf
+    - family: NotoSansCherokee-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCherokee-Regular.ttf
+    - family: NotoSansCoptic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCoptic-Regular.ttf
+    - family: NotoSansCuneiform-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCuneiform-Regular.ttf
+    - family: NotoSansCypriot-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansCypriot-Regular.ttf
+    - family: NotoSansDeseret-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansDeseret-Regular.ttf
+    - family: NotoSansDevanagari-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagari-Regular.ttf
+    - family: NotoSansDevanagariUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagariUI-Regular.ttf
+    - family: NotoSansDisplay-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansDisplay-Regular.ttf
+    - family: NotoSansDuployan-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansDuployan-Regular.ttf
+    - family: NotoSansEgyptianHieroglyphs-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansEgyptianHieroglyphs-Regular.ttf
+    - family: NotoSansElbasan-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansElbasan-Regular.ttf
+    - family: NotoSansElymaic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansElymaic-Regular.ttf
+    - family: NotoSansEthiopic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansEthiopic-Regular.ttf
+    - family: NotoSansGeorgian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGeorgian-Regular.ttf
+    - family: NotoSansGlagolitic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGlagolitic-Regular.ttf
+    - family: NotoSansGothic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGothic-Regular.ttf
+    - family: NotoSansGrantha-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGrantha-Regular.ttf
+    - family: NotoSansGujarati-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGujarati-Regular.ttf
+    - family: NotoSansGujaratiUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGujaratiUI-Regular.ttf
+    - family: NotoSansGurmukhi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGurmukhi-Regular.ttf
+    - family: NotoSansGurmukhiUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansGurmukhiUI-Regular.ttf
+    - family: NotoSansHanifiRohingya-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansHanifiRohingya-Regular.ttf
+    - family: NotoSansHanunoo-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansHanunoo-Regular.ttf
+    - family: NotoSansHatran-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansHatran-Regular.ttf
+    - family: NotoSansHebrew-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansHebrew-Regular.ttf
+    - family: NotoSansImperialAramaic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansImperialAramaic-Regular.ttf
+    - family: NotoSansIndicSiyaqNumbers-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansIndicSiyaqNumbers-Regular.ttf
+    - family: NotoSansInscriptionalPahlavi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansInscriptionalPahlavi-Regular.ttf
+    - family: NotoSansInscriptionalParthian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansInscriptionalParthian-Regular.ttf
+    - family: NotoSansJavanese-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansJavanese-Regular.ttf
+    - family: NotoSansKaithi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKaithi-Regular.ttf
+    - family: NotoSansKannada-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKannada-Regular.ttf
+    - family: NotoSansKannadaUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKannadaUI-Regular.ttf
+    - family: NotoSansKayahLi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKayahLi-Regular.ttf
+    - family: NotoSansKharoshthi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKharoshthi-Regular.ttf
+    - family: NotoSansKhmer-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKhmer-Regular.ttf
+    - family: NotoSansKhmerUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKhmerUI-Regular.ttf
+    - family: NotoSansKhojki-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKhojki-Regular.ttf
+    - family: NotoSansKhudawadi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKhudawadi-Regular.ttf
+    - family: NotoSansLao-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLao-Regular.ttf
+    - family: NotoSansLaoLooped-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLaoLooped-Regular.ttf
+    - family: NotoSansLaoUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLaoUI-Regular.ttf
+    - family: NotoSansLepcha-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLepcha-Regular.ttf
+    - family: NotoSansLimbu-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLimbu-Regular.ttf
+    - family: NotoSansLinearA-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLinearA-Regular.ttf
+    - family: NotoSansLisu-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLisu-Regular.ttf
+    - family: NotoSansLycian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLycian-Regular.ttf
+    - family: NotoSansLydian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansLydian-Regular.ttf
+    - family: NotoSansMahajani-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMahajani-Regular.ttf
+    - family: NotoSansMalayalam-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMalayalam-Regular.ttf
+    - family: NotoSansMalayalamUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMalayalamUI-Regular.ttf
+    - family: NotoSansMandaic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMandaic-Regular.ttf
+    - family: NotoSansManichaean-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansManichaean-Regular.ttf
+    - family: NotoSansMarchen-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMarchen-Regular.ttf
+    - family: NotoSansMasaramGondi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMasaramGondi-Regular.ttf
+    - family: NotoSansMath-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMath-Regular.ttf
+    - family: NotoSansMayanNumerals-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMayanNumerals-Regular.ttf
+    - family: NotoSansMedefaidrin-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMedefaidrin-Regular.ttf
+    - family: NotoSansMeeteiMayek-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMeeteiMayek-Regular.ttf
+    - family: NotoSansMendeKikakui-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMendeKikakui-Regular.ttf
+    - family: NotoSansMeroitic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMeroitic-Regular.ttf
+    - family: NotoSansMiao-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMiao-Regular.ttf
+    - family: NotoSansModi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansModi-Regular.ttf
+    - family: NotoSansMongolian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMongolian-Regular.ttf
+    - family: NotoSansMro-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMro-Regular.ttf
+    - family: NotoSansMultani-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMultani-Regular.ttf
+    - family: NotoSansMyanmar-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMyanmar-Regular.ttf
+    - family: NotoSansMyanmarUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansMyanmarUI-Regular.ttf
+    - family: NotoSansNabataean-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansNabataean-Regular.ttf
+    - family: NotoSansNewa-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansNewa-Regular.ttf
+    - family: NotoSansNewTaiLue-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansNewTaiLue-Regular.ttf
+    - family: NotoSansNKo-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansNKo-Regular.ttf
+    - family: NotoSansNushu-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansNushu-Regular.ttf
+    - family: NotoSansOgham-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOgham-Regular.ttf
+    - family: NotoSansOlChiki-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOlChiki-Regular.ttf
+    - family: NotoSansOldHungarian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldHungarian-Regular.ttf
+    - family: NotoSansOldNorthArabian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldNorthArabian-Regular.ttf
+    - family: NotoSansOldPermic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldPermic-Regular.ttf
+    - family: NotoSansOldPersian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldPersian-Regular.ttf
+    - family: NotoSansOldSogdian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldSogdian-Regular.ttf
+    - family: NotoSansOldSouthArabian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldSouthArabian-Regular.ttf
+    - family: NotoSansOldTurkic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOldTurkic-Regular.ttf
+    - family: NotoSansOriya-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOriya-Regular.ttf
+    - family: NotoSansOriyaUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOriyaUI-Regular.ttf
+    - family: NotoSansOsage-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOsage-Regular.ttf
+    - family: NotoSansOsmanya-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansOsmanya-Regular.ttf
+    - family: NotoSansPahawhHmong-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPahawhHmong-Regular.ttf
+    - family: NotoSansPalmyrene-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPalmyrene-Regular.ttf
+    - family: NotoSansPauCinHau-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPauCinHau-Regular.ttf
+    - family: NotoSansPhagsPa-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPhagsPa-Regular.ttf
+    - family: NotoSansPhoenician-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPhoenician-Regular.ttf
+    - family: NotoSansPsalterPahlavi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansPsalterPahlavi-Regular.ttf
+    - family: NotoSansRejang-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansRejang-Regular.ttf
+    - family: NotoSansRunic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansRunic-Regular.ttf
+    - family: NotoSansSamaritan-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSamaritan-Regular.ttf
+    - family: NotoSansSaurashtra-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSaurashtra-Regular.ttf
+    - family: NotoSansSharada-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSharada-Regular.ttf
+    - family: NotoSansShavian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansShavian-Regular.ttf
+    - family: NotoSansSiddham-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSiddham-Regular.ttf
+    - family: NotoSansSignWriting-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSignWriting-Regular.ttf
+    - family: NotoSansSinhala-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSinhala-Regular.ttf
+    - family: NotoSansSinhalaUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSinhalaUI-Regular.ttf
+    - family: NotoSansSogdian-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSogdian-Regular.ttf
+    - family: NotoSansSoraSompeng-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSoraSompeng-Regular.ttf
+    - family: NotoSansSoyombo-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSoyombo-Regular.ttf
+    - family: NotoSansSundanese-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSundanese-Regular.ttf
+    - family: NotoSansSylotiNagri-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSylotiNagri-Regular.ttf
+    - family: NotoSansSymbols-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSymbols-Regular.ttf
+    - family: NotoSansSymbols2-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSymbols2-Regular.ttf
+    - family: NotoSansSyriac-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSyriac-Regular.ttf
+    - family: NotoSansTagalog-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTagalog-Regular.ttf
+    - family: NotoSansTagbanwa-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTagbanwa-Regular.ttf
+    - family: NotoSansTaiLe-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTaiLe-Regular.ttf
+    - family: NotoSansTaiTham-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTaiTham-Regular.ttf
+    - family: NotoSansTaiViet-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTaiViet-Regular.ttf
+    - family: NotoSansTakri-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTakri-Regular.ttf
+    - family: NotoSansTamil-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTamil-Regular.ttf
+    - family: NotoSansTamilSupplement-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTamilSupplement-Regular.ttf
+    - family: NotoSansTamilUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTamilUI-Regular.ttf
+    - family: NotoSansTelugu-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTelugu-Regular.ttf
+    - family: NotoSansTeluguUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTeluguUI-Regular.ttf
+    - family: NotoSansThaana-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansThaana-Regular.ttf
+    - family: NotoSansThai-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansThai-Regular.ttf
+    - family: NotoSansThaiLooped-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansThaiLooped-Regular.ttf
+    - family: NotoSansThaiUI-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansThaiUI-Regular.ttf
+    - family: NotoSansTifinaghAdrar-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAdrar-Regular.ttf
+    - family: NotoSansTifinaghAgrawImazighen-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAgrawImazighen-Regular.ttf
+    - family: NotoSansTifinaghAhaggar-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAhaggar-Regular.ttf
+    - family: NotoSansTifinaghAir-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAir-Regular.ttf
+    - family: NotoSansTifinaghAPT-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAPT-Regular.ttf
+    - family: NotoSansTifinaghAzawagh-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghAzawagh-Regular.ttf
+    - family: NotoSansTifinaghGhat-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghGhat-Regular.ttf
+    - family: NotoSansTifinaghHawad-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghHawad-Regular.ttf
+    - family: NotoSansTifinagh-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinagh-Regular.ttf
+    - family: NotoSansTifinaghRhissaIxa-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghRhissaIxa-Regular.ttf
+    - family: NotoSansTifinaghSIL-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghSIL-Regular.ttf
+    - family: NotoSansTifinaghTawellemmet-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTifinaghTawellemmet-Regular.ttf
+    - family: NotoSansTirhuta-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTirhuta-Regular.ttf
+    - family: NotoSansUgaritic-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansUgaritic-Regular.ttf
+    - family: NotoSansVai-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansVai-Regular.ttf
+    - family: NotoSansWancho-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansWancho-Regular.ttf
+    - family: NotoSansWarangCiti-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansWarangCiti-Regular.ttf
+    - family: NotoSansYi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansYi-Regular.ttf
+    - family: NotoSansZanabazarSquare-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansZanabazarSquare-Regular.ttf
+    - family: NotoSerifAhom-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifAhom-Regular.ttf
+    - family: NotoSerifDogra-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifDogra-Regular.ttf
+    - family: NotoSerifNyiakengPuachueHmong-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifNyiakengPuachueHmong-Regular.ttf
+    - family: NotoSerifTamilSlanted-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifTamilSlanted-Regular.ttf
+    - family: NotoSerifTangut-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifTangut-Regular.ttf
+    - family: NotoSerifTibetan-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifTibetan-Regular.ttf
+    - family: NotoSerifYezidi-Regular
+      fonts:
+        - asset: assets/fonts/NotoSerifYezidi-Regular.ttf
+    - family: NotoTraditionalNushu-Regular
+      fonts:
+        - asset: assets/fonts/NotoTraditionalNushu-Regular.ttf
+    - family: NotoSansSC-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.otf
+    - family: NotoSansHK-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansHK-Regular.otf
+    - family: NotoSansTC-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansTC-Regular.otf
+    - family: NotoSansJP-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansJP-Regular.otf
+    - family: NotoSansKR-Regular
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Regular.otf

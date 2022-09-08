@@ -1,0 +1,19 @@
+name: Dictionary
+description: View definitions
+
+overview:
+  name: Overview
+  seealso: See also
+  languages: 
+    name: Languages
+  information:
+    name: 'Entry information'
+    dateRetrieved: "Date retrieved:"
+    wikititle: "Full title:"
+    idPage: "Page ID:"
+    idRevision: "Revision ID:"
+    wotd: "Selected for the Word of the Day:"
+    redirect: "Redirected from:"
+
+snackbar:
+  headingNotExist: Language \"${language}\" doesn't exist for this entry.
