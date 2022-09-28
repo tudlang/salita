@@ -1,3 +1,6 @@
+app:
+  name: Salita
+
 tooltip:
   openInBrowser: Open in browser
   refresh: Refresh
@@ -7,3 +10,4 @@ tooltip:
 snackbar:
   copyToClipboard: Copied \"${message}\" to clipboard
   noDescription: No description provided
+  unsupported: This feature is currently unsupported.

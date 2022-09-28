@@ -58,6 +58,7 @@ dependencies:
       path: plugins/menubar
       ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
   bitsdojo_window: ^0.1.2
+  package_info_plus: ^1.4.2
   
 
 dev_dependencies:
@@ -72,6 +73,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.2.0
+  flutter_launcher_icons: ^0.10.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

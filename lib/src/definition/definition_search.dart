@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:salita/utils/functions.dart';
 import '../data/namespace.dart';
 import '../data/wiktionary.dart';
 import '/db.dart';
@@ -47,14 +48,11 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                 for (final i in SourceWiktionary.fromSettings().namespaces)
                   DropdownMenuItem(
                     value: i,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Icon(i.icon),
-                        ),
-                        Text(i.namespaceName),
-                      ],
+                    child: ListTile(
+                      selected: mode == i,
+                      leading: Icon(i.icon),
+                      title: Text(i.nameLocalized),
+                      minLeadingWidth: 20,
                     ),
                   )
               ],
@@ -73,21 +71,22 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                 onPressed: kIsWeb
                     ? null
                     : () {
-                        setState(() {
-                          isOnline = !isOnline;
-                        });
-                        ScaffoldMessenger.of(context)
-                          ..clearSnackBars()
-                          ..showSnackBar(SnackBar(
-                            content: Text(
-                              isOnline
-                                  ? 'Searching in online mode'
-                                  : 'Searching in offline mode',
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                          ));
-                        //to trigger a search again
-                        query = query;
+                      showUnsupportedSnackbar(context);
+                        // setState(() {
+                        //   isOnline = !isOnline;
+                        // });
+                        // ScaffoldMessenger.of(context)
+                        //   ..clearSnackBars()
+                        //   ..showSnackBar(SnackBar(
+                        //     content: Text(
+                        //       isOnline
+                        //           ? 'Searching in online mode'
+                        //           : 'Searching in offline mode',
+                        //     ),
+                        //     behavior: SnackBarBehavior.floating,
+                        //   ));
+                        // //to trigger a search again
+                        // query = query;
                       },
                 icon: Icon(
                   isOnline ? Icons.cloud_outlined : Icons.cloud_off_outlined,

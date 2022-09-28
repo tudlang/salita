@@ -104,7 +104,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //(_titleKey.currentState! as _DefinitionTitleState).title = widget.title;
     });
-    debugPrint(appWindow.size.width.toString());
 
     return ScaffoldAdaptive(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -220,7 +219,10 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                 ),
                 IconButton(
                   color: Colors.grey.shade500,
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO ADD BOOKMARKS
+                    showUnsupportedSnackbar(context);
+                  },
                   icon: const Icon(Icons.bookmark_border_outlined),
                 ),
               ],

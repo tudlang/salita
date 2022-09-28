@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:menubar/menubar.dart';
+import 'package:salita/strings.g.dart';
 import 'package:salita/utils/extensions.dart';
 import '../../src/data/entry.dart';
 import '../../settings_keys.dart';
@@ -15,240 +16,6 @@ import 'data/wiktionary.dart';
 
 import '/utils/functions.dart';
 import 'definition/definition_search.dart';
-
-class DefinitionDrawer extends StatefulWidget {
-  const DefinitionDrawer({
-    super.key,
-    this.wrapdrawer = true,
-  });
-
-  final bool wrapdrawer;
-
-  @override
-  State<DefinitionDrawer> createState() => _DefinitionDrawerState();
-}
-
-class _DefinitionDrawerState extends State<DefinitionDrawer> {
-  @override
-  Widget build(BuildContext context) {
-    return parentOrChild(
-      condition: widget.wrapdrawer,
-      parent: (child) => Drawer(
-        child: child,
-      ),
-      child: ListView(
-        children: [
-          UserAccountsDrawerHeader(
-            accountName: Text(
-              'Salita',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3
-                  ?.copyWith(color: Colors.white, fontFamily: 'Raleway'),
-            ),
-            accountEmail: Text('v0.1.0'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.translate_outlined),
-            trailing: const Icon(Icons.arrow_forward_ios_outlined),
-            title: Text('Definition language'),
-            subtitle: Text(
-              SourceWiktionary.fromCode(SettingsKeys.settingsDefinitionLanguage)
-                  .name,
-            ),
-            onTap: () async {
-              var sortmode = 0;
-              final selected = await showModalBottomSheetScaffold<String>(
-                context: context,
-                title: 'Select the language for definitions',
-                builder: (context, setState) {
-                  final list = SourceWiktionary.map.entries.toList();
-                  list.sort((a, b) {
-                    switch (sortmode) {
-                      // sorting by entry count descending
-                      case 5:
-                        return b.value.numberEntries
-                            .compareTo(a.value.numberEntries);
-                      // sorting by entry count ascending
-                      case 4:
-                        return a.value.numberEntries
-                            .compareTo(b.value.numberEntries);
-                      // sorting by name descending
-                      case 3:
-                        return b.key.compareTo(a.key);
-                      // DEFAULT: sorting by name ascending
-                      case 2:
-                        return a.key.compareTo(b.key);
-                      // sorting by name descending
-                      case 1:
-                        return b.value.name.compareTo(a.value.name);
-                      // DEFAULT: sorting by name ascending
-                      case 0:
-                      default:
-                        return a.value.name.compareTo(b.value.name);
-                    }
-                  });
-
-                  final items = [
-                    PopupMenuItem(
-                      value: 0,
-                      child: Text('Sort by name A-Z'),
-                    ),
-                    PopupMenuItem(
-                      value: 1,
-                      child: Text('Sort by name Z-A'),
-                    ),
-                    PopupMenuItem(
-                      value: 2,
-                      child: Text('Sort by code A-Z'),
-                    ),
-                    PopupMenuItem(
-                      value: 3,
-                      child: Text('Sort by code Z-A'),
-                    ),
-                    PopupMenuItem(
-                      value: 4,
-                      child: Text('Sort by entry count 0-9'),
-                    ),
-                    PopupMenuItem(
-                      value: 5,
-                      child: Text('Sort by entry count 9-0'),
-                    ),
-                  ];
-
-                  return [
-                    PopupMenuButton<int>(
-                      initialValue: sortmode,
-                      tooltip: 'Sort by',
-                      onSelected: (value) {
-                        setState(() {
-                          sortmode = value;
-                        });
-                      },
-                      itemBuilder: (context) => items,
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.sort_outlined,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        title: items[sortmode].child,
-                        trailing: Icon(
-                          Icons.arrow_drop_down_outlined,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                      ),
-                    ),
-                    const Divider(),
-                    for (final i in list)
-                      ListTile(
-                        selected:
-                            SettingsKeys.settingsDefinitionLanguage == i.key,
-                        title: Text(i.value.name),
-                        trailing:
-                            SettingsKeys.settingsDefinitionLanguage == i.key
-                                ? const Icon(Icons.check_outlined)
-                                : null,
-                        leading: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4)),
-                            border: Border.all(
-                                color: Theme.of(context).iconTheme.color!),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(i.key.toUpperCase()),
-                          ),
-                        ),
-                        subtitle: Text('${i.value.numberEntries}+ entries'),
-                        onTap: () {
-                          Navigator.pop(context, i.key);
-                        },
-                      )
-                  ];
-                },
-                actions: (context, setState) {
-                  return [];
-                },
-              );
-              if (selected != null) {
-                SettingsKeys.settingsDefinitionLanguage = selected;
-                // setstate to refresh displayed language name
-                setState(() {});
-              }
-            },
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.home_outlined),
-            title: Text('Home'),
-            onTap: () {
-              if (GoRouter.of(context).location != '/') {
-                GoRouter.of(context).go('/');
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.search_outlined),
-            title: Text('Search'),
-            onTap: () {
-              showSearch(
-                  context: context, delegate: DefinitionSearchDelegate());
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.history_outlined),
-            title: Text('History'),
-            onTap: () {
-              showModalBottomSheetScaffold(
-                context: context,
-                builder: (context, setState) {
-                  final history = SettingsKeys.appDefinitionHistory;
-                  return [
-                    ListView.builder(
-                      itemCount: history.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(history[index]),
-                          onTap: () {
-                            EntryLink.fromHref(history[index])
-                                .go(context, isOnline: true);
-                          },
-                        );
-                      },
-                    )
-                  ];
-                },
-                isScrollable: true,
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.bookmark_outline),
-            title: Text('Bookmarks'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings_outlined),
-            title: Text('Settings'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: Text('About'),
-            onTap: () {
-              showAboutDialog(
-                context: context,
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class ScaffoldAdaptive extends StatefulWidget {
   const ScaffoldAdaptive({
@@ -345,8 +112,9 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
               key: appBar.key,
               leading: isPlatformDesktop()
                   ? Icon(
-                    // Logo of Salita
-                      const IconData(0x1710, fontFamily: 'NotoSansTagalog-Regular'),
+                      // Logo of Salita
+                      const IconData(0x1710,
+                          fontFamily: 'NotoSansTagalog-Regular'),
                       color: Colors.blue.shade300,
                       shadows: [
                         Shadow(
@@ -542,7 +310,8 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
               flexibleSpace: appBar.flexibleSpace,
               bottom: appBar.bottom,
               elevation: Theme.of(context).brightness == Brightness.dark
-                      ? appBar.elevation:4,
+                  ? appBar.elevation
+                  : 4,
               scrolledUnderElevation: appBar.scrolledUnderElevation,
               shadowColor: appBar.shadowColor,
               surfaceTintColor: appBar.surfaceTintColor,
@@ -571,33 +340,51 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
               children: [
                 LayoutBuilder(builder: (context, constraints) {
                   return SingleChildScrollView(
-                      controller: drawerScrollController,
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                        ),
-                        child: IntrinsicHeight(
-                          child: NavigationRail(
-                            minWidth: 56,
-                            elevation: 8,
-                            extended: false,
-                            onDestinationSelected: (index) {
-                              destinations[index].onTap(context);
-                            },
-                            destinations: [
-                              for (final destination in destinations)
-                                NavigationRailDestination(
-                                  icon: Tooltip(
-                                    message: destination.tooltip,
-                                    child: Icon(destination.icon),
-                                  ),
-                                  label: Text(destination.name),
+                    controller: drawerScrollController,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: IntrinsicHeight(
+                        child: NavigationRail(
+                          minWidth: 56,
+                          elevation: 8,
+                          extended: false,
+                          onDestinationSelected: (index) {
+                            destinations[index].onTap(context);
+                          },
+                          destinations: [
+                            for (final destination in destinations)
+                              NavigationRailDestination(
+                                icon: Tooltip(
+                                  message: destination.tooltip,
+                                  child: Icon(destination.icon),
                                 ),
-                            ],
-                            selectedIndex: 0,
+                                label: Text(destination.name),
+                              ),
+                          ],
+                          selectedIndex: null,
+                          trailing: Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: IconButton(
+                                onPressed: () {},
+                                color: Theme.of(context)
+                                    .iconTheme
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurface
+                                            .withOpacity(0.64))
+                                    .color,
+                                icon: Icon(Icons.settings_outlined),
+                              ),
+                            ),
                           ),
                         ),
-                      ));
+                      ),
+                    ),
+                  );
                 }),
                 if (widget.body != null) Expanded(child: widget.body!),
               ],
@@ -607,7 +394,232 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
       floatingActionButtonLocation: widget.floatingActionButtonLocation,
       floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
       persistentFooterButtons: widget.persistentFooterButtons,
-      drawer: isPlatformDesktop() ? null : DefinitionDrawer(),
+      drawer: isPlatformDesktop()
+          ? null
+          : Drawer(
+              child: ListView(
+                children: [
+                  UserAccountsDrawerHeader(
+                    accountName: Text(
+                      'Salita',
+                      style: Theme.of(context).textTheme.headline3?.copyWith(
+                          color: Colors.white, fontFamily: 'Raleway'),
+                    ),
+                    accountEmail: Text('v0.1.0'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.translate_outlined),
+                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                    title: Text('Definition language'),
+                    subtitle: Text(
+                      SourceWiktionary.fromCode(
+                              SettingsKeys.settingsDefinitionLanguage)
+                          .name,
+                    ),
+                    onTap: () async {
+                      var sortmode = 0;
+                      final selected =
+                          await showModalBottomSheetScaffold<String>(
+                        context: context,
+                        title: 'Select the language for definitions',
+                        builder: (context, setState) {
+                          final list = SourceWiktionary.map.entries.toList();
+                          list.sort((a, b) {
+                            switch (sortmode) {
+                              // sorting by entry count descending
+                              case 5:
+                                return b.value.numberEntries
+                                    .compareTo(a.value.numberEntries);
+                              // sorting by entry count ascending
+                              case 4:
+                                return a.value.numberEntries
+                                    .compareTo(b.value.numberEntries);
+                              // sorting by name descending
+                              case 3:
+                                return b.key.compareTo(a.key);
+                              // DEFAULT: sorting by name ascending
+                              case 2:
+                                return a.key.compareTo(b.key);
+                              // sorting by name descending
+                              case 1:
+                                return b.value.name.compareTo(a.value.name);
+                              // DEFAULT: sorting by name ascending
+                              case 0:
+                              default:
+                                return a.value.name.compareTo(b.value.name);
+                            }
+                          });
+
+                          final items = [
+                            PopupMenuItem(
+                              value: 0,
+                              child: Text('Sort by name A-Z'),
+                            ),
+                            PopupMenuItem(
+                              value: 1,
+                              child: Text('Sort by name Z-A'),
+                            ),
+                            PopupMenuItem(
+                              value: 2,
+                              child: Text('Sort by code A-Z'),
+                            ),
+                            PopupMenuItem(
+                              value: 3,
+                              child: Text('Sort by code Z-A'),
+                            ),
+                            PopupMenuItem(
+                              value: 4,
+                              child: Text('Sort by entry count 0-9'),
+                            ),
+                            PopupMenuItem(
+                              value: 5,
+                              child: Text('Sort by entry count 9-0'),
+                            ),
+                          ];
+
+                          return [
+                            PopupMenuButton<int>(
+                              initialValue: sortmode,
+                              tooltip: 'Sort by',
+                              onSelected: (value) {
+                                setState(() {
+                                  sortmode = value;
+                                });
+                              },
+                              itemBuilder: (context) => items,
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.sort_outlined,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                title: items[sortmode].child,
+                                trailing: Icon(
+                                  Icons.arrow_drop_down_outlined,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ),
+                            const Divider(),
+                            for (final i in list)
+                              ListTile(
+                                selected:
+                                    SettingsKeys.settingsDefinitionLanguage ==
+                                        i.key,
+                                title: Text(i.value.name),
+                                trailing:
+                                    SettingsKeys.settingsDefinitionLanguage ==
+                                            i.key
+                                        ? const Icon(Icons.check_outlined)
+                                        : null,
+                                leading: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(4)),
+                                    border: Border.all(
+                                        color:
+                                            Theme.of(context).iconTheme.color!),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(i.key.toUpperCase()),
+                                  ),
+                                ),
+                                subtitle:
+                                    Text('${i.value.numberEntries}+ entries'),
+                                onTap: () {
+                                  Navigator.pop(context, i.key);
+                                },
+                              )
+                          ];
+                        },
+                        actions: (context, setState) {
+                          return [];
+                        },
+                      );
+                      if (selected != null) {
+                        SettingsKeys.settingsDefinitionLanguage = selected;
+                        // setstate to refresh displayed language name
+                        setState(() {});
+                      }
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.home_outlined),
+                    title: Text('Home'),
+                    onTap: () {
+                      if (GoRouter.of(context).location != '/') {
+                        GoRouter.of(context).go('/');
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.search_outlined),
+                    title: Text('Search'),
+                    onTap: () {
+                      showSearch(
+                          context: context,
+                          delegate: DefinitionSearchDelegate());
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.history_outlined),
+                    title: Text('History'),
+                    onTap: () {
+                      showModalBottomSheetScaffold(
+                        context: context,
+                        builder: (context, setState) {
+                          final history = SettingsKeys.appDefinitionHistory;
+                          return [
+                            ListView.builder(
+                              itemCount: history.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(history[index]),
+                                  onTap: () {
+                                    EntryLink.fromHref(history[index])
+                                        .go(context, isOnline: true);
+                                  },
+                                );
+                              },
+                            )
+                          ];
+                        },
+                        isScrollable: true,
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_outline),
+                    title: Text('Bookmarks'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      showUnsupportedSnackbar(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings_outlined),
+                    title: Text('Settings'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      showUnsupportedSnackbar(context);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: Text('About'),
+                    onTap: () {
+                      showAboutDialog(
+                        applicationName: strings.General.app.name,
+                        context: context,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
       onDrawerChanged: widget.onDrawerChanged,
       endDrawer: widget.endDrawer,
       onEndDrawerChanged: widget.onEndDrawerChanged,
@@ -652,17 +664,21 @@ final destinations = <Destination>[
     onTap: (context) {},
   ),
   Destination(
-    name: 'DefLang',
+    name: 'Definition language',
     icon: Icons.translate_outlined,
-    tooltip: 'Def',
+    tooltip: 'Definition language',
     onTap: (context) {},
   ),
   Destination(
-    name: 'Search',
-    icon: Icons.search_outlined,
-    tooltip: 'Sea',
-    onTap: (context) {
-      
-    },
+    name: 'History',
+    icon: Icons.history_outlined,
+    tooltip: 'History',
+    onTap: (context) {},
+  ),
+  Destination(
+    name: 'Bookmarks',
+    icon: MdiIcons.bookmarkMultipleOutline,
+    tooltip: 'Bookmarks',
+    onTap: (context) {},
   ),
 ];

@@ -30,6 +30,19 @@ class _HomeActivityState extends State<HomeActivity>
         elevation: 0,
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
+        leading: isPlatformDesktop()
+            ? null
+            : Builder(builder: (context) {
+                return IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Icon(
+                    Icons.menu_outlined,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                );
+              }),
         actions: [],
       ),
       body: AnimatedBackground(

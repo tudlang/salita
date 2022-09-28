@@ -213,10 +213,13 @@ abstract class SourceWiktionary {
             .value!);
         late final Color color;
         if (a is HexColorTerm) {
-          color = Color((element.styles
+          final _ = (element.styles
                   .firstWhere((e) => e.property.contains('background'))
-                  .value! as HexColorTerm)
-              .value as int);
+                  .value! as HexColorTerm);
+              
+          if (_.value is int) color = Color(_.value);
+          // Skip the element if it has BAD_HEX_VALUE
+          if (_.value is BAD_HEX_VALUE) return;
         } else if (a is FunctionTerm) {
           color = fromCssColor("rgb(" + a.span!.text);
         } else {

@@ -425,7 +425,7 @@ class _DictionaryOverviewFragmentState
               tooltip: strings.General.tooltip.openInBrowser,
               icon: const Icon(Icons.open_in_browser_outlined),
               onPressed: () {
-                launchUrl(widget.entry.toUri());
+                launchUrl(widget.entry.toUri(), mode: LaunchMode.externalApplication);
               },
             ),
           ),

@@ -1,12 +1,12 @@
+/// Generated file. Do not edit.
+///
+/// Locales: 1
+/// Strings: 41
 
-/*
- * Generated file. Do not edit.
- *
- * Locales: 1
- * Strings: 39 
- */
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, unnecessary_string_interpolations, avoid_escaping_inner_quotes
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 
 import 'package:slang/slang.dart';
 export 'package:slang/slang.dart';
@@ -138,6 +138,7 @@ class _StringsGeneralEn {
 	final _StringsEn _root; // ignore: unused_field
 
 	// Translations
+	late final _StringsGeneralAppEn app = _StringsGeneralAppEn._(_root);
 	late final _StringsGeneralTooltipEn tooltip = _StringsGeneralTooltipEn._(_root);
 	late final _StringsGeneralSnackbarEn snackbar = _StringsGeneralSnackbarEn._(_root);
 }
@@ -208,6 +209,16 @@ class _StringsDefinitionDictionarySnackbarEn {
 	String headingNotExist({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.';
 }
 
+// Path: General.app
+class _StringsGeneralAppEn {
+	_StringsGeneralAppEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get name => 'Salita';
+}
+
 // Path: General.tooltip
 class _StringsGeneralTooltipEn {
 	_StringsGeneralTooltipEn._(this._root);
@@ -230,6 +241,7 @@ class _StringsGeneralSnackbarEn {
 	// Translations
 	String copyToClipboard({required Object message}) => 'Copied \"${message}\" to clipboard';
 	String get noDescription => 'No description provided';
+	String get unsupported => 'This feature is currently unsupported.';
 }
 
 // Path: Definition.html.quotations
@@ -451,12 +463,14 @@ extension on _StringsEn {
 			'DefinitionDictionary.overview.information.wotd': 'Selected for the Word of the Day:',
 			'DefinitionDictionary.overview.information.redirect': 'Redirected from:',
 			'DefinitionDictionary.snackbar.headingNotExist': ({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.',
+			'General.app.name': 'Salita',
 			'General.tooltip.openInBrowser': 'Open in browser',
 			'General.tooltip.refresh': 'Refresh',
 			'General.tooltip.search': 'Search',
 			'General.tooltip.copyToClipboard': 'Copy to clipboard',
 			'General.snackbar.copyToClipboard': ({required Object message}) => 'Copied \"${message}\" to clipboard',
 			'General.snackbar.noDescription': 'No description provided',
+			'General.snackbar.unsupported': 'This feature is currently unsupported.',
 		};
 	}
 }

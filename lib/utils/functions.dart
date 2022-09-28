@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:salita/strings.g.dart';
 import '../../src/definition/definition_html.dart';
 import '/opensource/adaptive.dart';
 
@@ -89,3 +90,12 @@ Widget parentOrChild({
 
 bool isPlatformDesktop() =>
     !kIsWeb && (Platform.isWindows || Platform.isMacOS || Platform.isLinux);
+
+ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+    showUnsupportedSnackbar(BuildContext context) {
+  final state = ScaffoldMessenger.of(context)..clearSnackBars();
+
+  return state.showSnackBar(SnackBar(
+    content: Text(strings.General.snackbar.unsupported),
+  ));
+}
