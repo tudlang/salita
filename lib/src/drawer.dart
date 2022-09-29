@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:menubar/menubar.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:salita/strings.g.dart';
 import 'package:salita/utils/extensions.dart';
 import '../../src/data/entry.dart';
@@ -311,7 +312,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
               bottom: appBar.bottom,
               elevation: Theme.of(context).brightness == Brightness.dark
                   ? appBar.elevation
-                  : 4,
+                  : 0,
               scrolledUnderElevation: appBar.scrolledUnderElevation,
               shadowColor: appBar.shadowColor,
               surfaceTintColor: appBar.surfaceTintColor,
@@ -405,7 +406,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       style: Theme.of(context).textTheme.headline3?.copyWith(
                           color: Colors.white, fontFamily: 'Raleway'),
                     ),
-                    accountEmail: Text('v0.1.0'),
+                    accountEmail: Text('The all-in-one dictionary'),
                   ),
                   ListTile(
                     leading: const Icon(Icons.translate_outlined),
@@ -555,40 +556,42 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       }
                     },
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.search_outlined),
-                    title: Text('Search'),
-                    onTap: () {
-                      showSearch(
-                          context: context,
-                          delegate: DefinitionSearchDelegate());
-                    },
-                  ),
+                  //ListTile(
+                  //  leading: const Icon(Icons.search_outlined),
+                  //  title: Text('Search'),
+                  //  onTap: () {
+                  //    showSearch(
+                  //        context: context,
+                  //        delegate: DefinitionSearchDelegate());
+                  //  },
+                  //),
                   ListTile(
                     leading: const Icon(Icons.history_outlined),
                     title: Text('History'),
                     onTap: () {
-                      showModalBottomSheetScaffold(
-                        context: context,
-                        builder: (context, setState) {
-                          final history = SettingsKeys.appDefinitionHistory;
-                          return [
-                            ListView.builder(
-                              itemCount: history.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  title: Text(history[index]),
-                                  onTap: () {
-                                    EntryLink.fromHref(history[index])
-                                        .go(context, isOnline: true);
-                                  },
-                                );
-                              },
-                            )
-                          ];
-                        },
-                        isScrollable: true,
-                      );
+                      Navigator.pop(context);
+                      showUnsupportedSnackbar(context);
+                      // showModalBottomSheetScaffold(
+                      //   context: context,
+                      //   builder: (context, setState) {
+                      //     final history = SettingsKeys.appDefinitionHistory;
+                      //     return [
+                      //       ListView.builder(
+                      //         itemCount: history.length,
+                      //         itemBuilder: (context, index) {
+                      //           return ListTile(
+                      //             title: Text(history[index]),
+                      //             onTap: () {
+                      //               EntryLink.fromHref(history[index])
+                      //                   .go(context, isOnline: true);
+                      //             },
+                      //           );
+                      //         },
+                      //       )
+                      //     ];
+                      //   },
+                      //   isScrollable: true,
+                      // );
                     },
                   ),
                   ListTile(
@@ -610,10 +613,13 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                   ListTile(
                     leading: const Icon(Icons.info_outline),
                     title: Text('About'),
-                    onTap: () {
+                    onTap: () async {
+                      Navigator.pop(context);
+                      final packageInfo = await PackageInfo.fromPlatform();
                       showAboutDialog(
-                        applicationName: strings.General.app.name,
                         context: context,
+                        applicationName: strings.General.app.name,
+                        applicationVersion: packageInfo.version,
                       );
                     },
                   ),

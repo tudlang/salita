@@ -376,6 +376,13 @@ class SourceWiktionaryEn extends SourceWiktionary {
   Element parseHtmlString(BuildContext context, String html) {
     final source = super.parseHtmlString(context, html);
 
+    // Removing the interwiki link boxes
+    source
+        .querySelectorAll(
+            '.checktrans, hr, .sister-wikipedia, .noprint, .sister-wikiquote, .sister-wikiversity, .thumb, .interProject, .mw-empty-elt')
+        .forEach((e) {
+      e.remove();
+    });
     return source;
   }
 }

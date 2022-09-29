@@ -355,22 +355,25 @@ class _DefinitionTitleState extends State<DefinitionTitle> {
       )..layout(maxWidth: constriants.maxWidth);
 
       return layout.didExceedMaxLines
-          ? ConstrainedBox(
-              // constrained box because marquee needs constrained height
-              constraints: BoxConstraints(maxHeight: layout.height),
-              child: Marquee(
-                text: _title,
-                scrollAxis: Axis.horizontal,
-                startAfter: const Duration(seconds: 1),
-                //velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
-                //intervalSpaces: 10,
-                blankSpace: 60,
-                showFadingOnlyWhenScrolling: false,
-                fadingEdgeEndFraction: 0.1,
-                fadingEdgeStartFraction: 0.1,
-                style: style,
+          ? Tooltip(
+            message: _title,
+            child: ConstrainedBox(
+                // constrained box because marquee needs constrained height
+                constraints: BoxConstraints(maxHeight: layout.height),
+                child: Marquee(
+                  text: _title,
+                  scrollAxis: Axis.horizontal,
+                  startAfter: const Duration(seconds: 1),
+                  //velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+                  //intervalSpaces: 10,
+                  blankSpace: 80,
+                  showFadingOnlyWhenScrolling: false,
+                  fadingEdgeEndFraction: 0.1,
+                  fadingEdgeStartFraction: 0.1,
+                  style: style,
+                ),
               ),
-            )
+          )
           : Text(
               _title,
               style: style,

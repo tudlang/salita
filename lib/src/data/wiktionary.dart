@@ -205,8 +205,10 @@ abstract class SourceWiktionary {
     // .children[1] = <body>
     final source = parse(html).children[0].children[1];
 
-    // DARK THEME BACKGROUND COLOR CHANGER
+    // DARK THEME COLOR CHANGER
     if (Theme.of(context).brightness == Brightness.dark) {
+
+      // CHANGE BACKGROUND COLOR
       source.querySelectorAll("[style*=background]").forEach((element) {
         final a = (element.styles
             .firstWhere((e) => e.property.contains('background'))
@@ -234,6 +236,8 @@ abstract class SourceWiktionary {
           poleBgColor: Theme.of(context).backgroundColor,
         ).toCssString()};";
       });
+
+      
     }
 
     return source;

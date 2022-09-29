@@ -154,8 +154,8 @@ class App extends StatelessWidget {
           waitDuration: Duration(milliseconds: 500),
         ),
       ),
-      themeMode: ThemeMode.values.byName(SettingsKeys.settingsDisplayMode),
-      //themeMode: ThemeMode.light,
+      //themeMode: ThemeMode.values.byName(SettingsKeys.settingsDisplayMode),
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
     );
   }

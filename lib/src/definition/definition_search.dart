@@ -37,6 +37,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
       preferredSize: AppBar().preferredSize,
       child: StatefulBuilder(
         builder: (context, setState) {
+          final source = SourceWiktionary.fromSettings();
           return AppBar(
             elevation: 1,
             primary: false,
@@ -45,7 +46,22 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
               isExpanded: true,
               value: mode,
               items: [
-                for (final i in SourceWiktionary.fromSettings().namespaces)
+                DropdownMenuItem(
+                  enabled: false,
+                  child: ListTile(
+                    title: Text(
+                      'Definition modes for ${source.name}'.toUpperCase(),
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text('These are the modes supported for your selected definition language, ${source.name}.')));
+                      },
+                      icon: const Icon(Icons.info_outline),
+                    ),
+                  ),
+                ),
+                for (final i in source.namespaces)
                   DropdownMenuItem(
                     value: i,
                     child: ListTile(
@@ -71,7 +87,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                 onPressed: kIsWeb
                     ? null
                     : () {
-                      showUnsupportedSnackbar(context);
+                        showUnsupportedSnackbar(context);
                         // setState(() {
                         //   isOnline = !isOnline;
                         // });

@@ -156,9 +156,10 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
               Container(
                 color: Colors.transparent,
                 constraints: BoxConstraints(
-                  maxWidth: isDisplayDesktop(context) || isPlatformDesktop()
-                      ? 230
-                      : 150,
+                  //maxWidth: isDisplayDesktop(context) || isPlatformDesktop()
+                  //    ? 230
+                  //    : 150,
+                  maxWidth: 230,
                 ),
                 child: Scrollbar(
                   controller: _listScrollController,
@@ -167,6 +168,7 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                     controller: _listScrollController,
                     children: [
                       ListTile(
+                        minLeadingWidth: 20,
                         selected: _tabTabController.index == 0,
                         title: Text(strings.DefinitionDictionary.overview.name),
                         style: isDisplayDesktop(context)
@@ -380,7 +382,9 @@ class _DictionaryOverviewFragmentState
               ),
           ListTile(
             title: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                showUnsupportedSnackbar(context);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
