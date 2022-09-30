@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:rich_clipboard/rich_clipboard.dart';
 import '/opensource/adaptive.dart';
 import '../../../main.dart';
 import '../../../strings.g.dart';
@@ -332,26 +331,26 @@ class _DictionaryOverviewFragmentState
                 leading: Text((++temp).toString()),
                 trailing: PopupMenuButton(
                   itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: () {
-                        RichClipboard.setData(RichClipboardData(
-                          html: i.html,
-                          text: i.html.htmlTryText(),
-                        )).then((_) {
-                          ScaffoldMessenger.of(context)
-                            ..clearSnackBars()
-                            ..showSnackBar(
-                              SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                content: Text(
-                                  'Copied to clipboard. You may paste it to a word processor like Microsoft Word.',
-                                ),
-                              ),
-                            );
-                        });
-                      },
-                      child: Text('Copy as formatted text'),
-                    ),
+                    //PopupMenuItem(
+                    //  onTap: () {
+                    //    RichClipboard.setData(RichClipboardData(
+                    //      html: i.html,
+                    //      text: i.html.htmlTryText(),
+                    //    )).then((_) {
+                    //      ScaffoldMessenger.of(context)
+                    //        ..clearSnackBars()
+                    //        ..showSnackBar(
+                    //          SnackBar(
+                    //            behavior: SnackBarBehavior.floating,
+                    //            content: Text(
+                    //              'Copied to clipboard. You may paste it to a word processor like Microsoft Word.',
+                    //            ),
+                    //          ),
+                    //        );
+                    //    });
+                    //  },
+                    //  child: Text('Copy as formatted text'),
+                    //),
                     PopupMenuItem(
                       onTap: () {
                         Clipboard.setData(ClipboardData(

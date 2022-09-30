@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tudlang.salita">
    <application
-        android:label="salita"
+        android:label="Salita"
         android:name="androidx.multidex.MultiDexApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -31,7 +31,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
             <!--For AdMob -->
-            <meta-data
+        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7610030002205893~2933701123"/>
     </application>

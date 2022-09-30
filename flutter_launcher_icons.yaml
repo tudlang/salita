@@ -1,0 +1,24 @@
+flutter_icons:
+  image_path: "assets/images/icon.png"
+
+  # Android
+  android: true
+  min_sdk_android: 21
+
+  # iOS
+  ios: true
+
+  # Web
+  web:
+    generate: true
+    theme_color: #6200ee
+
+  # Windows
+  windows: 
+    generate: true
+
+  # macOS
+  macos:
+      generate: true
+
+  # Linux not yet supported [https://github.com/fluttercommunity/flutter_launcher_icons/issues/395]

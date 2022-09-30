@@ -1,5 +1,5 @@
 name: salita
-description: The all-in-one dictionary app.
+description: The all-in-one dictionary.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -39,7 +39,7 @@ dependencies:
   url_launcher: ^6.1.4
   material_design_icons_flutter: ^5.0.6996
   share_plus: ^4.0.10
-  rich_clipboard: ^1.0.0
+  # rich_clipboard: ^1.0.1
   shared_preferences: ^2.0.15
   google_mobile_ads: ^1.3.0
   animated_background: ^2.0.0
@@ -52,12 +52,12 @@ dependencies:
   from_css_color: ^2.0.0
   csslib: ^0.17.2
   new_keyboard_shortcuts: ^0.1.4
-  menubar:
-    git:
-      url: https://github.com/google/flutter-desktop-embedding.git
-      path: plugins/menubar
-      ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
-  bitsdojo_window: ^0.1.2
+  # menubar:
+  #   git:
+  #     url: https://github.com/google/flutter-desktop-embedding.git
+  #     path: plugins/menubar
+  #     ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
+  bitsdojo_window: ^0.1.5
   package_info_plus: ^1.4.2
   
 
@@ -74,6 +74,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.2.0
   flutter_launcher_icons: ^0.10.0
+  # msix: ^3.6.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -89,15 +90,13 @@ flutter:
     - assets/svg/definition_search_none.svg
     - assets/svg/definition_search_type.svg
 
-
-
   fonts:
     - family: Raleway
       fonts:
-      - asset: assets/fonts/raleway_regular.ttf
+        - asset: assets/fonts/Raleway-Regular.ttf
     - family: NotoSans-Regular
       fonts:
-      - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Regular.ttf
     - family: NotoKufiArabic-Regular
       fonts:
         - asset: assets/fonts/NotoKufiArabic-Regular.ttf

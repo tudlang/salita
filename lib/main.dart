@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:animated_background/animated_background.dart';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -27,16 +26,14 @@ import '/opensource/bordertabindicator.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SettingsKeys.initialize();
+  
+  
 
   if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
     MobileAds.instance.initialize();
   }
 
   runApp(App());
-
-  doWhenWindowReady((){
-    appWindow.minSize = Size(477,0);
-  });
 }
 
 class App extends StatelessWidget {

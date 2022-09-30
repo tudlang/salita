@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:menubar/menubar.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:salita/strings.g.dart';
 import 'package:salita/utils/extensions.dart';
