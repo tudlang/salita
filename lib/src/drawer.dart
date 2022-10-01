@@ -593,14 +593,14 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       // );
                     },
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.bookmark_outline),
-                    title: Text('Bookmarks'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      showUnsupportedSnackbar(context);
-                    },
-                  ),
+                  //ListTile(
+                  //  leading: const Icon(Icons.bookmark_outline),
+                  //  title: Text('Bookmarks'),
+                  //  onTap: () {
+                  //    Navigator.pop(context);
+                  //    showUnsupportedSnackbar(context);
+                  //  },
+                  //),
                   ListTile(
                     leading: const Icon(Icons.settings_outlined),
                     title: Text('Settings'),
@@ -618,6 +618,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       showAboutDialog(
                         context: context,
                         applicationName: strings.General.app.name,
+                        applicationLegalese: 'Made with ❤️ by Yivan',
                         applicationVersion: packageInfo.version,
                       );
                     },

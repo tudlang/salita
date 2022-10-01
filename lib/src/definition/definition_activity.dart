@@ -23,7 +23,7 @@ import '../drawer.dart';
 import '/utils/extensions.dart';
 
 import '../data/entry.dart';
-import '../../db.dart';
+import '../io/connection.dart';
 import '../../main.dart';
 import 'definition_search.dart';
 import 'dictionary/dict_fragment.dart';
@@ -113,14 +113,13 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
             ? null
             : Text(widget.mode.nameLocalized),
         actions: [
-          if (isPlatformDesktop()|| isDisplayDesktop(context))
+          if (isPlatformDesktop() || isDisplayDesktop(context))
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 300),
               child: DefinitionSearchField(isAppbar: true),
             )
           else
             IconButton(
-              color: Theme.of(context).iconTheme.color,
               tooltip: strings.General.tooltip.search,
               onPressed: () {
                 showSearch(
@@ -131,7 +130,10 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                   ),
                 );
               },
-              icon: const Icon(Icons.search_outlined),
+              icon: Icon(
+                Icons.search_outlined,
+                //color: Theme.of(context).iconTheme.color,
+              ),
             ),
           IconButton(
             tooltip: strings.General.tooltip.refresh,
@@ -141,7 +143,9 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
             },
             icon: Icon(
               Icons.refresh_outlined,
-              color:isPlatformDesktop() ? Theme.of(context).iconTheme.color : null,
+              color: isPlatformDesktop()
+                  ? Theme.of(context).iconTheme.color
+                  : null,
             ),
           ),
         ],
@@ -217,14 +221,14 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                   },
                   icon: const Icon(Icons.copy_outlined),
                 ),
-                IconButton(
-                  color: Colors.grey.shade500,
-                  onPressed: () {
-                    // TODO ADD BOOKMARKS
-                    showUnsupportedSnackbar(context);
-                  },
-                  icon: const Icon(Icons.bookmark_border_outlined),
-                ),
+                //IconButton(
+                //  color: Colors.grey.shade500,
+                //  onPressed: () {
+                //    // TODO ADD BOOKMARKS
+                //    showUnsupportedSnackbar(context);
+                //  },
+                //  icon: const Icon(Icons.bookmark_border_outlined),
+                //),
               ],
             ),
           ),
@@ -356,8 +360,8 @@ class _DefinitionTitleState extends State<DefinitionTitle> {
 
       return layout.didExceedMaxLines
           ? Tooltip(
-            message: _title,
-            child: ConstrainedBox(
+              message: _title,
+              child: ConstrainedBox(
                 // constrained box because marquee needs constrained height
                 constraints: BoxConstraints(maxHeight: layout.height),
                 child: Marquee(
@@ -373,7 +377,7 @@ class _DefinitionTitleState extends State<DefinitionTitle> {
                   style: style,
                 ),
               ),
-          )
+            )
           : Text(
               _title,
               style: style,

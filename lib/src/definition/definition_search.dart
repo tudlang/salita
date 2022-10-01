@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:salita/utils/functions.dart';
 import '../data/namespace.dart';
 import '../data/wiktionary.dart';
-import '/db.dart';
+import '../io/connection.dart';
 import '/strings.g.dart';
 import '../data/entry.dart';
 import '/utils/extensions.dart';
@@ -55,7 +55,14 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                     ),
                     trailing: IconButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text('These are the modes supported for your selected definition language, ${source.name}.')));
+                        ScaffoldMessenger.of(context)
+                          ..clearSnackBars()
+                          ..showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              'These are the modes supported for your selected definition language, ${source.name}.',
+                            ),
+                          ));
                       },
                       icon: const Icon(Icons.info_outline),
                     ),

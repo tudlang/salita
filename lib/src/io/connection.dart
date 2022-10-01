@@ -1,14 +1,14 @@
-import 'dart:html' as html;
-import 'dart:io';
+import 'db.dart'
+    if (dart.library.io) 'db_native.dart'
+    if (dart.library.html) 'db_web.dart' as db;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'src/data/entry.dart';
-import 'src/data/wiktionary.dart';
+import '../data/entry.dart';
+import '../data/wiktionary.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EntryConnection {
@@ -19,46 +19,23 @@ class EntryConnection {
     required isOnline,
   }) async {
     late Entry output;
-
-    if (kIsWeb) {
-      final response = await html.HttpRequest.postFormData(
-        SourceWiktionary.fromSettings().url,
-        {
-          'origin': '*', //for CORS stuff
-          'action': 'parse',
-          'format': 'json',
-          'formatversion': '2',
-          'page': wikititle,
-          'prop': 'text|revid|displaytitle|limitreportdata|properties',
-          'disableeditsection': '1',
-          'disabletoc': '1',
-          'curtimestamp': '1',
-        },
-      );
+    if (isOnline || kIsWeb) {
       output = Entry.fromJson(
         context,
-        jsonDecode(response.response),
-        redirectFrom: redirectFrom,
-      );
-    } else if (isOnline) {
-      final response = await http.post(
-        Uri.parse(SourceWiktionary.fromSettings().url),
-        body: {
-          'origin': '*', //for CORS stuff
-          'action': 'parse',
-          'format': 'json',
-          'formatversion': '2',
-          'page': wikititle,
-          'prop': 'text|revid|displaytitle|limitreportdata|properties',
-          'disableeditsection': '1',
-          'disabletoc': '1',
-          'curtimestamp': '1',
-        },
-      );
-
-      output = Entry.fromJson(
-        context,
-        jsonDecode(response.body),
+        jsonDecode(await db.post(
+          url: SourceWiktionary.fromSettings().url,
+          body: {
+            'origin': '*', //for CORS stuff
+            'action': 'parse',
+            'format': 'json',
+            'formatversion': '2',
+            'page': wikititle,
+            'prop': 'text|revid|displaytitle|limitreportdata|properties',
+            'disableeditsection': '1',
+            'disabletoc': '1',
+            'curtimestamp': '1',
+          },
+        )),
         redirectFrom: redirectFrom,
       );
     } else {
@@ -76,40 +53,21 @@ class EntryConnection {
   }) async {
     late List<EntryLink?> output;
 
-    if (kIsWeb) {
-      final response = await html.HttpRequest.postFormData(
-        SourceWiktionary.fromSettings().url,
-        {
-          'origin': '*', //for CORS stuff
-          'action': 'query',
-          'format': 'json',
-          'formatversion': '2',
-          'gpssearch': wikititle,
-          'gpsoffset': offset.toString(),
-          'gpsnamespace': namespaceId.toString(),
-          'generator': 'prefixsearch',
-        },
-      );
+    if (isOnline || kIsWeb) {
       output = EntryLink.fromJson(
-        jsonDecode(response.response),
-      );
-    } else if (isOnline) {
-      var response = await http.post(
-        Uri.parse(SourceWiktionary.fromSettings().url),
-        body: {
-          'origin': '*', //for CORS stuff
-          'action': 'query',
-          'format': 'json',
-          'formatversion': '2',
-          'gpssearch': wikititle,
-          'gpsoffset': offset.toString(),
-          'gpsnamespace': namespaceId.toString(),
-          'generator': 'prefixsearch',
-        },
-      );
-
-      output = EntryLink.fromJson(
-        jsonDecode(response.body),
+        jsonDecode(await db.post(
+          url: SourceWiktionary.fromSettings().url,
+          body: {
+            'origin': '*', //for CORS stuff
+            'action': 'query',
+            'format': 'json',
+            'formatversion': '2',
+            'gpssearch': wikititle,
+            'gpsoffset': offset.toString(),
+            'gpsnamespace': namespaceId.toString(),
+            'generator': 'prefixsearch',
+          },
+        )),
       );
     } else {
       throw UnimplementedError();
