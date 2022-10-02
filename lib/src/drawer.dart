@@ -141,7 +141,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            PopupMenuButton<int>(
+                            /* PopupMenuButton<int>(
                               tooltip: '',
                               position: PopupMenuPosition.under,
                               child: Align(
@@ -264,6 +264,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                                 ];
                               },
                             ),
+                           */
                           ],
                         ),
                       ),
@@ -368,7 +369,10 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // TODO SETTINGS
+                                  showUnsupportedSnackbar(context);
+                                },
                                 color: Theme.of(context)
                                     .iconTheme
                                     .copyWith(
@@ -405,7 +409,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       style: Theme.of(context).textTheme.headline3?.copyWith(
                           color: Colors.white, fontFamily: 'Raleway'),
                     ),
-                    accountEmail: Text('The all-in-one dictionary'),
+                    accountEmail: Text('All-in-one dictionary'),
                   ),
                   ListTile(
                     leading: const Icon(Icons.translate_outlined),
@@ -618,7 +622,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       showAboutDialog(
                         context: context,
                         applicationName: strings.General.app.name,
-                        applicationLegalese: 'Made with ❤️ by Yivan',
+                        applicationLegalese: 'Made with ❤️ by Tudlang (Yivan)',
                         applicationVersion: packageInfo.version,
                       );
                     },
@@ -667,24 +671,30 @@ final destinations = <Destination>[
     name: 'Home',
     icon: Icons.home_outlined,
     tooltip: 'Homepage',
-    onTap: (context) {},
+    onTap: (context) {
+      GoRouter.of(context).go('/');
+    },
   ),
   Destination(
     name: 'Definition language',
     icon: Icons.translate_outlined,
     tooltip: 'Definition language',
-    onTap: (context) {},
+    onTap: (context) {
+      showUnsupportedSnackbar(context);
+    },
   ),
   Destination(
     name: 'History',
     icon: Icons.history_outlined,
     tooltip: 'History',
-    onTap: (context) {},
+    onTap: (context) {
+      showUnsupportedSnackbar(context);
+    },
   ),
-  Destination(
-    name: 'Bookmarks',
-    icon: MdiIcons.bookmarkMultipleOutline,
-    tooltip: 'Bookmarks',
-    onTap: (context) {},
-  ),
+  //Destination(
+  //  name: 'Bookmarks',
+  //  icon: MdiIcons.bookmarkMultipleOutline,
+  //  tooltip: 'Bookmarks',
+  //  onTap: (context) {},
+  //),
 ];

@@ -25,7 +25,7 @@ Future<T?> showModalBottomSheetScaffold<T>({
             topRight: Radius.circular(16),
           ),
         ),
-        margin: isPlatformDesktop()
+        margin: isDisplayDesktop(context)
             ? const EdgeInsets.symmetric(horizontal: 16)
             : null,
         child: StatefulBuilder(builder: (context, setState) {
