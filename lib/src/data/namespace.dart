@@ -1,3 +1,9 @@
+// Copyright (c) 2022 Tudlang
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import 'package:flutter/material.dart' hide Element;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salita/strings.g.dart';
