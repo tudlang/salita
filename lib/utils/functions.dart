@@ -10,13 +10,18 @@ import '/opensource/adaptive.dart';
 Future<T?> showModalBottomSheetScaffold<T>({
   required BuildContext context,
   String title = '',
-  required List<Widget> Function(BuildContext, StateSetter) builder,
-  List<Widget> Function(BuildContext, StateSetter)? actions,
+  required List<Widget> Function(BuildContext context, StateSetter setState)
+      builder,
+  List<Widget> Function(BuildContext context, StateSetter setState)? actions,
+  PreferredSizeWidget Function(BuildContext context, StateSetter setState)?
+      bottom,
   bool isScrollable = false,
 }) {
+
   return showModalBottomSheet<T>(
     context: context,
     backgroundColor: Colors.transparent,
+    //isScrollControlled: isFullscreen,
     builder: (context) {
       return Container(
         decoration: const BoxDecoration(
@@ -50,10 +55,17 @@ Future<T?> showModalBottomSheetScaffold<T>({
               ),
               actions: [
                 if (actions != null) ...actions(context, setState),
+                //IconButton(
+                //  onPressed: () {
+                //    setState(() {});
+                //  },
+                //  icon: Icon(Icons.expand),
+                //),
                 CloseButton(
                   color: Theme.of(context).iconTheme.color,
                 ),
               ],
+              bottom: (bottom == null) ? null : bottom(context, setState),
             ),
             body: SizedBox.expand(
               child: Ink(
@@ -99,6 +111,6 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
 
   return state.showSnackBar(SnackBar(
     behavior: SnackBarBehavior.floating,
-    content: Text(strings.General.snackbar.unsupported),
+    content: Text(strings.general.snackbar.unsupported),
   ));
 }

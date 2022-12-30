@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Element;
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html_all/flutter_html_all.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import '/opensource/adaptive.dart';
 import '/utils/functions.dart';
@@ -63,14 +61,16 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
 
   @override
   Widget build(BuildContext context) {
+    final source = SourceWiktionary.fromSettings();
     return _conditionalscroll(
       child: HtmlWidget(
         widget.data,
         buildAsync: true,
-
+      
         isSelectable: true,
         factoryBuilder: () => DefinitionHtmlFactory(
           context: context,
+          sourceWiktionary: source
         ),
         onTapUrl: (url) {
           var link = EntryLink.fromHref(url);
@@ -78,13 +78,12 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
           return true;
         },
         customWidgetBuilder: (element) {
-          return SourceWiktionary.fromSettings().parseHtmlWidgetSimple(
+          return source.parseHtmlWidgetSimple(
             context: context,
             element: element,
             bottomsheet: _bottomsheet,
             isOnline: widget.isOnline,
             htmlwidget: DefinitionHtml.new,
-            strings: strings,
           );
         },
         // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
@@ -97,7 +96,7 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
                     primary: false,
                     padding: _padding,
                   ),
-
+      
         onLoadingBuilder: (context, element, loadingProgress) {
           print(loadingProgress);
           return Padding(
@@ -112,9 +111,12 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
             ),
           );
         },
+        onErrorBuilder: (context, element, error) {
+          return Text(error.toString());
+        },
       ),
     );
-
+/*
     return Html(
       data: widget.data,
       onLinkTap: (url, renderContext, attributes, element) {
@@ -296,6 +298,7 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
         ),
       },
     );
+*/
   }
 }
 
@@ -324,15 +327,17 @@ _bottomsheet(
 class DefinitionHtmlFactory extends WidgetFactory {
   DefinitionHtmlFactory({
     required this.context,
+    required this.sourceWiktionary,
   }) : super();
   BuildContext context;
+  SourceWiktionary sourceWiktionary;
 
   @override
   bool get webViewDebuggingEnabled => true;
 
   @override
   void parse(BuildMetadata meta) {
-    SourceWiktionary.fromSettings().parseHtmlWidgetAdvanced(
+    sourceWiktionary.parseHtmlWidgetAdvanced(
       meta: meta,
       context: context,
       bottomsheet: _bottomsheet,

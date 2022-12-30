@@ -4,47 +4,102 @@ import 'dart:math';
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_split_view/flutter_split_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 import '/src/data/namespace.dart';
 import '/src/data/wiktionary.dart';
 import '/src/drawer.dart';
 import '/src/definition/definition_search.dart';
-import '/settings_keys.dart';
+import 'settings.dart';
 import '/src/data/entry.dart';
 import '/src/home_activity.dart';
+import '/src/settings_activity.dart';
 import '/utils/extensions.dart';
 import '/src/definition/definition_activity.dart';
 import '/src/definition/dictionary/dict_fragment.dart';
 import '/opensource/bordertabindicator.dart';
 
-void main() {
+late final SharedPreferences prefs;
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SettingsKeys.initialize();
-  
-  
+
+  // get preferences
+  prefs = await SharedPreferences.getInstance();
 
   if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
     MobileAds.instance.initialize();
   }
 
-  runApp(App());
+  runApp(App(
+    prefs: prefs,
+  ));
 }
 
 class App extends StatelessWidget {
+  final SharedPreferences prefs;
   App({
     super.key,
+    required this.prefs,
   });
 
   @override
   Widget build(BuildContext context) {
-    SettingsKeys.initialize();
 
+    final _router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => HomeActivity()),
+        GoRoute(
+          path: '/definition',
+          redirect: (state) => '/definition/',
+        ),
+        GoRoute(
+          path: '/definition/:wikititle',
+          builder: (context, state) {
+            //print('ROUTE URI: ${state.queryParams}');
+
+            if (kIsWeb) {
+              return DefinitionActivity.web(
+                key: ValueKey(state.params['wikititle']?.tryDecodeUri()),
+                title: state.params['wikititle']?.tryDecodeUri() ?? '',
+                // get enum value from string, default to `dictionary`
+                mode: SourceWiktionary.fromSettings()
+                    .namespaces
+                    .singleWhere(
+                        (element) =>
+                            element.id ==
+                            (state.queryParams['mode'] ?? 'dictionary'),
+                        orElse: () => const NamespaceDictionary()),
+                redirect: state.extra?.toMap()?['redirect'],
+                heading: state.queryParams['heading'].tryDecodeUri(),
+              );
+            }
+
+            return DefinitionActivity(
+              key: ValueKey(state.params['wikititle']?.tryDecodeUri()),
+              title: state.params['wikititle']?.tryDecodeUri() ?? '',
+              // get enum value from string, default to `dictionary`
+              mode: SourceWiktionary.fromSettings().namespaces.singleWhere(
+                  (element) =>
+                      element.id == (state.queryParams['mode'] ?? 'dictionary'),
+                  orElse: () => const NamespaceDictionary()),
+              isOnline: state.queryParams['online'] == 'true',
+              redirect: state.extra?.toMap()?['redirect'],
+              heading: state.queryParams['heading'].tryDecodeUri(),
+              isWikititle: true,
+            );
+          },
+        ),
+        GoRoute(
+            path: '/settings', builder: (context, state) => SettingsActivity()),
+      ],
+    );
 
     return MaterialApp.router(
       routeInformationParser: _router.routeInformationParser,
@@ -151,55 +206,11 @@ class App extends StatelessWidget {
           waitDuration: Duration(milliseconds: 500),
         ),
       ),
-      //themeMode: ThemeMode.values.byName(SettingsKeys.settingsDisplayMode),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.values.byName(getSettings('display', 'mode')),
+      //themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
     );
   }
-
-  final _router = GoRouter(
-    routes: [
-      GoRoute(path: '/', builder: (context, state) => HomeActivity()),
-      GoRoute(
-        path: '/definition',
-        redirect: (state) => '/definition/',
-      ),
-      GoRoute(
-        path: '/definition/:wikititle',
-        builder: (context, state) {
-          //print('ROUTE URI: ${state.queryParams}');
-
-          if (kIsWeb) {
-            return DefinitionActivity.web(
-              key: ValueKey(state.params['wikititle']?.tryDecodeUri()),
-              title: state.params['wikititle']?.tryDecodeUri() ?? '',
-              // get enum value from string, default to `dictionary`
-              mode: SourceWiktionary.fromSettings().namespaces.singleWhere(
-                  (element) =>
-                      element.id == (state.queryParams['mode'] ?? 'dictionary'),
-                  orElse: () => const NamespaceDictionary()),
-              redirect: state.extra?.toMap()?['redirect'],
-              heading: state.queryParams['heading'].tryDecodeUri(),
-            );
-          }
-
-          return DefinitionActivity(
-            key: ValueKey(state.params['wikititle']?.tryDecodeUri()),
-            title: state.params['wikititle']?.tryDecodeUri() ?? '',
-            // get enum value from string, default to `dictionary`
-            mode: SourceWiktionary.fromSettings().namespaces.singleWhere(
-                (element) =>
-                    element.id == (state.queryParams['mode'] ?? 'dictionary'),
-                orElse: () => const NamespaceDictionary()),
-            isOnline: state.queryParams['online'] == 'true',
-            redirect: state.extra?.toMap()?['redirect'],
-            heading: state.queryParams['heading'].tryDecodeUri(),
-            isWikititle: true,
-          );
-        },
-      ),
-    ],
-  );
 }
 
 const textstyle = TextStyle(

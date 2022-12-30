@@ -4,6 +4,9 @@ import 'dart:ui';
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart';
+import 'package:salita/settings.dart';
+import 'package:salita/strings.g.dart';
 import 'package:salita/utils/functions.dart';
 import '/opensource/adaptive.dart';
 
@@ -45,21 +48,31 @@ class _HomeActivityState extends State<HomeActivity>
               }),
         actions: [],
       ),
-      body: AnimatedBackground(
-        behaviour: HomeParticleBehaviour(),
-        vsync: this,
+      body: parentOrChild(
+        condition: getSettings('display', 'homeBgEnable'),
+        parent: (child) => AnimatedBackground(
+          behaviour: HomeParticleBehaviour(
+            options: HomeParticleOptions(
+              wordCount: getSettings('display', 'homeBgWordCount'),
+              targetSize: getSettings('display', 'homeBgTargetSize'),
+              scaleFactor: getSettings('display', 'homeBgScaleFactor')
+            ),
+          ),
+          vsync: this,
+          child: child,
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Salita',
+                strings.general.app.title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline1?.copyWith(
                     fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
               ),
               Text(
-                'All-In-One Dictionary',
+                strings.general.app.subtitle,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                     fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
@@ -103,16 +116,14 @@ class HomeParticleWord {
 /// Options for the background
 class HomeParticleOptions {
   final int wordCount;
-  final double targetSizeMin;
-  final double targetSizeMax;
+  final double targetSize;
+  final int scaleFactor;
 
   const HomeParticleOptions({
     this.wordCount = 30,
-    this.targetSizeMin = 20,
-    this.targetSizeMax = 35,
+    this.targetSize = 20,
+    this.scaleFactor = 10,
   });
-
-  double get targetSizeDiff => targetSizeMax - targetSizeMin;
 }
 
 class HomeParticleBehaviour extends Behaviour {
@@ -145,8 +156,7 @@ class HomeParticleBehaviour extends Behaviour {
       random.nextDouble() * 0.6 + 0.3,
     ).toColor();
     word.size = 0;
-    word.targetSize =
-        random.nextDouble() * options.targetSizeDiff + options.targetSizeMin;
+    word.targetSize = random.nextDouble() * options.targetSize + 15;
 
     return word;
   }
@@ -202,7 +212,7 @@ class HomeParticleBehaviour extends Behaviour {
 
     // logic to make words expand
     for (var word in words!) {
-      word.size = word.size + delta * 10;
+      word.size = word.size + delta * options.scaleFactor;
       //word.size = lerpDouble(formerSize, wor
 
       if (word.size >= word.targetSize) {

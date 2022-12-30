@@ -6,9 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
-
-import 'package:flutter_html_all/flutter_html_all.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:go_router/go_router.dart';
@@ -107,9 +104,10 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
 
     return ScaffoldAdaptive(
       backgroundColor: Theme.of(context).colorScheme.background,
+      title: widget.mode.nameLocalized,
       appBar: AppBar(
         elevation: 0,
-        title: !kIsWeb && Platform.isWindows
+        title: !kIsWeb //&& Platform.isWindows
             ? null
             : Text(widget.mode.nameLocalized),
         actions: [
@@ -120,7 +118,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
             )
           else
             IconButton(
-              tooltip: strings.General.tooltip.search,
+              tooltip: strings.general.tooltip.search,
               onPressed: () {
                 showSearch(
                   context: context,
@@ -136,7 +134,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
               ),
             ),
           IconButton(
-            tooltip: strings.General.tooltip.refresh,
+            tooltip: strings.general.tooltip.refresh,
             onPressed: () {
               GoRouter.of(context).refresh();
               cache = null;
@@ -176,16 +174,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                 getWindowType(context) == AdaptiveWindowType.xsmall ? 0 : 4,
             child: Row(
               children: [
-                if (!kIsWeb && Platform.isWindows)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.mode.nameLocalized,
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
-                            color: Colors.grey.shade500,
-                          ),
-                    ),
-                  ),
                 Expanded(
                   child: Center(
                     child: Padding(
@@ -211,7 +199,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                           SnackBar(
                             behavior: SnackBarBehavior.floating,
                             content: Text(
-                              strings.General.snackbar
+                              strings.general.snackbar
                                   .copyToClipboard(message: title),
                               softWrap: true,
                             ),

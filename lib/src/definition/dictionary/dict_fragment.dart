@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:salita/settings.dart';
+import 'package:salita/src/data/wiktionary.dart';
 import '/opensource/adaptive.dart';
 import '../../../main.dart';
 import '../../../strings.g.dart';
@@ -53,6 +55,13 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
       length: widget.entry.languages.length + 1,
     );
 
+    _tabTabController.addListener(() {
+      setState(() {
+        _index = _tabTabController.index;
+      });
+      
+    });
+
     _listScrollController = ScrollController();
 
     _hasSnackbarShown = false;
@@ -75,7 +84,7 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
           ..clearSnackBars()
           ..showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: Text(strings.DefinitionDictionary.snackbar
+            content: Text(strings.definitionDictionary.snackbar
                 .headingNotExist(language: widget.heading!)),
           ));
       }
@@ -120,7 +129,7 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                               padding: EdgeInsets.only(right: 4),
                               child: Icon(Icons.info_outlined),
                             ),
-                            Text(strings.DefinitionDictionary.overview.name)
+                            Text(strings.definitionDictionary.overview.name)
                           ],
                         ),
                       ),
@@ -169,15 +178,16 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                       ListTile(
                         minLeadingWidth: 20,
                         selected: _tabTabController.index == 0,
-                        title: Text(strings.DefinitionDictionary.overview.name),
+                        title: Text(strings.definitionDictionary.overview.name),
                         style: isDisplayDesktop(context)
                             ? ListTileStyle.drawer
                             : ListTileStyle.list,
                         dense: true,
-                        leading:
-                            isPlatformDesktop() ||getWindowType(context) >= AdaptiveWindowType.small
-                                ? const Icon(Icons.info_outlined)
-                                : null,
+                        leading: isPlatformDesktop() ||
+                                getWindowType(context) >=
+                                    AdaptiveWindowType.small
+                            ? const Icon(Icons.info_outlined)
+                            : null,
                         onTap: () {
                           setState(() {
                             _tabTabController.index = 0;
@@ -264,13 +274,13 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
 }
 
 class DictionaryOverviewFragment extends StatefulWidget {
-  const DictionaryOverviewFragment(
-      {Key? key,
-      required this.entry,
-      required this.tabController,
-      required this.isOnline,
-      this.showLanguages = true})
-      : super(key: key);
+  const DictionaryOverviewFragment({
+    Key? key,
+    required this.entry,
+    required this.tabController,
+    required this.isOnline,
+    this.showLanguages = true,
+  }) : super(key: key);
   final Entry entry;
   final TabController tabController;
   final bool isOnline;
@@ -286,6 +296,8 @@ class _DictionaryOverviewFragmentState
   @override
   Widget build(BuildContext context) {
     int temp = 0;
+    final sourceWiktionary = SourceWiktionary.fromSettings();
+
     return Scrollbar(
       thumbVisibility: true,
       child: ListView(
@@ -294,7 +306,7 @@ class _DictionaryOverviewFragmentState
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                strings.DefinitionDictionary.overview.seealso,
+                strings.definitionDictionary.overview.seealso,
                 style: Theme.of(context).textTheme.headline5,
               ),
             ),
@@ -321,11 +333,60 @@ class _DictionaryOverviewFragmentState
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              strings.DefinitionDictionary.overview.languages.name,
+              strings.definitionDictionary.overview.languages.name,
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          if (widget.showLanguages)
+if (getSettings('definition', 'overviewLanguagesListing')=='card')
+          Wrap(
+            children: [
+              for (final i in widget.entry.languages)
+                Container(
+                  width: 300,
+                  constraints: BoxConstraints(
+                    //maxHeight: 200,
+                    //maxWidth: 300,
+                  ),
+                  child: Card(
+                    child: InkWell(
+                      onTap: (){
+                         widget.tabController
+                          .animateTo(widget.entry.languages.indexOf(i) + 1);
+                          widget.tabController.notifyListeners();
+                        
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text((++temp).toString()),
+                                SizedBox(width: 8),
+                                Text(
+                                  i.language,
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              sourceWiktionary.getOverviewExerpt(i).trim(),
+                              overflow: TextOverflow.fade,
+                              maxLines: 6,
+                              style: Theme.of(context).textTheme.caption,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          if (getSettings('definition', 'overviewLanguagesListing') == 'list')
             for (final i in widget.entry.languages)
               ListTile(
                 leading: Text((++temp).toString()),
@@ -373,29 +434,36 @@ class _DictionaryOverviewFragmentState
                   ],
                 ),
                 title: Text(i.language),
+                subtitle: Text(
+                              sourceWiktionary.getOverviewExerpt(i),
+                              overflow: TextOverflow.fade,
+                              maxLines: 6,
+                              style: Theme.of(context).textTheme.caption,
+                            ),
                 //subtitle: Text("${i.heading3.length/1000} kB"),
                 onTap: () {
                   widget.tabController
                       .animateTo(widget.entry.languages.indexOf(i) + 1);
                 },
               ),
-          ListTile(
-            title: OutlinedButton(
-              onPressed: () {
-                showUnsupportedSnackbar(context);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Icon(Icons.edit_outlined),
-                  ),
-                  Text('Suggest an edit'),
-                ],
+          if (getSettings('definition', 'editMode'))
+            ListTile(
+              title: OutlinedButton(
+                onPressed: () {
+                  showUnsupportedSnackbar(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Icon(Icons.edit_outlined),
+                    ),
+                    Text('Suggest an edit'),
+                  ],
+                ),
               ),
             ),
-          ),
           const Divider(
             indent: 8,
             endIndent: 8,
@@ -403,7 +471,7 @@ class _DictionaryOverviewFragmentState
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              strings.DefinitionDictionary.overview.information.name,
+              strings.definitionDictionary.overview.information.name,
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
@@ -411,7 +479,7 @@ class _DictionaryOverviewFragmentState
             style: ListTileStyle.drawer,
             leading: const Icon(Icons.calendar_month_outlined),
             title: Text(strings
-                .DefinitionDictionary.overview.information.dateRetrieved),
+                .definitionDictionary.overview.information.dateRetrieved),
             subtitle: SelectableText(
               widget.entry.date.toString(),
             ),
@@ -420,42 +488,45 @@ class _DictionaryOverviewFragmentState
             style: ListTileStyle.drawer,
             leading: const Icon(Icons.title_outlined),
             title: Text(
-                strings.DefinitionDictionary.overview.information.wikititle),
+                strings.definitionDictionary.overview.information.wikititle),
             subtitle: SelectableText(
               widget.entry.wikititle,
             ),
             trailing: IconButton(
-              tooltip: strings.General.tooltip.openInBrowser,
+              tooltip: strings.general.tooltip.openInBrowser,
               icon: const Icon(Icons.open_in_browser_outlined),
               onPressed: () {
-                launchUrl(widget.entry.toUri(), mode: LaunchMode.externalApplication);
+                launchUrl(widget.entry.toUri(),
+                    mode: LaunchMode.externalApplication);
               },
             ),
           ),
-          ListTile(
-            style: ListTileStyle.drawer,
-            leading: const Icon(Icons.description_outlined),
-            title:
-                Text(strings.DefinitionDictionary.overview.information.idPage),
-            subtitle: SelectableText(
-              widget.entry.pageid.toString(),
+          if (getSettings('definition', 'overviewShowIdPage'))
+            ListTile(
+              style: ListTileStyle.drawer,
+              leading: const Icon(Icons.description_outlined),
+              title: Text(
+                  strings.definitionDictionary.overview.information.idPage),
+              subtitle: SelectableText(
+                widget.entry.pageid.toString(),
+              ),
             ),
-          ),
-          ListTile(
-            style: ListTileStyle.drawer,
-            leading: const Icon(Icons.edit_note_outlined),
-            title: Text(
-                strings.DefinitionDictionary.overview.information.idRevision),
-            subtitle: SelectableText(
-              widget.entry.revid.toString(),
+          if (getSettings('definition', 'overviewShowIdRevision'))
+            ListTile(
+              style: ListTileStyle.drawer,
+              leading: const Icon(Icons.edit_note_outlined),
+              title: Text(
+                  strings.definitionDictionary.overview.information.idRevision),
+              subtitle: SelectableText(
+                widget.entry.revid.toString(),
+              ),
             ),
-          ),
           if (widget.entry.wotd != null)
             ListTile(
               style: ListTileStyle.drawer,
               leading: const Icon(Icons.generating_tokens_outlined),
               title:
-                  Text(strings.DefinitionDictionary.overview.information.wotd),
+                  Text(strings.definitionDictionary.overview.information.wotd),
               subtitle: SelectableText(
                 widget.entry.wotd.toString().substring(0, 10),
               ),
@@ -465,7 +536,7 @@ class _DictionaryOverviewFragmentState
               style: ListTileStyle.drawer,
               leading: const Icon(Icons.subdirectory_arrow_right_outlined),
               title: Text(
-                  strings.DefinitionDictionary.overview.information.redirect),
+                  strings.definitionDictionary.overview.information.redirect),
               subtitle: SelectableText(widget.entry.redirect!),
             ),
           const Divider(

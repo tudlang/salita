@@ -1,5 +1,6 @@
 app:
-  name: Salita
+  title: Salita
+  subtitle: All-in-one Dictionary
 
 tooltip:
   openInBrowser: Open in browser

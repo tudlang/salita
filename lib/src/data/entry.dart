@@ -7,7 +7,6 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart' hide Element, Text;
-import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
@@ -19,7 +18,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/locale.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'wiktionary.dart';
-import 'package:salita/settings_keys.dart';
+import 'package:salita/settings.dart';
 import 'namespace.dart';
 import '/utils/extensions.dart';
 
@@ -55,8 +54,9 @@ class Entry {
   }
 
   factory Entry.fromJson(
-    BuildContext context, 
-    dynamic json, {
+    BuildContext context,
+    dynamic json,
+    SourceWiktionary sourceWiktionary, {
     String? redirectFrom,
   }) {
     if (json['error'] != null) {
@@ -138,7 +138,7 @@ class Entry {
       //          (match) => match.group(1)!),
       //).children[0].children[1];
 
-      final source = SourceWiktionary.fromSettings().parseHtmlString(context, e.html);
+      final source = sourceWiktionary.parseHtmlString(context, e.html);
 
       // remover
       /* source
@@ -189,6 +189,12 @@ class EntryLanguage {
   String toString() {
     return "$language: $html";
   }
+
+  Element get source =>
+      // PARSE THE HTML
+      // .children[0] = <html>
+      // .children[1] = <body>
+      parse(html).children[0].children[1];
 }
 
 class EntryLink {
@@ -228,15 +234,13 @@ class EntryLink {
     );
   }
 
-  static List<EntryLink?> fromJson(dynamic json) {
+  static List<EntryLink?> fromJson(SourceWiktionary source, dynamic json) {
     List<EntryLink?> out = [];
     if (json['query'] == null && json['continue'] == null) return out;
 
     for (final i in json['query']['pages']) {
       out.add(EntryLink(
-        mode: SourceWiktionary.fromSettings()
-            .namespaces
-            .singleWhere((e) => e.namespaceId == i['ns']),
+        mode: source.namespaces.singleWhere((e) => e.namespaceId == i['ns']),
         text: i['title'],
         wikititle: i['title'],
       ));
@@ -279,10 +283,10 @@ class EntryLink {
       path,
       extra: extra,
     );
-    SettingsKeys.appDefinitionHistory = [
-      ...SettingsKeys.appDefinitionHistory,
-      wikititle
-    ];
+    //SettingsKeys.appDefinitionHistory = [
+    //  ...SettingsKeys.appDefinitionHistory,
+    //  wikititle
+    //];
   }
 }
 

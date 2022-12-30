@@ -1,0 +1,50 @@
+display: 
+  title: Display
+  tiles:
+    mode: 
+      title: Display mode
+      options:
+        system: Use system default
+        light: Light mode
+        dark: Dark mode
+    home: Home settings
+    homeBgEnable:
+      title: Animated background
+      subtitle: Enables the cool animated background in the home screen
+    homeBgWordCount:
+      title: Animated background word count
+      subtitle: The maximum number of words to show at a single time
+    homeBgTargetSize:
+      title: Animated background word size
+      subtitle: The maximum size each word can grow
+    homeBgScaleFactor:
+      title: Animated background word growth
+      subtitle: The speed of size growth for each word
+
+definition:
+  title: Definition
+  tiles:
+    edit: Editing settings
+    editMode:
+      title: Enable edit mode
+    overview: Overview settings
+    overviewLanguagesListing:
+      title: Language list type
+      subtitle: Controls how languges should be listed in the Overview
+      options:
+        list: List
+        card: Card
+    overviewShowIdPage: 
+      title: Show Wiktionary page ID
+    overviewShowIdRevision: 
+      title: Show Wiktionary revision ID
+
+miscellaneous:
+  title: Miscellaneous
+  tiles: 
+    advanced:
+      title: Show advanced settings
+      subtitle: Advanced settings are preceeded with a \"\uD83C\uDD30\" # "🄰"
+    reset:
+      title: Reset
+      subtitle: Resets all settings to their default values

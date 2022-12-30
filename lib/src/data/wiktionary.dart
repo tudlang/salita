@@ -7,8 +7,11 @@ import 'package:html/dom.dart' hide Text;
 import 'package:html/parser.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salita/opensource/darkreader.dart';
+import 'package:salita/src/data/entry.dart';
+import 'package:salita/strings.g.dart';
 import 'package:salita/utils/functions.dart';
-import '/settings_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../settings.dart';
 import '/utils/extensions.dart';
 
 import 'namespace.dart';
@@ -31,10 +34,12 @@ abstract class SourceWiktionary {
 
   factory SourceWiktionary.fromCode(String code) => map[code]!;
   //TODO put this method as an extension method when this becomes a package
-  factory SourceWiktionary.fromSettings() =>
-      SourceWiktionary.fromCode(SettingsKeys.settingsDefinitionLanguage);
+  factory SourceWiktionary.fromSettings() => 
+      SourceWiktionary.fromCode(getSettings('definition', 'language'));
 
   /// The complete map of all wiktionary languages
+  /// 
+  /// The key is the MediaWiki language id, the value is the instance of that class
   static const map = <String, SourceWiktionary>{
     // ACTIVE
     'ang': SourceWiktionaryAng.instance,
@@ -223,7 +228,7 @@ abstract class SourceWiktionary {
           // Skip the element if it has BAD_HEX_VALUE
           if (_.value is BAD_HEX_VALUE) return;
         } else if (a is FunctionTerm) {
-          color = fromCssColor("rgb(" + a.span!.text);
+          color = fromCssColor("rgb(${a.span!.text}");
         } else {
           return;
         }
@@ -260,7 +265,6 @@ abstract class SourceWiktionary {
       required bool isOnline,
     })
         htmlwidget,
-    required dynamic strings,
   }) {
     // Quotation handler, turns quotations into the button
     if (element.parent?.localName == 'li' &&
@@ -281,7 +285,7 @@ abstract class SourceWiktionary {
           onPressed: () {
             bottomsheet(
               context,
-              title: strings.Definition.html.quotations.title,
+              title: strings.definition.html.quotations.title,
               children: [
                 htmlwidget(
                   isNested: true,
@@ -299,7 +303,7 @@ abstract class SourceWiktionary {
                 padding: EdgeInsets.only(right: 8),
                 child: Icon(Icons.format_quote_outlined),
               ),
-              Text(strings.Definition.html.quotations.button),
+              Text(strings.definition.html.quotations.button),
             ],
           ),
         ),
@@ -316,7 +320,7 @@ abstract class SourceWiktionary {
             onPressed: () {
               bottomsheet(
                 context,
-                title: strings.Definition.html.translations.title,
+                title: strings.definition.html.translations.title,
                 children: [
                   htmlwidget(
                     isNested: true,
@@ -334,7 +338,7 @@ abstract class SourceWiktionary {
                   padding: EdgeInsets.only(right: 8),
                   child: Icon(Icons.translate_outlined),
                 ),
-                Text(strings.Definition.html.translations.button),
+                Text(strings.definition.html.translations.button),
               ],
             ),
           )
@@ -354,7 +358,7 @@ abstract class SourceWiktionary {
             onPressed: () {
               bottomsheet(
                 context,
-                title: strings.Definition.html.termlist.title,
+                title: strings.definition.html.termlist.title,
                 children: [
                   htmlwidget(
                     isNested: true,
@@ -372,7 +376,7 @@ abstract class SourceWiktionary {
                   padding: EdgeInsets.only(right: 8),
                   child: Icon(Icons.list_alt_outlined),
                 ),
-                Text(strings.Definition.html.termlist.button),
+                Text(strings.definition.html.termlist.button),
               ],
             ),
           )
@@ -446,7 +450,7 @@ abstract class SourceWiktionary {
             tree,
             Tooltip(
               message: element.attributes['title'] ??
-                  strings.General.snackbar.noDescription,
+                  strings.general.snackbar.noDescription,
               child: InkResponse(
                 //if the display is desktop, then make it not clickable
                 onTap: isPlatformDesktop()
@@ -475,7 +479,7 @@ abstract class SourceWiktionary {
                                     child: Text(
                                       element.attributes['title'] ??
                                           strings
-                                              .General.snackbar.noDescription,
+                                              .general.snackbar.noDescription,
                                       softWrap: true,
                                       maxLines: 3,
                                       overflow: TextOverflow.fade,
@@ -506,4 +510,6 @@ abstract class SourceWiktionary {
 
     return meta;
   }
+
+  String getOverviewExerpt(EntryLanguage entry) => entry.source.text.trim();
 }

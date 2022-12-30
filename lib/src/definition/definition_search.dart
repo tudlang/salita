@@ -247,7 +247,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                   ScaffoldMessenger.of(context)
                       .showMaterialBanner(MaterialBanner(
                     content: Text(
-                      strings.Definition.snackbar.entryNotExist(title: query),
+                      strings.definition.snackbar.entryNotExist(title: query),
                       style: Theme.of(context)
                           .textTheme
                           .subtitle1

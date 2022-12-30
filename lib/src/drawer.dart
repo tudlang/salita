@@ -10,7 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:salita/strings.g.dart';
 import 'package:salita/utils/extensions.dart';
 import '../../src/data/entry.dart';
-import '../../settings_keys.dart';
+import '../settings.dart';
 import '/opensource/adaptive.dart';
 import 'data/wiktionary.dart';
 
@@ -42,6 +42,7 @@ class ScaffoldAdaptive extends StatefulWidget {
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
     this.restorationId,
+    this.title,
   });
   final AppBar? appBar;
   final Widget? body;
@@ -65,6 +66,8 @@ class ScaffoldAdaptive extends StatefulWidget {
   final bool drawerEnableOpenDragGesture;
   final bool endDrawerEnableOpenDragGesture;
   final String? restorationId;
+
+  final String? title;
 
   @override
   State createState() => _ScaffoldAdaptiveState();
@@ -104,237 +107,125 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
     // ]);
 //
     final appBar = widget.appBar;
+    final title =
+        (widget.title == null) ? 'Salita' : "${widget.title} - Salita";
+
+    if (isPlatformDesktop()) appWindow.title = title;
+
     return Scaffold(
       key: widget.key,
       appBar: appBar == null // || isPlatformDesktop()
           ? null
-          : AppBar(
-              key: appBar.key,
-              leading: isPlatformDesktop()
-                  ? Icon(
-                      // Logo of Salita
-                      const IconData(0x1710,
-                          fontFamily: 'NotoSansTagalog-Regular'),
-                      color: Colors.blue.shade300,
-                      shadows: [
-                        Shadow(
-                          color: Theme.of(context).iconTheme.color!,
-                          blurRadius: 16,
-                        )
-                      ],
-                    )
-                  : appBar.leading,
-              automaticallyImplyLeading: appBar.automaticallyImplyLeading,
-              title: isPlatformDesktop()
-                  ? GestureDetector(
-                      onVerticalDragStart: (details) {
-                        appWindow.startDragging();
-                      },
-                      onHorizontalDragStart: (details) {
-                        appWindow.startDragging();
-                      },
-                      onDoubleTap: () {
-                        appWindow.maximizeOrRestore();
-                      },
-                      child: SizedBox(
-                        height: 35,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            /* PopupMenuButton<int>(
-                              tooltip: '',
-                              position: PopupMenuPosition.under,
-                              child: Align(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'File',
-                                    style: Theme.of(context).textTheme.caption,
-                                  ),
-                                ),
-                              ),
-                              itemBuilder: (context) {
-                                return [
-                                  PopupMenuItem(
-                                    height: 35,
-                                    child: SizedBox(
-                                      width: 280,
-                                      child: ListTile(
-                                        visualDensity: VisualDensity(
-                                            horizontal: 0, vertical: -4),
-                                        minVerticalPadding: 0,
-                                        contentPadding: EdgeInsets.zero,
-                                        minLeadingWidth: 0,
-                                        iconColor:
-                                            Theme.of(context).iconTheme.color,
-                                        dense: true,
-                                        title: Text(
-                                          'sd',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .button,
-                                        ),
-                                        trailing: Text(
-                                          'Ctrl+123',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .caption,
-                                        ),
-                                        leading: Icon(
-                                          Icons.abc,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    height: 35,
-                                    padding: EdgeInsets.zero,
-                                    child: SizedBox(
-                                      width: 280,
-                                      child: PopupMenuButton<int>(
-                                        tooltip: "",
-                                        position: PopupMenuPosition.over,
-                                        offset: Offset(0, -10),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
-                                          child: ListTile(
-                                            visualDensity: VisualDensity(
-                                                horizontal: 0, vertical: -4),
-                                            minVerticalPadding: 0,
-                                            contentPadding: EdgeInsets.zero,
-                                            minLeadingWidth: 0,
-                                            iconColor: Theme.of(context)
-                                                .iconTheme
-                                                .color,
-                                            dense: true,
-                                            title: Text(
-                                              'Open new file',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .button,
-                                            ),
-                                            trailing:
-                                                Icon(Icons.arrow_right_sharp),
-                                            leading: Icon(
-                                              Icons.abc,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        ),
-                                        itemBuilder: (context) {
-                                          return [
-                                            PopupMenuItem(
-                                              height: 35,
-                                              child: ListTile(
-                                                visualDensity: VisualDensity(
-                                                    horizontal: 0,
-                                                    vertical: -4),
-                                                minVerticalPadding: 0,
-                                                contentPadding: EdgeInsets.zero,
-                                                minLeadingWidth: 0,
-                                                iconColor: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                                dense: true,
-                                                title: Text(
-                                                  'sd',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .button,
-                                                ),
-                                                trailing: Text(
-                                                  'Ctrl+123',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .caption,
-                                                ),
-                                                leading: Icon(
-                                                  Icons.abc,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ),
-                                          ];
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ];
-                              },
-                            ),
-                           */
+          : PreferredSizeWidgetAny(
+              size: Size.fromHeight(isPlatformDesktop() ? 35 : kToolbarHeight),
+              child: parentOrChild(
+                condition: isPlatformDesktop(),
+                child: AppBar(
+                  key: appBar.key,
+                  leading: isPlatformDesktop()
+                      ? Icon(
+                          // Logo of Salita
+                          const IconData(0x1710,
+                              fontFamily: 'NotoSansTagalog-Regular'),
+                          //color: Colors.blue.shade300,
+                          color: Colors.purpleAccent,
+                          shadows: [
+                            Shadow(
+                              color: Theme.of(context).iconTheme.color!,
+                              blurRadius: 16,
+                            )
                           ],
-                        ),
+                        )
+                      : appBar.leading,
+                  automaticallyImplyLeading: appBar.automaticallyImplyLeading,
+                  title: isPlatformDesktop()
+                      ? Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            title,
+                            style: Theme.of(context).textTheme.caption!,
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : appBar.title,
+                  actions: [
+                    ...?appBar.actions,
+                    if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
+                      const VerticalDivider(
+                        indent: 8,
+                        endIndent: 8,
                       ),
-                    )
-                  : appBar.title,
-              actions: appBar.actions
-                ?..addAll([
-                  if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
-                    const VerticalDivider(
-                      indent: 8,
-                      endIndent: 8,
-                    ),
-                  if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
-                    IconButton(
-                      color: Colors.grey,
-                      onPressed: () {
-                        appWindow.minimize();
-                      },
-                      splashRadius: 16,
-                      icon: const Icon(MdiIcons.windowMinimize),
-                    ),
-                  if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
-                    IconButton(
-                      color: Colors.grey,
-                      onPressed: () {
-                        appWindow.maximizeOrRestore();
-                      },
-                      splashRadius: 16,
-                      icon: Icon(appWindow.isMaximized
-                          ? MdiIcons.windowRestore
-                          : MdiIcons.windowMaximize),
-                    ),
-                  if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
-                    IconButton(
-                      color: Colors.grey,
-                      hoverColor: Colors.red,
-                      onPressed: () {
-                        appWindow.close();
-                      },
-                      splashRadius: 16,
-                      icon: const Icon(MdiIcons.windowClose),
-                    ),
-                ]),
-              flexibleSpace: appBar.flexibleSpace,
-              bottom: appBar.bottom,
-              elevation: Theme.of(context).brightness == Brightness.dark
-                  ? appBar.elevation
-                  : 0,
-              scrolledUnderElevation: appBar.scrolledUnderElevation,
-              shadowColor: appBar.shadowColor,
-              surfaceTintColor: appBar.surfaceTintColor,
-              shape: appBar.shape,
-              backgroundColor: isPlatformDesktop()
-                  ? ElevationOverlay.applyOverlay(
-                      context, Theme.of(context).colorScheme.surface, 8)
-                  : appBar.backgroundColor,
-              foregroundColor: appBar.foregroundColor,
-              iconTheme: appBar.iconTheme,
-              actionsIconTheme: appBar.actionsIconTheme,
-              primary: appBar.primary,
-              centerTitle: appBar.centerTitle,
-              excludeHeaderSemantics: appBar.excludeHeaderSemantics,
-              titleSpacing: appBar.titleSpacing,
-              toolbarOpacity: appBar.toolbarOpacity,
-              bottomOpacity: appBar.bottomOpacity,
-              toolbarHeight: isPlatformDesktop() ? 35 : kToolbarHeight,
-              leadingWidth: appBar.leadingWidth,
-              toolbarTextStyle: appBar.toolbarTextStyle,
-              titleTextStyle: appBar.titleTextStyle,
-              systemOverlayStyle: appBar.systemOverlayStyle,
+                    if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
+                      IconButton(
+                        color: Colors.grey,
+                        onPressed: () {
+                          appWindow.minimize();
+                        },
+                        splashRadius: 16,
+                        icon: const Icon(MdiIcons.windowMinimize),
+                      ),
+                    if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
+                      IconButton(
+                        color: Colors.grey,
+                        onPressed: () {
+                          appWindow.maximizeOrRestore();
+                        },
+                        splashRadius: 16,
+                        icon: Icon(appWindow.isMaximized
+                            ? MdiIcons.windowRestore
+                            : MdiIcons.windowMaximize),
+                      ),
+                    if (!kIsWeb && isPlatformDesktop() && !Platform.isMacOS)
+                      IconButton(
+                        color: Colors.grey,
+                        hoverColor: Colors.red,
+                        onPressed: () {
+                          appWindow.close();
+                        },
+                        splashRadius: 16,
+                        icon: const Icon(MdiIcons.windowClose),
+                      ),
+                  ],
+                  flexibleSpace: appBar.flexibleSpace,
+                  bottom: appBar.bottom,
+                  elevation: Theme.of(context).brightness == Brightness.dark
+                      ? appBar.elevation
+                      : 0,
+                  scrolledUnderElevation: appBar.scrolledUnderElevation,
+                  shadowColor: appBar.shadowColor,
+                  surfaceTintColor: appBar.surfaceTintColor,
+                  shape: appBar.shape,
+                  backgroundColor: isPlatformDesktop()
+                      ? ElevationOverlay.applyOverlay(
+                          context, Theme.of(context).colorScheme.surface, 8)
+                      : appBar.backgroundColor,
+                  foregroundColor: appBar.foregroundColor,
+                  iconTheme: appBar.iconTheme,
+                  actionsIconTheme: appBar.actionsIconTheme,
+                  primary: appBar.primary,
+                  centerTitle: appBar.centerTitle,
+                  excludeHeaderSemantics: appBar.excludeHeaderSemantics,
+                  titleSpacing: appBar.titleSpacing,
+                  toolbarOpacity: appBar.toolbarOpacity,
+                  bottomOpacity: appBar.bottomOpacity,
+                  toolbarHeight: isPlatformDesktop() ? 35 : kToolbarHeight,
+                  leadingWidth: appBar.leadingWidth,
+                  toolbarTextStyle: appBar.toolbarTextStyle,
+                  titleTextStyle: appBar.titleTextStyle,
+                  systemOverlayStyle: appBar.systemOverlayStyle,
+                ),
+                parent: (child) => GestureDetector(
+                    onVerticalDragStart: (details) {
+                      appWindow.startDragging();
+                    },
+                    onHorizontalDragStart: (details) {
+                      appWindow.startDragging();
+                    },
+                    onDoubleTap: () {
+                      appWindow.maximizeOrRestore();
+                    },
+                    child: child),
+              ),
             ),
       body: isPlatformDesktop()
           ? Row(
@@ -370,8 +261,10 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                               alignment: Alignment.bottomCenter,
                               child: IconButton(
                                 onPressed: () {
-                                  // TODO SETTINGS
-                                  showUnsupportedSnackbar(context);
+                                  if (GoRouter.of(context).location !=
+                                      '/settings') {
+                                    GoRouter.of(context).go('/settings');
+                                  }
                                 },
                                 color: Theme.of(context)
                                     .iconTheme
@@ -405,7 +298,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                 children: [
                   UserAccountsDrawerHeader(
                     accountName: Text(
-                      'Salita',
+                      strings.general.app.title,
                       style: Theme.of(context).textTheme.headline3?.copyWith(
                           color: Colors.white, fontFamily: 'Raleway'),
                     ),
@@ -416,9 +309,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                     trailing: const Icon(Icons.arrow_forward_ios_outlined),
                     title: Text('Definition language'),
                     subtitle: Text(
-                      SourceWiktionary.fromCode(
-                              SettingsKeys.settingsDefinitionLanguage)
-                          .name,
+                      SourceWiktionary.fromSettings().name,
                     ),
                     onTap: () async {
                       var sortmode = 0;
@@ -507,11 +398,11 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                             for (final i in list)
                               ListTile(
                                 selected:
-                                    SettingsKeys.settingsDefinitionLanguage ==
+                                    getSettings('definition', 'language') ==
                                         i.key,
                                 title: Text(i.value.name),
                                 trailing:
-                                    SettingsKeys.settingsDefinitionLanguage ==
+                                    getSettings('definition', 'language') ==
                                             i.key
                                         ? const Icon(Icons.check_outlined)
                                         : null,
@@ -541,7 +432,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                         },
                       );
                       if (selected != null) {
-                        SettingsKeys.settingsDefinitionLanguage = selected;
+                        setSettings('definition', 'language', selected);
                         // setstate to refresh displayed language name
                         setState(() {});
                       }
@@ -610,7 +501,10 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                     title: Text('Settings'),
                     onTap: () {
                       Navigator.pop(context);
-                      showUnsupportedSnackbar(context);
+                      if (GoRouter.of(context).location != '/settings') {
+                        GoRouter.of(context).go('/settings');
+                      }
+                      //showUnsupportedSnackbar(context);
                     },
                   ),
                   ListTile(
@@ -621,7 +515,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                       final packageInfo = await PackageInfo.fromPlatform();
                       showAboutDialog(
                         context: context,
-                        applicationName: strings.General.app.name,
+                        applicationName: strings.general.app.title,
                         applicationLegalese: 'Made with ❤️ by Tudlang (Yivan)',
                         applicationVersion: packageInfo.version,
                       );
@@ -698,3 +592,151 @@ final destinations = <Destination>[
   //  onTap: (context) {},
   //),
 ];
+
+class PreferredSizeWidgetAny extends StatelessWidget
+    implements PreferredSizeWidget {
+  final Widget child;
+  final Size size;
+
+  const PreferredSizeWidgetAny({
+    super.key,
+    required this.child,
+    this.size = const Size.fromHeight(kToolbarHeight),
+  });
+
+  @override
+  Widget build(BuildContext context) => child;
+
+  @override
+  Size get preferredSize => size;
+}
+
+/*ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    /* PopupMenuButton<int>(
+                                      tooltip: '',
+                                      position: PopupMenuPosition.under,
+                                      child: Align(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'File',
+                                            style: Theme.of(context).textTheme.caption,
+                                          ),
+                                        ),
+                                      ),
+                                      itemBuilder: (context) {
+                                        return [
+                                          PopupMenuItem(
+                                            height: 35,
+                                            child: SizedBox(
+                                              width: 280,
+                                              child: ListTile(
+                                                visualDensity: VisualDensity(
+                                                    horizontal: 0, vertical: -4),
+                                                minVerticalPadding: 0,
+                                                contentPadding: EdgeInsets.zero,
+                                                minLeadingWidth: 0,
+                                                iconColor:
+                                                    Theme.of(context).iconTheme.color,
+                                                dense: true,
+                                                title: Text(
+                                                  'sd',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .button,
+                                                ),
+                                                trailing: Text(
+                                                  'Ctrl+123',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .caption,
+                                                ),
+                                                leading: Icon(
+                                                  Icons.abc,
+                                                  size: 20,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            height: 35,
+                                            padding: EdgeInsets.zero,
+                                            child: SizedBox(
+                                              width: 280,
+                                              child: PopupMenuButton<int>(
+                                                tooltip: "",
+                                                position: PopupMenuPosition.over,
+                                                offset: Offset(0, -10),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(
+                                                      horizontal: 16),
+                                                  child: ListTile(
+                                                    visualDensity: VisualDensity(
+                                                        horizontal: 0, vertical: -4),
+                                                    minVerticalPadding: 0,
+                                                    contentPadding: EdgeInsets.zero,
+                                                    minLeadingWidth: 0,
+                                                    iconColor: Theme.of(context)
+                                                        .iconTheme
+                                                        .color,
+                                                    dense: true,
+                                                    title: Text(
+                                                      'Open new file',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .button,
+                                                    ),
+                                                    trailing:
+                                                        Icon(Icons.arrow_right_sharp),
+                                                    leading: Icon(
+                                                      Icons.abc,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                itemBuilder: (context) {
+                                                  return [
+                                                    PopupMenuItem(
+                                                      height: 35,
+                                                      child: ListTile(
+                                                        visualDensity: VisualDensity(
+                                                            horizontal: 0,
+                                                            vertical: -4),
+                                                        minVerticalPadding: 0,
+                                                        contentPadding: EdgeInsets.zero,
+                                                        minLeadingWidth: 0,
+                                                        iconColor: Theme.of(context)
+                                                            .iconTheme
+                                                            .color,
+                                                        dense: true,
+                                                        title: Text(
+                                                          'sd',
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .button,
+                                                        ),
+                                                        trailing: Text(
+                                                          'Ctrl+123',
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .caption,
+                                                        ),
+                                                        leading: Icon(
+                                                          Icons.abc,
+                                                          size: 20,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ];
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ];
+                                      },
+                                    ),
+                                   */
+                                  ],
+                                ),*/

@@ -1,7 +1,7 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 1
-/// Strings: 41
+/// Strings: 71
 
 
 // coverage:ignore-file
@@ -76,6 +76,7 @@ class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, _StringsEn> {
 
 	// static aliases (checkout base methods for documentation)
 	static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
+	static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) => instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
 }
 
 // translations
@@ -101,12 +102,13 @@ class _StringsEn implements BaseTranslations {
 	late final _StringsEn _root = this; // ignore: unused_field
 
 	// Translations
-	late final _StringsDefinitionEn Definition = _StringsDefinitionEn._(_root);
-	late final _StringsDefinitionDictionaryEn DefinitionDictionary = _StringsDefinitionDictionaryEn._(_root);
-	late final _StringsGeneralEn General = _StringsGeneralEn._(_root);
+	late final _StringsDefinitionEn definition = _StringsDefinitionEn._(_root);
+	late final _StringsDefinitionDictionaryEn definitionDictionary = _StringsDefinitionDictionaryEn._(_root);
+	late final _StringsGeneralEn general = _StringsGeneralEn._(_root);
+	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
 }
 
-// Path: Definition
+// Path: definition
 class _StringsDefinitionEn {
 	_StringsDefinitionEn._(this._root);
 
@@ -118,7 +120,7 @@ class _StringsDefinitionEn {
 	late final _StringsDefinitionNamespaceEn namespace = _StringsDefinitionNamespaceEn._(_root);
 }
 
-// Path: DefinitionDictionary
+// Path: definitionDictionary
 class _StringsDefinitionDictionaryEn {
 	_StringsDefinitionDictionaryEn._(this._root);
 
@@ -131,7 +133,7 @@ class _StringsDefinitionDictionaryEn {
 	late final _StringsDefinitionDictionarySnackbarEn snackbar = _StringsDefinitionDictionarySnackbarEn._(_root);
 }
 
-// Path: General
+// Path: general
 class _StringsGeneralEn {
 	_StringsGeneralEn._(this._root);
 
@@ -143,7 +145,19 @@ class _StringsGeneralEn {
 	late final _StringsGeneralSnackbarEn snackbar = _StringsGeneralSnackbarEn._(_root);
 }
 
-// Path: Definition.snackbar
+// Path: settings
+class _StringsSettingsEn {
+	_StringsSettingsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsSettingsDisplayEn display = _StringsSettingsDisplayEn._(_root);
+	late final _StringsSettingsDefinitionEn definition = _StringsSettingsDefinitionEn._(_root);
+	late final _StringsSettingsMiscellaneousEn miscellaneous = _StringsSettingsMiscellaneousEn._(_root);
+}
+
+// Path: definition.snackbar
 class _StringsDefinitionSnackbarEn {
 	_StringsDefinitionSnackbarEn._(this._root);
 
@@ -153,7 +167,7 @@ class _StringsDefinitionSnackbarEn {
 	String entryNotExist({required Object title}) => 'Entry \"${title}\" doesn\'t exist yet.';
 }
 
-// Path: Definition.html
+// Path: definition.html
 class _StringsDefinitionHtmlEn {
 	_StringsDefinitionHtmlEn._(this._root);
 
@@ -166,7 +180,7 @@ class _StringsDefinitionHtmlEn {
 	late final _StringsDefinitionHtmlTermlistEn termlist = _StringsDefinitionHtmlTermlistEn._(_root);
 }
 
-// Path: Definition.namespace
+// Path: definition.namespace
 class _StringsDefinitionNamespaceEn {
 	_StringsDefinitionNamespaceEn._(this._root);
 
@@ -186,7 +200,7 @@ class _StringsDefinitionNamespaceEn {
 	late final _StringsDefinitionNamespaceRootEn root = _StringsDefinitionNamespaceRootEn._(_root);
 }
 
-// Path: DefinitionDictionary.overview
+// Path: definitionDictionary.overview
 class _StringsDefinitionDictionaryOverviewEn {
 	_StringsDefinitionDictionaryOverviewEn._(this._root);
 
@@ -199,7 +213,7 @@ class _StringsDefinitionDictionaryOverviewEn {
 	late final _StringsDefinitionDictionaryOverviewInformationEn information = _StringsDefinitionDictionaryOverviewInformationEn._(_root);
 }
 
-// Path: DefinitionDictionary.snackbar
+// Path: definitionDictionary.snackbar
 class _StringsDefinitionDictionarySnackbarEn {
 	_StringsDefinitionDictionarySnackbarEn._(this._root);
 
@@ -209,17 +223,18 @@ class _StringsDefinitionDictionarySnackbarEn {
 	String headingNotExist({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.';
 }
 
-// Path: General.app
+// Path: general.app
 class _StringsGeneralAppEn {
 	_StringsGeneralAppEn._(this._root);
 
 	final _StringsEn _root; // ignore: unused_field
 
 	// Translations
-	String get name => 'Salita';
+	String get title => 'Salita';
+	String get subtitle => 'All-in-one Dictionary';
 }
 
-// Path: General.tooltip
+// Path: general.tooltip
 class _StringsGeneralTooltipEn {
 	_StringsGeneralTooltipEn._(this._root);
 
@@ -232,7 +247,7 @@ class _StringsGeneralTooltipEn {
 	String get copyToClipboard => 'Copy to clipboard';
 }
 
-// Path: General.snackbar
+// Path: general.snackbar
 class _StringsGeneralSnackbarEn {
 	_StringsGeneralSnackbarEn._(this._root);
 
@@ -244,7 +259,40 @@ class _StringsGeneralSnackbarEn {
 	String get unsupported => 'This feature is currently unsupported.';
 }
 
-// Path: Definition.html.quotations
+// Path: settings.display
+class _StringsSettingsDisplayEn {
+	_StringsSettingsDisplayEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Display';
+	late final _StringsSettingsDisplayTilesEn tiles = _StringsSettingsDisplayTilesEn._(_root);
+}
+
+// Path: settings.definition
+class _StringsSettingsDefinitionEn {
+	_StringsSettingsDefinitionEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Definition';
+	late final _StringsSettingsDefinitionTilesEn tiles = _StringsSettingsDefinitionTilesEn._(_root);
+}
+
+// Path: settings.miscellaneous
+class _StringsSettingsMiscellaneousEn {
+	_StringsSettingsMiscellaneousEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Miscellaneous';
+	late final _StringsSettingsMiscellaneousTilesEn tiles = _StringsSettingsMiscellaneousTilesEn._(_root);
+}
+
+// Path: definition.html.quotations
 class _StringsDefinitionHtmlQuotationsEn {
 	_StringsDefinitionHtmlQuotationsEn._(this._root);
 
@@ -255,7 +303,7 @@ class _StringsDefinitionHtmlQuotationsEn {
 	String get button => 'View quotations';
 }
 
-// Path: Definition.html.translations
+// Path: definition.html.translations
 class _StringsDefinitionHtmlTranslationsEn {
 	_StringsDefinitionHtmlTranslationsEn._(this._root);
 
@@ -266,7 +314,7 @@ class _StringsDefinitionHtmlTranslationsEn {
 	String get button => 'View translations';
 }
 
-// Path: Definition.html.pronounciations
+// Path: definition.html.pronounciations
 class _StringsDefinitionHtmlPronounciationsEn {
 	_StringsDefinitionHtmlPronounciationsEn._(this._root);
 
@@ -277,7 +325,7 @@ class _StringsDefinitionHtmlPronounciationsEn {
 	String get button => 'View pronounciations';
 }
 
-// Path: Definition.html.termlist
+// Path: definition.html.termlist
 class _StringsDefinitionHtmlTermlistEn {
 	_StringsDefinitionHtmlTermlistEn._(this._root);
 
@@ -288,7 +336,7 @@ class _StringsDefinitionHtmlTermlistEn {
 	String get button => 'View terms';
 }
 
-// Path: Definition.namespace.dictionary
+// Path: definition.namespace.dictionary
 class _StringsDefinitionNamespaceDictionaryEn {
 	_StringsDefinitionNamespaceDictionaryEn._(this._root);
 
@@ -298,7 +346,7 @@ class _StringsDefinitionNamespaceDictionaryEn {
 	String get name => 'Dictionary';
 }
 
-// Path: Definition.namespace.thesaurus
+// Path: definition.namespace.thesaurus
 class _StringsDefinitionNamespaceThesaurusEn {
 	_StringsDefinitionNamespaceThesaurusEn._(this._root);
 
@@ -308,7 +356,7 @@ class _StringsDefinitionNamespaceThesaurusEn {
 	String get name => 'Thesaurus';
 }
 
-// Path: Definition.namespace.rhymes
+// Path: definition.namespace.rhymes
 class _StringsDefinitionNamespaceRhymesEn {
 	_StringsDefinitionNamespaceRhymesEn._(this._root);
 
@@ -318,7 +366,7 @@ class _StringsDefinitionNamespaceRhymesEn {
 	String get name => 'Rhymes';
 }
 
-// Path: Definition.namespace.reconstruction
+// Path: definition.namespace.reconstruction
 class _StringsDefinitionNamespaceReconstructionEn {
 	_StringsDefinitionNamespaceReconstructionEn._(this._root);
 
@@ -328,7 +376,7 @@ class _StringsDefinitionNamespaceReconstructionEn {
 	String get name => 'Reconstruction';
 }
 
-// Path: Definition.namespace.concordance
+// Path: definition.namespace.concordance
 class _StringsDefinitionNamespaceConcordanceEn {
 	_StringsDefinitionNamespaceConcordanceEn._(this._root);
 
@@ -338,7 +386,7 @@ class _StringsDefinitionNamespaceConcordanceEn {
 	String get name => 'Concordance';
 }
 
-// Path: Definition.namespace.citations
+// Path: definition.namespace.citations
 class _StringsDefinitionNamespaceCitationsEn {
 	_StringsDefinitionNamespaceCitationsEn._(this._root);
 
@@ -348,7 +396,7 @@ class _StringsDefinitionNamespaceCitationsEn {
 	String get name => 'Citations';
 }
 
-// Path: Definition.namespace.signgloss
+// Path: definition.namespace.signgloss
 class _StringsDefinitionNamespaceSignglossEn {
 	_StringsDefinitionNamespaceSignglossEn._(this._root);
 
@@ -358,7 +406,7 @@ class _StringsDefinitionNamespaceSignglossEn {
 	String get name => 'Sign language gloss';
 }
 
-// Path: Definition.namespace.appendix
+// Path: definition.namespace.appendix
 class _StringsDefinitionNamespaceAppendixEn {
 	_StringsDefinitionNamespaceAppendixEn._(this._root);
 
@@ -368,7 +416,7 @@ class _StringsDefinitionNamespaceAppendixEn {
 	String get name => 'Appendix';
 }
 
-// Path: Definition.namespace.index
+// Path: definition.namespace.index
 class _StringsDefinitionNamespaceIndexEn {
 	_StringsDefinitionNamespaceIndexEn._(this._root);
 
@@ -378,7 +426,7 @@ class _StringsDefinitionNamespaceIndexEn {
 	String get name => 'Index';
 }
 
-// Path: Definition.namespace.inflection
+// Path: definition.namespace.inflection
 class _StringsDefinitionNamespaceInflectionEn {
 	_StringsDefinitionNamespaceInflectionEn._(this._root);
 
@@ -388,7 +436,7 @@ class _StringsDefinitionNamespaceInflectionEn {
 	String get name => 'Inflection';
 }
 
-// Path: Definition.namespace.root
+// Path: definition.namespace.root
 class _StringsDefinitionNamespaceRootEn {
 	_StringsDefinitionNamespaceRootEn._(this._root);
 
@@ -398,7 +446,7 @@ class _StringsDefinitionNamespaceRootEn {
 	String get name => 'Root';
 }
 
-// Path: DefinitionDictionary.overview.languages
+// Path: definitionDictionary.overview.languages
 class _StringsDefinitionDictionaryOverviewLanguagesEn {
 	_StringsDefinitionDictionaryOverviewLanguagesEn._(this._root);
 
@@ -408,7 +456,7 @@ class _StringsDefinitionDictionaryOverviewLanguagesEn {
 	String get name => 'Languages';
 }
 
-// Path: DefinitionDictionary.overview.information
+// Path: definitionDictionary.overview.information
 class _StringsDefinitionDictionaryOverviewInformationEn {
 	_StringsDefinitionDictionaryOverviewInformationEn._(this._root);
 
@@ -424,53 +472,266 @@ class _StringsDefinitionDictionaryOverviewInformationEn {
 	String get redirect => 'Redirected from:';
 }
 
+// Path: settings.display.tiles
+class _StringsSettingsDisplayTilesEn {
+	_StringsSettingsDisplayTilesEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsSettingsDisplayTilesModeEn mode = _StringsSettingsDisplayTilesModeEn._(_root);
+	String get home => 'Home settings';
+	late final _StringsSettingsDisplayTilesHomeBgEnableEn homeBgEnable = _StringsSettingsDisplayTilesHomeBgEnableEn._(_root);
+	late final _StringsSettingsDisplayTilesHomeBgWordCountEn homeBgWordCount = _StringsSettingsDisplayTilesHomeBgWordCountEn._(_root);
+	late final _StringsSettingsDisplayTilesHomeBgTargetSizeEn homeBgTargetSize = _StringsSettingsDisplayTilesHomeBgTargetSizeEn._(_root);
+	late final _StringsSettingsDisplayTilesHomeBgScaleFactorEn homeBgScaleFactor = _StringsSettingsDisplayTilesHomeBgScaleFactorEn._(_root);
+}
+
+// Path: settings.definition.tiles
+class _StringsSettingsDefinitionTilesEn {
+	_StringsSettingsDefinitionTilesEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get edit => 'Editing settings';
+	late final _StringsSettingsDefinitionTilesEditModeEn editMode = _StringsSettingsDefinitionTilesEditModeEn._(_root);
+	String get overview => 'Overview settings';
+	late final _StringsSettingsDefinitionTilesOverviewLanguagesListingEn overviewLanguagesListing = _StringsSettingsDefinitionTilesOverviewLanguagesListingEn._(_root);
+	late final _StringsSettingsDefinitionTilesOverviewShowIdPageEn overviewShowIdPage = _StringsSettingsDefinitionTilesOverviewShowIdPageEn._(_root);
+	late final _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn overviewShowIdRevision = _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn._(_root);
+}
+
+// Path: settings.miscellaneous.tiles
+class _StringsSettingsMiscellaneousTilesEn {
+	_StringsSettingsMiscellaneousTilesEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsSettingsMiscellaneousTilesAdvancedEn advanced = _StringsSettingsMiscellaneousTilesAdvancedEn._(_root);
+	late final _StringsSettingsMiscellaneousTilesResetEn reset = _StringsSettingsMiscellaneousTilesResetEn._(_root);
+}
+
+// Path: settings.display.tiles.mode
+class _StringsSettingsDisplayTilesModeEn {
+	_StringsSettingsDisplayTilesModeEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Display mode';
+	late final _StringsSettingsDisplayTilesModeOptionsEn options = _StringsSettingsDisplayTilesModeOptionsEn._(_root);
+}
+
+// Path: settings.display.tiles.homeBgEnable
+class _StringsSettingsDisplayTilesHomeBgEnableEn {
+	_StringsSettingsDisplayTilesHomeBgEnableEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Animated background';
+	String get subtitle => 'Enables the cool animated background in the home screen';
+}
+
+// Path: settings.display.tiles.homeBgWordCount
+class _StringsSettingsDisplayTilesHomeBgWordCountEn {
+	_StringsSettingsDisplayTilesHomeBgWordCountEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Animated background word count';
+	String get subtitle => 'The maximum number of words to show at a single time';
+}
+
+// Path: settings.display.tiles.homeBgTargetSize
+class _StringsSettingsDisplayTilesHomeBgTargetSizeEn {
+	_StringsSettingsDisplayTilesHomeBgTargetSizeEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Animated background word size';
+	String get subtitle => 'The maximum size each word can grow';
+}
+
+// Path: settings.display.tiles.homeBgScaleFactor
+class _StringsSettingsDisplayTilesHomeBgScaleFactorEn {
+	_StringsSettingsDisplayTilesHomeBgScaleFactorEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Animated background word growth';
+	String get subtitle => 'The speed of size growth for each word';
+}
+
+// Path: settings.definition.tiles.editMode
+class _StringsSettingsDefinitionTilesEditModeEn {
+	_StringsSettingsDefinitionTilesEditModeEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Enable edit mode';
+}
+
+// Path: settings.definition.tiles.overviewLanguagesListing
+class _StringsSettingsDefinitionTilesOverviewLanguagesListingEn {
+	_StringsSettingsDefinitionTilesOverviewLanguagesListingEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Language list type';
+	String get subtitle => 'Controls how languges should be listed in the Overview';
+	late final _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn options = _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn._(_root);
+}
+
+// Path: settings.definition.tiles.overviewShowIdPage
+class _StringsSettingsDefinitionTilesOverviewShowIdPageEn {
+	_StringsSettingsDefinitionTilesOverviewShowIdPageEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Show Wiktionary page ID';
+}
+
+// Path: settings.definition.tiles.overviewShowIdRevision
+class _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn {
+	_StringsSettingsDefinitionTilesOverviewShowIdRevisionEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Show Wiktionary revision ID';
+}
+
+// Path: settings.miscellaneous.tiles.advanced
+class _StringsSettingsMiscellaneousTilesAdvancedEn {
+	_StringsSettingsMiscellaneousTilesAdvancedEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Show advanced settings';
+	String get subtitle => 'Advanced settings are preceeded with a \"\uD83C\uDD30\"';
+}
+
+// Path: settings.miscellaneous.tiles.reset
+class _StringsSettingsMiscellaneousTilesResetEn {
+	_StringsSettingsMiscellaneousTilesResetEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Reset';
+	String get subtitle => 'Resets all settings to their default values';
+}
+
+// Path: settings.display.tiles.mode.options
+class _StringsSettingsDisplayTilesModeOptionsEn {
+	_StringsSettingsDisplayTilesModeOptionsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get system => 'Use system default';
+	String get light => 'Light mode';
+	String get dark => 'Dark mode';
+}
+
+// Path: settings.definition.tiles.overviewLanguagesListing.options
+class _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn {
+	_StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get list => 'List';
+	String get card => 'Card';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on _StringsEn {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'Definition.snackbar.entryNotExist': ({required Object title}) => 'Entry \"${title}\" doesn\'t exist yet.',
-			'Definition.html.quotations.title': 'Quotations',
-			'Definition.html.quotations.button': 'View quotations',
-			'Definition.html.translations.title': 'Translations',
-			'Definition.html.translations.button': 'View translations',
-			'Definition.html.pronounciations.title': 'Pronounciations',
-			'Definition.html.pronounciations.button': 'View pronounciations',
-			'Definition.html.termlist.title': 'Terms',
-			'Definition.html.termlist.button': 'View terms',
-			'Definition.namespace.dictionary.name': 'Dictionary',
-			'Definition.namespace.thesaurus.name': 'Thesaurus',
-			'Definition.namespace.rhymes.name': 'Rhymes',
-			'Definition.namespace.reconstruction.name': 'Reconstruction',
-			'Definition.namespace.concordance.name': 'Concordance',
-			'Definition.namespace.citations.name': 'Citations',
-			'Definition.namespace.signgloss.name': 'Sign language gloss',
-			'Definition.namespace.appendix.name': 'Appendix',
-			'Definition.namespace.index.name': 'Index',
-			'Definition.namespace.inflection.name': 'Inflection',
-			'Definition.namespace.root.name': 'Root',
-			'DefinitionDictionary.name': 'Dictionary',
-			'DefinitionDictionary.description': 'View definitions',
-			'DefinitionDictionary.overview.name': 'Overview',
-			'DefinitionDictionary.overview.seealso': 'See also',
-			'DefinitionDictionary.overview.languages.name': 'Languages',
-			'DefinitionDictionary.overview.information.name': 'Entry information',
-			'DefinitionDictionary.overview.information.dateRetrieved': 'Date retrieved:',
-			'DefinitionDictionary.overview.information.wikititle': 'Full title:',
-			'DefinitionDictionary.overview.information.idPage': 'Page ID:',
-			'DefinitionDictionary.overview.information.idRevision': 'Revision ID:',
-			'DefinitionDictionary.overview.information.wotd': 'Selected for the Word of the Day:',
-			'DefinitionDictionary.overview.information.redirect': 'Redirected from:',
-			'DefinitionDictionary.snackbar.headingNotExist': ({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.',
-			'General.app.name': 'Salita',
-			'General.tooltip.openInBrowser': 'Open in browser',
-			'General.tooltip.refresh': 'Refresh',
-			'General.tooltip.search': 'Search',
-			'General.tooltip.copyToClipboard': 'Copy to clipboard',
-			'General.snackbar.copyToClipboard': ({required Object message}) => 'Copied \"${message}\" to clipboard',
-			'General.snackbar.noDescription': 'No description provided',
-			'General.snackbar.unsupported': 'This feature is currently unsupported.',
+			'definition.snackbar.entryNotExist': ({required Object title}) => 'Entry \"${title}\" doesn\'t exist yet.',
+			'definition.html.quotations.title': 'Quotations',
+			'definition.html.quotations.button': 'View quotations',
+			'definition.html.translations.title': 'Translations',
+			'definition.html.translations.button': 'View translations',
+			'definition.html.pronounciations.title': 'Pronounciations',
+			'definition.html.pronounciations.button': 'View pronounciations',
+			'definition.html.termlist.title': 'Terms',
+			'definition.html.termlist.button': 'View terms',
+			'definition.namespace.dictionary.name': 'Dictionary',
+			'definition.namespace.thesaurus.name': 'Thesaurus',
+			'definition.namespace.rhymes.name': 'Rhymes',
+			'definition.namespace.reconstruction.name': 'Reconstruction',
+			'definition.namespace.concordance.name': 'Concordance',
+			'definition.namespace.citations.name': 'Citations',
+			'definition.namespace.signgloss.name': 'Sign language gloss',
+			'definition.namespace.appendix.name': 'Appendix',
+			'definition.namespace.index.name': 'Index',
+			'definition.namespace.inflection.name': 'Inflection',
+			'definition.namespace.root.name': 'Root',
+			'definitionDictionary.name': 'Dictionary',
+			'definitionDictionary.description': 'View definitions',
+			'definitionDictionary.overview.name': 'Overview',
+			'definitionDictionary.overview.seealso': 'See also',
+			'definitionDictionary.overview.languages.name': 'Languages',
+			'definitionDictionary.overview.information.name': 'Entry information',
+			'definitionDictionary.overview.information.dateRetrieved': 'Date retrieved:',
+			'definitionDictionary.overview.information.wikititle': 'Full title:',
+			'definitionDictionary.overview.information.idPage': 'Page ID:',
+			'definitionDictionary.overview.information.idRevision': 'Revision ID:',
+			'definitionDictionary.overview.information.wotd': 'Selected for the Word of the Day:',
+			'definitionDictionary.overview.information.redirect': 'Redirected from:',
+			'definitionDictionary.snackbar.headingNotExist': ({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.',
+			'general.app.title': 'Salita',
+			'general.app.subtitle': 'All-in-one Dictionary',
+			'general.tooltip.openInBrowser': 'Open in browser',
+			'general.tooltip.refresh': 'Refresh',
+			'general.tooltip.search': 'Search',
+			'general.tooltip.copyToClipboard': 'Copy to clipboard',
+			'general.snackbar.copyToClipboard': ({required Object message}) => 'Copied \"${message}\" to clipboard',
+			'general.snackbar.noDescription': 'No description provided',
+			'general.snackbar.unsupported': 'This feature is currently unsupported.',
+			'settings.display.title': 'Display',
+			'settings.display.tiles.mode.title': 'Display mode',
+			'settings.display.tiles.mode.options.system': 'Use system default',
+			'settings.display.tiles.mode.options.light': 'Light mode',
+			'settings.display.tiles.mode.options.dark': 'Dark mode',
+			'settings.display.tiles.home': 'Home settings',
+			'settings.display.tiles.homeBgEnable.title': 'Animated background',
+			'settings.display.tiles.homeBgEnable.subtitle': 'Enables the cool animated background in the home screen',
+			'settings.display.tiles.homeBgWordCount.title': 'Animated background word count',
+			'settings.display.tiles.homeBgWordCount.subtitle': 'The maximum number of words to show at a single time',
+			'settings.display.tiles.homeBgTargetSize.title': 'Animated background word size',
+			'settings.display.tiles.homeBgTargetSize.subtitle': 'The maximum size each word can grow',
+			'settings.display.tiles.homeBgScaleFactor.title': 'Animated background word growth',
+			'settings.display.tiles.homeBgScaleFactor.subtitle': 'The speed of size growth for each word',
+			'settings.definition.title': 'Definition',
+			'settings.definition.tiles.edit': 'Editing settings',
+			'settings.definition.tiles.editMode.title': 'Enable edit mode',
+			'settings.definition.tiles.overview': 'Overview settings',
+			'settings.definition.tiles.overviewLanguagesListing.title': 'Language list type',
+			'settings.definition.tiles.overviewLanguagesListing.subtitle': 'Controls how languges should be listed in the Overview',
+			'settings.definition.tiles.overviewLanguagesListing.options.list': 'List',
+			'settings.definition.tiles.overviewLanguagesListing.options.card': 'Card',
+			'settings.definition.tiles.overviewShowIdPage.title': 'Show Wiktionary page ID',
+			'settings.definition.tiles.overviewShowIdRevision.title': 'Show Wiktionary revision ID',
+			'settings.miscellaneous.title': 'Miscellaneous',
+			'settings.miscellaneous.tiles.advanced.title': 'Show advanced settings',
+			'settings.miscellaneous.tiles.advanced.subtitle': 'Advanced settings are preceeded with a \"\uD83C\uDD30\"',
+			'settings.miscellaneous.tiles.reset.title': 'Reset',
+			'settings.miscellaneous.tiles.reset.subtitle': 'Resets all settings to their default values',
 		};
 	}
 }

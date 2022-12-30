@@ -37,7 +37,7 @@ class NamespaceDictionary extends Namespace {
   }):super(id: 'dictionary');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.dictionary.name;
+  String get nameLocalized => strings.definition.namespace.dictionary.name;
 }
 
 class NamespaceThesaurus extends Namespace {
@@ -49,7 +49,7 @@ class NamespaceThesaurus extends Namespace {
   }):super(id: 'thesaurus');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.thesaurus.name;
+  String get nameLocalized => strings.definition.namespace.thesaurus.name;
 }
 class NamespaceRhymes extends Namespace {
   const NamespaceRhymes({
@@ -60,7 +60,7 @@ class NamespaceRhymes extends Namespace {
   }):super(id: 'rhymes');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.rhymes.name;
+  String get nameLocalized => strings.definition.namespace.rhymes.name;
 }
 class NamespaceReconstruction extends Namespace {
   const NamespaceReconstruction({
@@ -71,7 +71,7 @@ class NamespaceReconstruction extends Namespace {
   }):super(id: 'reconstruction');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.reconstruction.name;
+  String get nameLocalized => strings.definition.namespace.reconstruction.name;
 }
 class NamespaceConcordance extends Namespace {
   const NamespaceConcordance({
@@ -82,7 +82,7 @@ class NamespaceConcordance extends Namespace {
   }):super(id: 'concordance');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.concordance.name;
+  String get nameLocalized => strings.definition.namespace.concordance.name;
 }
 class NamespaceCitations extends Namespace {
   const NamespaceCitations({
@@ -93,7 +93,7 @@ class NamespaceCitations extends Namespace {
   }):super(id: 'citations');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.citations.name;
+  String get nameLocalized => strings.definition.namespace.citations.name;
 }
 class NamespaceSigngloss extends Namespace {
   const NamespaceSigngloss({
@@ -104,7 +104,7 @@ class NamespaceSigngloss extends Namespace {
   }):super(id: 'signgloss');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.signgloss.name;
+  String get nameLocalized => strings.definition.namespace.signgloss.name;
 }
 class NamespaceAppendix extends Namespace {
   const NamespaceAppendix({
@@ -115,7 +115,7 @@ class NamespaceAppendix extends Namespace {
   }):super(id: 'appendix');
   
   @override
-  String get nameLocalized =>strings.Definition.namespace.appendix.name;
+  String get nameLocalized =>strings.definition.namespace.appendix.name;
 }
 
 class NamespaceIndex extends Namespace {
@@ -127,7 +127,7 @@ class NamespaceIndex extends Namespace {
   }):super(id: 'index');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.index.name;
+  String get nameLocalized => strings.definition.namespace.index.name;
 }
 class NamespaceInflection extends Namespace {
   const NamespaceInflection({
@@ -138,7 +138,7 @@ class NamespaceInflection extends Namespace {
   }):super(id: 'inflection');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.inflection.name;
+  String get nameLocalized => strings.definition.namespace.inflection.name;
 }
 class NamespaceRoot extends Namespace {
   const NamespaceRoot({
@@ -149,5 +149,5 @@ class NamespaceRoot extends Namespace {
   }):super(id: 'root');
   
   @override
-  String get nameLocalized => strings.Definition.namespace.root.name;
+  String get nameLocalized => strings.definition.namespace.root.name;
 }
