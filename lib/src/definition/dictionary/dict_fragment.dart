@@ -348,7 +348,7 @@ if (getSettings('definition', 'overviewLanguagesListing')=='card')
             children: [
               for (final i in widget.entry.languages)
                 Container(
-                  width: 300,
+                  width: 400,
                   constraints: BoxConstraints(
                     //maxHeight: 200,
                     //maxWidth: 300,

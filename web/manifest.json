@@ -1,8 +1,8 @@
 {
-  "name": "Salita",
+  "name": "Salita - All-in-one Dictionary",
   "short_name": "Salita",
   "start_url": ".",
-  "display": "standalone",
+  "display": "minimal-ui",
   "background_color": "#0175C2",
   "theme_color": "#0175C2",
   "description": "The all-in-one dictionary.",
