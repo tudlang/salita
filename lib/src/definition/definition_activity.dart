@@ -135,7 +135,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                 );
               },
               icon: Icon(
-                Icons.search_outlined,
+                Icons.search,
                 //color: Theme.of(context).iconTheme.color,
               ),
             ),
@@ -146,7 +146,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
               cache = null;
             },
             icon: Icon(
-              Icons.refresh_outlined,
+              Icons.refresh,
               color: isPlatformDesktop()
                   ? Theme.of(context).iconTheme.color
                   : null,
@@ -174,10 +174,8 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
             //  color: Theme.of(context).primaryColor,
             //),
             //padding: const EdgeInsets.all(8.0),
-
             color: Theme.of(context).primaryColor,
-            elevation:
-                getWindowType(context) == AdaptiveWindowType.xsmall ? 0 : 4,
+            elevation:4,
             child: Row(
               children: [
                 Expanded(

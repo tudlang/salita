@@ -125,7 +125,7 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
                 onPressed: () {
                   SplitView.of(context).pop();
                 },
-                icon: Icon(Icons.arrow_back_outlined),
+                icon: Icon(Icons.arrow_back),
               ),
               title: Text(widget.categoryName),
             );

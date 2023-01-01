@@ -38,7 +38,7 @@ class NamespaceDictionary extends Namespace {
   const NamespaceDictionary({
     super.namespaceId = 0,
     super.namespaceName = ':',
-    super.icon = Icons.book_outlined,
+    super.icon = MdiIcons.bookAlphabet,
     super.namespaceAlias,
   }):super(id: 'dictionary');
   
@@ -50,7 +50,7 @@ class NamespaceThesaurus extends Namespace {
   const NamespaceThesaurus({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = MdiIcons.bookEducationOutline,
+    super.icon = MdiIcons.bookEducation,
     super.namespaceAlias,
   }):super(id: 'thesaurus');
   
@@ -61,7 +61,7 @@ class NamespaceRhymes extends Namespace {
   const NamespaceRhymes({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = Icons.try_sms_star_outlined,
+    super.icon = Icons.try_sms_star,
     super.namespaceAlias,
   }):super(id: 'rhymes');
   
@@ -72,7 +72,7 @@ class NamespaceReconstruction extends Namespace {
   const NamespaceReconstruction({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = MdiIcons.textRecognition,
+    super.icon = MdiIcons.bookClock,
     super.namespaceAlias,
   }):super(id: 'reconstruction');
   
@@ -83,7 +83,7 @@ class NamespaceConcordance extends Namespace {
   const NamespaceConcordance({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = Icons.auto_stories_outlined,
+    super.icon = Icons.auto_stories,
     super.namespaceAlias,
   }):super(id: 'concordance');
   
@@ -94,7 +94,7 @@ class NamespaceCitations extends Namespace {
   const NamespaceCitations({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = MdiIcons.commentQuoteOutline,
+    super.icon = MdiIcons.commentQuote,
     super.namespaceAlias,
   }):super(id: 'citations');
   
@@ -105,7 +105,7 @@ class NamespaceSigngloss extends Namespace {
   const NamespaceSigngloss({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = Icons.sign_language_outlined,
+    super.icon = Icons.sign_language,
     super.namespaceAlias,
   }):super(id: 'signgloss');
   
@@ -116,7 +116,7 @@ class NamespaceAppendix extends Namespace {
   const NamespaceAppendix({
     required super.namespaceId,
     required super.namespaceName,
-    super.icon = Icons.quiz_outlined,
+    super.icon = Icons.quiz,
     super.namespaceAlias,
   }):super(id: 'appendix');
   

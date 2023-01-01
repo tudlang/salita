@@ -307,7 +307,7 @@ abstract class SourceWiktionary {
             children: [
               const Padding(
                 padding: EdgeInsets.only(right: 8),
-                child: Icon(Icons.format_quote_outlined),
+                child: Icon(Icons.format_quote),
               ),
               Text(strings.definition.html.quotations.button),
             ],
@@ -342,7 +342,7 @@ abstract class SourceWiktionary {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(right: 8),
-                  child: Icon(Icons.translate_outlined),
+                  child: Icon(Icons.translate),
                 ),
                 Text(strings.definition.html.translations.button),
               ],
@@ -380,7 +380,7 @@ abstract class SourceWiktionary {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(right: 8),
-                  child: Icon(Icons.list_alt_outlined),
+                  child: Icon(Icons.list_alt),
                 ),
                 Text(strings.definition.html.termlist.button),
               ],

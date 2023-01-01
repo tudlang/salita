@@ -132,7 +132,7 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                           children: [
                             const Padding(
                               padding: EdgeInsets.only(right: 4),
-                              child: Icon(Icons.info_outlined),
+                              child: Icon(Icons.info_outline),
                             ),
                             Text(strings.definitionDictionary.overview.name)
                           ],
@@ -191,7 +191,7 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                         leading: isPlatformDesktop() ||
                                 getWindowType(context) >=
                                     AdaptiveWindowType.small
-                            ? const Icon(Icons.info_outlined)
+                            ? const Icon(Icons.info)
                             : null,
                         onTap: () {
                           setState(() {
@@ -469,7 +469,7 @@ class _DictionaryOverviewFragmentState
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(4),
-                      child: Icon(Icons.edit_outlined),
+                      child: Icon(Icons.edit),
                     ),
                     Text('Suggest an edit'),
                   ],
@@ -489,7 +489,7 @@ class _DictionaryOverviewFragmentState
           ),
           ListTile(
             style: ListTileStyle.drawer,
-            leading: const Icon(Icons.calendar_month_outlined),
+            leading: const Icon(Icons.calendar_month),
             title: Text(strings
                 .definitionDictionary.overview.information.dateRetrieved),
             subtitle: SelectableText(
@@ -498,7 +498,7 @@ class _DictionaryOverviewFragmentState
           ),
           ListTile(
             style: ListTileStyle.drawer,
-            leading: const Icon(Icons.title_outlined),
+            leading: const Icon(Icons.title),
             title: Text(
                 strings.definitionDictionary.overview.information.wikititle),
             subtitle: SelectableText(
@@ -506,7 +506,7 @@ class _DictionaryOverviewFragmentState
             ),
             trailing: IconButton(
               tooltip: strings.general.tooltip.openInBrowser,
-              icon: const Icon(Icons.open_in_browser_outlined),
+              icon: const Icon(Icons.open_in_browser),
               onPressed: () {
                 launchUrl(widget.entry.toUri(),
                     mode: LaunchMode.externalApplication);
@@ -516,7 +516,7 @@ class _DictionaryOverviewFragmentState
           if (getSettings('definition', 'overviewShowIdPage'))
             ListTile(
               style: ListTileStyle.drawer,
-              leading: const Icon(Icons.description_outlined),
+              leading: const Icon(Icons.description),
               title: Text(
                   strings.definitionDictionary.overview.information.idPage),
               subtitle: SelectableText(
@@ -526,7 +526,7 @@ class _DictionaryOverviewFragmentState
           if (getSettings('definition', 'overviewShowIdRevision'))
             ListTile(
               style: ListTileStyle.drawer,
-              leading: const Icon(Icons.edit_note_outlined),
+              leading: const Icon(Icons.edit_note),
               title: Text(
                   strings.definitionDictionary.overview.information.idRevision),
               subtitle: SelectableText(
@@ -536,7 +536,7 @@ class _DictionaryOverviewFragmentState
           if (widget.entry.wotd != null)
             ListTile(
               style: ListTileStyle.drawer,
-              leading: const Icon(Icons.generating_tokens_outlined),
+              leading: const Icon(Icons.generating_tokens),
               title:
                   Text(strings.definitionDictionary.overview.information.wotd),
               subtitle: SelectableText(
@@ -546,7 +546,7 @@ class _DictionaryOverviewFragmentState
           if (widget.entry.redirect != null)
             ListTile(
               style: ListTileStyle.drawer,
-              leading: const Icon(Icons.subdirectory_arrow_right_outlined),
+              leading: const Icon(Icons.subdirectory_arrow_right),
               title: Text(
                   strings.definitionDictionary.overview.information.redirect),
               subtitle: SelectableText(widget.entry.redirect!),

@@ -280,7 +280,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                                             .onSurface
                                             .withOpacity(0.64))
                                     .color,
-                                icon: Icon(Icons.settings_outlined),
+                                icon: Icon(Icons.settings),
                               ),
                             ),
                           ),
@@ -311,8 +311,8 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                     accountEmail: Text('All-in-one dictionary'),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.translate_outlined),
-                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                    leading: const Icon(Icons.translate),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                     title: Text('Definition language'),
                     subtitle: Text(
                       SourceWiktionary.fromSettings().name,
@@ -446,7 +446,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.home_outlined),
+                    leading: const Icon(Icons.home),
                     title: Text('Home'),
                     onTap: () {
                       if (GoRouter.of(context).location != '/') {
@@ -466,7 +466,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                   //  },
                   //),
                   ListTile(
-                    leading: const Icon(Icons.history_outlined),
+                    leading: const Icon(Icons.history),
                     title: Text('History'),
                     onTap: () {
                       Navigator.pop(context);
@@ -503,7 +503,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                   //  },
                   //),
                   ListTile(
-                    leading: const Icon(Icons.settings_outlined),
+                    leading: const Icon(Icons.settings),
                     title: Text('Settings'),
                     onTap: () {
                       Navigator.pop(context);
@@ -514,7 +514,7 @@ class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.info_outline),
+                    leading: const Icon(Icons.info),
                     title: Text('About'),
                     onTap: () async {
                       Navigator.pop(context);
@@ -569,7 +569,7 @@ class Destination {
 final destinations = <Destination>[
   Destination(
     name: 'Home',
-    icon: Icons.home_outlined,
+    icon: Icons.home,
     tooltip: 'Homepage',
     onTap: (context) {
       GoRouter.of(context).go('/');
@@ -577,7 +577,7 @@ final destinations = <Destination>[
   ),
   Destination(
     name: 'Definition language',
-    icon: Icons.translate_outlined,
+    icon: Icons.translate,
     tooltip: 'Definition language',
     onTap: (context) {
       showUnsupportedSnackbar(context);
@@ -585,7 +585,7 @@ final destinations = <Destination>[
   ),
   Destination(
     name: 'History',
-    icon: Icons.history_outlined,
+    icon: Icons.history,
     tooltip: 'History',
     onTap: (context) {
       showUnsupportedSnackbar(context);

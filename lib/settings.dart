@@ -49,7 +49,7 @@ abstract class SettingsKeys {
 }
 */
 final Map<SettingCategory, List<SettingTile>> settings = {
-  SettingCategory(id: 'display', icon: Icons.monitor_outlined): [
+  SettingCategory(id: 'display', icon: Icons.monitor): [
     SettingTile<String>(
       id: 'mode',
       key: 'settingsDisplayMode',
@@ -96,7 +96,7 @@ final Map<SettingCategory, List<SettingTile>> settings = {
       isAdvanced: true,
     ),
   ],
-  SettingCategory(id: 'definition', icon: Icons.book_outlined): [
+  SettingCategory(id: 'definition', icon:MdiIcons.bookOpenPageVariant): [
     SettingTile<String>(
       id: 'language',
       key: 'settingsDefinitionLanguage',

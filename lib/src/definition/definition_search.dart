@@ -70,7 +70,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                             ),
                           ));
                       },
-                      icon: const Icon(Icons.info_outline),
+                      icon: const Icon(Icons.info),
                     ),
                   ),
                 ),
@@ -118,7 +118,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                         // query = query;
                       },
                 icon: Icon(
-                  isOnline ? Icons.cloud_outlined : Icons.cloud_off_outlined,
+                  isOnline ? Icons.cloud_outlined : Icons.cloud_off,
                 ),
               )
             ],
@@ -259,7 +259,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                           .subtitle1
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
-                    leading: const Icon(Icons.info_outline),
+                    leading: const Icon(Icons.info),
                     actions: [
                       Container(),
                       //TextButton(onPressed: () {}, child: Text('Suggest'))
@@ -577,7 +577,7 @@ class _DefinitionSearchFieldState extends State<DefinitionSearchField> {
                             widget.isAppbar ? Colors.black87 : Colors.black38,
                       ),
                   prefixIcon: const Icon(
-                    Icons.search_outlined,
+                    Icons.search,
                     color: Colors.black38,
                   ),
                   filled: true,

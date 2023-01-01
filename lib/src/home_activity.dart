@@ -47,7 +47,7 @@ class _HomeActivityState extends State<HomeActivity>
                     Scaffold.of(context).openDrawer();
                   },
                   icon: Icon(
-                    Icons.menu_outlined,
+                    Icons.menu,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 );
