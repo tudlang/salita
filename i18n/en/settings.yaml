@@ -40,10 +40,18 @@ definition:
       options:
         list: List
         card: Card
+    overviewShowLanguageExerpt:
+      title: Show definition exerpt for each language
     overviewShowIdPage: 
       title: Show Wiktionary page ID
     overviewShowIdRevision: 
       title: Show Wiktionary revision ID
+    html: HTML settings
+    htmlSelectableText:
+      title: Make text selectable
+    htmlShowRaw:
+      title: Show raw HTML
+      subtitle: Shows a button to toggle between seeing the raw HTML and the rendered result
 
 miscellaneous:
   title: Miscellaneous

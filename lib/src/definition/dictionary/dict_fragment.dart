@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -65,7 +65,6 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
       setState(() {
         _index = _tabTabController.index;
       });
-      
     });
 
     _listScrollController = ScrollController();
@@ -303,6 +302,10 @@ class _DictionaryOverviewFragmentState
   Widget build(BuildContext context) {
     int temp = 0;
     final sourceWiktionary = SourceWiktionary.fromSettings();
+    final languageListing =
+        getSettings('definition', 'overviewLanguagesListing');
+    final languageHasExerpt =
+        getSettings('definition', 'overviewShowLanguageExerpt');
 
     return Scrollbar(
       thumbVisibility: true,
@@ -343,56 +346,57 @@ class _DictionaryOverviewFragmentState
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-if (getSettings('definition', 'overviewLanguagesListing')=='card')
-          Wrap(
-            children: [
-              for (final i in widget.entry.languages)
-                Container(
-                  width: 400,
-                  constraints: BoxConstraints(
-                    //maxHeight: 200,
-                    //maxWidth: 300,
-                  ),
-                  child: Card(
-                    child: InkWell(
-                      onTap: (){
-                         widget.tabController
-                          .animateTo(widget.entry.languages.indexOf(i) + 1);
+          if (languageListing == 'card')
+            Wrap(
+              children: [
+                for (final i in widget.entry.languages)
+                  Container(
+                    width: 400,
+                    constraints: BoxConstraints(
+                        //maxHeight: 200,
+                        //maxWidth: 300,
+                        ),
+                    child: Card(
+                      child: InkWell(
+                        onTap: () {
+                          widget.tabController
+                              .animateTo(widget.entry.languages.indexOf(i) + 1);
                           widget.tabController.notifyListeners();
-                        
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text((++temp).toString()),
-                                SizedBox(width: 8),
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text((++temp).toString()),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    i.language,
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              if (languageHasExerpt)
                                 Text(
-                                  i.language,
-                                  style: Theme.of(context).textTheme.headline6,
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
-                            Text(
-                              sourceWiktionary.getOverviewExerpt(i).trim(),
-                              overflow: TextOverflow.fade,
-                              maxLines: 6,
-                              style: Theme.of(context).textTheme.caption,
-                            )
-                          ],
+                                  sourceWiktionary.getOverviewExerpt(i).trim(),
+                                  overflow: TextOverflow.fade,
+                                  maxLines: 6,
+                                  style: Theme.of(context).textTheme.caption,
+                                )
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-            ],
-          ),
-          if (getSettings('definition', 'overviewLanguagesListing') == 'list')
+              ],
+            ),
+          if (languageListing == 'list')
             for (final i in widget.entry.languages)
               ListTile(
                 leading: Text((++temp).toString()),
@@ -440,12 +444,14 @@ if (getSettings('definition', 'overviewLanguagesListing')=='card')
                   ],
                 ),
                 title: Text(i.language),
-                subtitle: Text(
-                              sourceWiktionary.getOverviewExerpt(i),
-                              overflow: TextOverflow.fade,
-                              maxLines: 6,
-                              style: Theme.of(context).textTheme.caption,
-                            ),
+                subtitle: (languageHasExerpt)
+                    ? Text(
+                        sourceWiktionary.getOverviewExerpt(i),
+                        overflow: TextOverflow.fade,
+                        maxLines: 6,
+                        style: Theme.of(context).textTheme.caption,
+                      )
+                    : null,
                 //subtitle: Text("${i.heading3.length/1000} kB"),
                 onTap: () {
                   widget.tabController

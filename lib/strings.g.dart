@@ -1,7 +1,7 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 1
-/// Strings: 71
+/// Strings: 76
 
 
 // coverage:ignore-file
@@ -498,8 +498,12 @@ class _StringsSettingsDefinitionTilesEn {
 	late final _StringsSettingsDefinitionTilesEditModeEn editMode = _StringsSettingsDefinitionTilesEditModeEn._(_root);
 	String get overview => 'Overview settings';
 	late final _StringsSettingsDefinitionTilesOverviewLanguagesListingEn overviewLanguagesListing = _StringsSettingsDefinitionTilesOverviewLanguagesListingEn._(_root);
+	late final _StringsSettingsDefinitionTilesOverviewShowLanguageExerptEn overviewShowLanguageExerpt = _StringsSettingsDefinitionTilesOverviewShowLanguageExerptEn._(_root);
 	late final _StringsSettingsDefinitionTilesOverviewShowIdPageEn overviewShowIdPage = _StringsSettingsDefinitionTilesOverviewShowIdPageEn._(_root);
 	late final _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn overviewShowIdRevision = _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn._(_root);
+	String get html => 'HTML settings';
+	late final _StringsSettingsDefinitionTilesHtmlSelectableTextEn htmlSelectableText = _StringsSettingsDefinitionTilesHtmlSelectableTextEn._(_root);
+	late final _StringsSettingsDefinitionTilesHtmlShowRawEn htmlShowRaw = _StringsSettingsDefinitionTilesHtmlShowRawEn._(_root);
 }
 
 // Path: settings.miscellaneous.tiles
@@ -590,6 +594,16 @@ class _StringsSettingsDefinitionTilesOverviewLanguagesListingEn {
 	late final _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn options = _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn._(_root);
 }
 
+// Path: settings.definition.tiles.overviewShowLanguageExerpt
+class _StringsSettingsDefinitionTilesOverviewShowLanguageExerptEn {
+	_StringsSettingsDefinitionTilesOverviewShowLanguageExerptEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Show definition exerpt for each language';
+}
+
 // Path: settings.definition.tiles.overviewShowIdPage
 class _StringsSettingsDefinitionTilesOverviewShowIdPageEn {
 	_StringsSettingsDefinitionTilesOverviewShowIdPageEn._(this._root);
@@ -608,6 +622,27 @@ class _StringsSettingsDefinitionTilesOverviewShowIdRevisionEn {
 
 	// Translations
 	String get title => 'Show Wiktionary revision ID';
+}
+
+// Path: settings.definition.tiles.htmlSelectableText
+class _StringsSettingsDefinitionTilesHtmlSelectableTextEn {
+	_StringsSettingsDefinitionTilesHtmlSelectableTextEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Make text selectable';
+}
+
+// Path: settings.definition.tiles.htmlShowRaw
+class _StringsSettingsDefinitionTilesHtmlShowRawEn {
+	_StringsSettingsDefinitionTilesHtmlShowRawEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Show raw HTML';
+	String get subtitle => 'Shows a button to toggle between seeing the raw HTML and the rendered result';
 }
 
 // Path: settings.miscellaneous.tiles.advanced
@@ -725,8 +760,13 @@ extension on _StringsEn {
 			'settings.definition.tiles.overviewLanguagesListing.subtitle': 'Controls how languges should be listed in the Overview',
 			'settings.definition.tiles.overviewLanguagesListing.options.list': 'List',
 			'settings.definition.tiles.overviewLanguagesListing.options.card': 'Card',
+			'settings.definition.tiles.overviewShowLanguageExerpt.title': 'Show definition exerpt for each language',
 			'settings.definition.tiles.overviewShowIdPage.title': 'Show Wiktionary page ID',
 			'settings.definition.tiles.overviewShowIdRevision.title': 'Show Wiktionary revision ID',
+			'settings.definition.tiles.html': 'HTML settings',
+			'settings.definition.tiles.htmlSelectableText.title': 'Make text selectable',
+			'settings.definition.tiles.htmlShowRaw.title': 'Show raw HTML',
+			'settings.definition.tiles.htmlShowRaw.subtitle': 'Shows a button to toggle between seeing the raw HTML and the rendered result',
 			'settings.miscellaneous.title': 'Miscellaneous',
 			'settings.miscellaneous.tiles.advanced.title': 'Show advanced settings',
 			'settings.miscellaneous.tiles.advanced.subtitle': 'Advanced settings are preceeded with a \"\uD83C\uDD30\"',

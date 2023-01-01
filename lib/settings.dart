@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -49,10 +49,7 @@ abstract class SettingsKeys {
 }
 */
 final Map<SettingCategory, List<SettingTile>> settings = {
-  SettingCategory(
-    id: 'display',
-    icon: Icons.monitor_outlined,
-  ): [
+  SettingCategory(id: 'display', icon: Icons.monitor_outlined): [
     SettingTile<String>(
       id: 'mode',
       key: 'settingsDisplayMode',
@@ -121,6 +118,11 @@ final Map<SettingCategory, List<SettingTile>> settings = {
       options: ['list', 'card'],
     ),
     SettingTile(
+      id: 'overviewShowLanguageExerpt',
+      key: 'settingsDefinitionOverviewShowLanguageExerpt',
+      defaultval: false,
+    ),
+    SettingTile(
       id: 'overviewShowIdPage',
       key: 'settingsDefinitionOverviewShowIdPage',
       isAdvanced: true,
@@ -129,6 +131,18 @@ final Map<SettingCategory, List<SettingTile>> settings = {
     SettingTile(
       id: 'overviewShowIdRevision',
       key: 'settingsDefinitionOverviewShowIdRevision',
+      isAdvanced: true,
+      defaultval: false,
+    ),
+    SettingTile(id: 'html', key: '', defaultval: null),
+    SettingTile(
+      id: 'htmlSelectableText',
+      key: 'settingsDefinitionHtmlSelectableText',
+      defaultval: true,
+    ),
+    SettingTile(
+      id: 'htmlShowRaw',
+      key: 'settingsDefinitionHtmlShowRaw',
       isAdvanced: true,
       defaultval: false,
     ),
