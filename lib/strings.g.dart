@@ -1,7 +1,7 @@
 /// Generated file. Do not edit.
 ///
 /// Locales: 1
-/// Strings: 76
+/// Strings: 85
 
 
 // coverage:ignore-file
@@ -154,6 +154,7 @@ class _StringsSettingsEn {
 	// Translations
 	late final _StringsSettingsDisplayEn display = _StringsSettingsDisplayEn._(_root);
 	late final _StringsSettingsDefinitionEn definition = _StringsSettingsDefinitionEn._(_root);
+	late final _StringsSettingsAdsEn ads = _StringsSettingsAdsEn._(_root);
 	late final _StringsSettingsMiscellaneousEn miscellaneous = _StringsSettingsMiscellaneousEn._(_root);
 }
 
@@ -279,6 +280,17 @@ class _StringsSettingsDefinitionEn {
 	// Translations
 	String get title => 'Definition';
 	late final _StringsSettingsDefinitionTilesEn tiles = _StringsSettingsDefinitionTilesEn._(_root);
+}
+
+// Path: settings.ads
+class _StringsSettingsAdsEn {
+	_StringsSettingsAdsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Ads';
+	late final _StringsSettingsAdsTilesEn tiles = _StringsSettingsAdsTilesEn._(_root);
 }
 
 // Path: settings.miscellaneous
@@ -506,6 +518,20 @@ class _StringsSettingsDefinitionTilesEn {
 	late final _StringsSettingsDefinitionTilesHtmlShowRawEn htmlShowRaw = _StringsSettingsDefinitionTilesHtmlShowRawEn._(_root);
 }
 
+// Path: settings.ads.tiles
+class _StringsSettingsAdsTilesEn {
+	_StringsSettingsAdsTilesEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get adrequest => 'AdRequest settings';
+	late final _StringsSettingsAdsTilesAdrequestHttpTimeoutEn adrequestHttpTimeout = _StringsSettingsAdsTilesAdrequestHttpTimeoutEn._(_root);
+	late final _StringsSettingsAdsTilesAdrequestAddKeywordsEn adrequestAddKeywords = _StringsSettingsAdsTilesAdrequestAddKeywordsEn._(_root);
+	String get cmp => 'GDPR Transparency and Consent Framework';
+	late final _StringsSettingsAdsTilesCmpHasConsentEn cmpHasConsent = _StringsSettingsAdsTilesCmpHasConsentEn._(_root);
+}
+
 // Path: settings.miscellaneous.tiles
 class _StringsSettingsMiscellaneousTilesEn {
 	_StringsSettingsMiscellaneousTilesEn._(this._root);
@@ -642,7 +668,40 @@ class _StringsSettingsDefinitionTilesHtmlShowRawEn {
 
 	// Translations
 	String get title => 'Show raw HTML';
-	String get subtitle => 'Shows a button to toggle between seeing the raw HTML and the rendered result';
+	String get subtitle => 'Shows a button to toggle between seeing the raw HTML and the rendered result. May decrease performance.';
+}
+
+// Path: settings.ads.tiles.adrequestHttpTimeout
+class _StringsSettingsAdsTilesAdrequestHttpTimeoutEn {
+	_StringsSettingsAdsTilesAdrequestHttpTimeoutEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'HTTPS call timeout';
+	String get subtitle => 'The timeout in milliseconds for HTTPS calls made by the Google Mobile Ads SDK during an ad request';
+}
+
+// Path: settings.ads.tiles.adrequestAddKeywords
+class _StringsSettingsAdsTilesAdrequestAddKeywordsEn {
+	_StringsSettingsAdsTilesAdrequestAddKeywordsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Add entry details as keywords';
+	String get subtitle => 'Whether to add details of the currently viewed entry as keywords for the ad request';
+}
+
+// Path: settings.ads.tiles.cmpHasConsent
+class _StringsSettingsAdsTilesCmpHasConsentEn {
+	_StringsSettingsAdsTilesCmpHasConsentEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Consent settings';
+	String get subtitle => 'You need to provide consent to show personalized ads';
 }
 
 // Path: settings.miscellaneous.tiles.advanced
@@ -766,7 +825,16 @@ extension on _StringsEn {
 			'settings.definition.tiles.html': 'HTML settings',
 			'settings.definition.tiles.htmlSelectableText.title': 'Make text selectable',
 			'settings.definition.tiles.htmlShowRaw.title': 'Show raw HTML',
-			'settings.definition.tiles.htmlShowRaw.subtitle': 'Shows a button to toggle between seeing the raw HTML and the rendered result',
+			'settings.definition.tiles.htmlShowRaw.subtitle': 'Shows a button to toggle between seeing the raw HTML and the rendered result. May decrease performance.',
+			'settings.ads.title': 'Ads',
+			'settings.ads.tiles.adrequest': 'AdRequest settings',
+			'settings.ads.tiles.adrequestHttpTimeout.title': 'HTTPS call timeout',
+			'settings.ads.tiles.adrequestHttpTimeout.subtitle': 'The timeout in milliseconds for HTTPS calls made by the Google Mobile Ads SDK during an ad request',
+			'settings.ads.tiles.adrequestAddKeywords.title': 'Add entry details as keywords',
+			'settings.ads.tiles.adrequestAddKeywords.subtitle': 'Whether to add details of the currently viewed entry as keywords for the ad request',
+			'settings.ads.tiles.cmp': 'GDPR Transparency and Consent Framework',
+			'settings.ads.tiles.cmpHasConsent.title': 'Consent settings',
+			'settings.ads.tiles.cmpHasConsent.subtitle': 'You need to provide consent to show personalized ads',
 			'settings.miscellaneous.title': 'Miscellaneous',
 			'settings.miscellaneous.tiles.advanced.title': 'Show advanced settings',
 			'settings.miscellaneous.tiles.advanced.subtitle': 'Advanced settings are preceeded with a \"\uD83C\uDD30\"',

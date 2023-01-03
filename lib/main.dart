@@ -63,7 +63,7 @@ class App extends StatelessWidget {
         GoRoute(path: '/', builder: (context, state) => HomeActivity()),
         GoRoute(
           path: '/definition',
-          redirect: (state) => '/definition/',
+          redirect: (state) => '/',
         ),
         GoRoute(
           path: '/definition/:wikititle',
@@ -95,10 +95,8 @@ class App extends StatelessWidget {
                   (element) =>
                       element.id == (state.queryParams['mode'] ?? 'dictionary'),
                   orElse: () => const NamespaceDictionary()),
-              isOnline: state.queryParams['online'] == 'true',
               redirect: state.extra?.toMap()?['redirect'],
               heading: state.queryParams['heading'].tryDecodeUri(),
-              isWikititle: true,
             );
           },
         ),
@@ -115,7 +113,7 @@ class App extends StatelessWidget {
       theme: ThemeData.from(
         colorScheme: ColorScheme.light(),
         textTheme: TextTheme(
-          //displayLarge:
+          //displayLarge:\
           //    Typography.englishLike2014.displayLarge!.merge(textstyle),
           //displayMedium:
           //    Typography.englishLike2014.displayMedium!.merge(textstyle),

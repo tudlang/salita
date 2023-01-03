@@ -23,10 +23,8 @@ class DictionaryLanguageFragment extends StatefulWidget {
   const DictionaryLanguageFragment({
     Key? key,
     required this.entry,
-    required this.isOnline,
   }) : super(key: key);
   final EntryLanguage entry;
-  final bool isOnline;
 
   @override
   State<DictionaryLanguageFragment> createState() =>
@@ -70,7 +68,6 @@ class DictionaryLanguageFragmentState
           else
             DefinitionHtml(
               data: widget.entry.html,
-              isOnline: widget.isOnline,
             ),
         ],
       );
@@ -90,7 +87,6 @@ class DictionaryLanguageFragmentState
       },
       child: DefinitionHtml(
         data: widget.entry.html,
-        isOnline: widget.isOnline,
       ),
     );
   }

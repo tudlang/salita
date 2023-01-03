@@ -81,7 +81,6 @@ class ScaffoldAdaptive extends StatefulWidget {
 
 class _ScaffoldAdaptiveState extends State<ScaffoldAdaptive> {
   late final ScrollController drawerScrollController;
-  final key = ValueKey('s');
 
   @override
   void initState() {

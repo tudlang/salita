@@ -31,11 +31,9 @@ class DictionaryFragment extends StatefulWidget {
     Key? key,
     required this.entry,
     this.heading,
-    required this.isOnline,
   }) : super(key: key);
   final Entry entry;
   final String? heading;
-  final bool isOnline;
   @override
   State<DictionaryFragment> createState() => _DictionaryFragmentState();
 }
@@ -151,13 +149,11 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                     DictionaryOverviewFragment(
                       entry: widget.entry,
                       tabController: _tabTabController,
-                      isOnline: widget.isOnline,
                     ),
                     for (final i in widget.entry.languages)
                       //SelectableText(i.heading3)
                       DictionaryLanguageFragment(
                         entry: i,
-                        isOnline: widget.isOnline,
                       )
                   ],
                 ),
@@ -262,13 +258,11 @@ class _DictionaryFragmentState extends State<DictionaryFragment>
                                 .entry.languages[_tabTabController.index - 1]),
                             entry: widget
                                 .entry.languages[_tabTabController.index - 1],
-                            isOnline: widget.isOnline,
                           ),
                         )
                       : DictionaryOverviewFragment(
                           entry: widget.entry,
                           tabController: _tabTabController,
-                          isOnline: widget.isOnline,
                           showLanguages: false,
                         ),
                 ),
@@ -283,12 +277,10 @@ class DictionaryOverviewFragment extends StatefulWidget {
     Key? key,
     required this.entry,
     required this.tabController,
-    required this.isOnline,
     this.showLanguages = true,
   }) : super(key: key);
   final Entry entry;
   final TabController tabController;
-  final bool isOnline;
   final bool showLanguages;
 
   @override
@@ -333,7 +325,7 @@ class _DictionaryOverviewFragmentState
                           .merge(textstyle),
                       label: Text(i.text),
                       onPressed: () {
-                        i.go(context, isOnline: widget.isOnline);
+                        i.go(context);
                       },
                     ),
                   ),

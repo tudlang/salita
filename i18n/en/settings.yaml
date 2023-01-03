@@ -51,7 +51,22 @@ definition:
       title: Make text selectable
     htmlShowRaw:
       title: Show raw HTML
-      subtitle: Shows a button to toggle between seeing the raw HTML and the rendered result
+      subtitle: Shows a button to toggle between seeing the raw HTML and the rendered result. May decrease performance.
+
+ads:
+  title: Ads
+  tiles:
+    adrequest: AdRequest settings
+    adrequestHttpTimeout:
+      title: HTTPS call timeout
+      subtitle: The timeout in milliseconds for HTTPS calls made by the Google Mobile Ads SDK during an ad request
+    adrequestAddKeywords:
+      title: Add entry details as keywords
+      subtitle: Whether to add details of the currently viewed entry as keywords for the ad request
+    cmp: GDPR Transparency and Consent Framework
+    cmpHasConsent:
+      title: Consent settings
+      subtitle: You need to provide consent to show personalized ads
 
 miscellaneous:
   title: Miscellaneous

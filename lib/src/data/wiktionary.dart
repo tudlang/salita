@@ -260,15 +260,12 @@ abstract class SourceWiktionary {
     required Element element,
     required Function(BuildContext context,
             {required String title,
-            required List<Widget> children,
-            required bool isOnline})
+            required List<Widget> children})
         bottomsheet,
-    required bool isOnline,
     required Widget Function({
       Key? key,
       required String data,
       bool isNested,
-      required bool isOnline,
     })
         htmlwidget,
   }) {
@@ -295,11 +292,9 @@ abstract class SourceWiktionary {
               children: [
                 htmlwidget(
                   isNested: true,
-                  isOnline: isOnline,
                   data: element.outerHtml.trim(),
                 ),
               ],
-              isOnline: isOnline,
             );
           },
           child: Wrap(
@@ -330,11 +325,9 @@ abstract class SourceWiktionary {
                 children: [
                   htmlwidget(
                     isNested: true,
-                    isOnline: isOnline,
                     data: element.innerHtml.trim(),
                   ),
                 ],
-                isOnline: isOnline,
               );
             },
             child: Wrap(
@@ -368,11 +361,9 @@ abstract class SourceWiktionary {
                 children: [
                   htmlwidget(
                     isNested: true,
-                    isOnline: isOnline,
                     data: element.innerHtml.trim(),
                   ),
                 ],
-                isOnline: isOnline,
               );
             },
             child: Wrap(
@@ -404,7 +395,6 @@ abstract class SourceWiktionary {
             children: [
               htmlwidget(
                 isNested: true,
-                isOnline: isOnline,
                 data: () {
                   final e = element.clone(true);
                   e.querySelectorAll('.NavToggle, .NavHead').forEach((element) {
@@ -414,7 +404,6 @@ abstract class SourceWiktionary {
                 }(),
               ),
             ],
-            isOnline: isOnline,
           );
         },
         child: Text(element.querySelector('.NavHead')!.text.trim()),
@@ -431,15 +420,12 @@ abstract class SourceWiktionary {
     required BuildMetadata meta,
     required Function(BuildContext context,
             {required String title,
-            required List<Widget> children,
-            required bool isOnline})
+            required List<Widget> children,})
         bottomsheet,
-    required bool isOnline,
     required Widget Function(
             {Key? key,
             required String data,
-            bool isNested,
-            required bool isOnline})
+            bool isNested,})
         htmlwidget,
     required dynamic strings,
   }) {

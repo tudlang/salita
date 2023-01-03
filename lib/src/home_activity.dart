@@ -96,7 +96,6 @@ class _HomeActivityState extends State<HomeActivity>
                     showSearch(
                       context: context,
                       delegate: DefinitionSearchDelegate(
-                        isOnline: true,
                       ),
                     );
                   },

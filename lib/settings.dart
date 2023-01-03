@@ -6,10 +6,13 @@
 
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salita/src/data/wiktionary.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -96,7 +99,7 @@ final Map<SettingCategory, List<SettingTile>> settings = {
       isAdvanced: true,
     ),
   ],
-  SettingCategory(id: 'definition', icon:MdiIcons.bookOpenPageVariant): [
+  SettingCategory(id: 'definition', icon: MdiIcons.bookOpenPageVariant): [
     SettingTile<String>(
       id: 'language',
       key: 'settingsDefinitionLanguage',
@@ -148,9 +151,96 @@ final Map<SettingCategory, List<SettingTile>> settings = {
     ),
   ],
   SettingCategory(
-      id: 'ads',
-      icon: MdiIcons.googleAds,
-      isVisible: !kIsWeb && (Platform.isAndroid || Platform.isIOS)): [],
+    id: 'ads',
+    icon: MdiIcons.googleAds,
+    isVisible: !kIsWeb && (Platform.isAndroid || Platform.isIOS),
+  ): [
+    SettingTile(id: 'cmp', key: '', defaultval: null),
+    SettingTile<bool>(
+      id: 'cmpHasConsent',
+      key: 'adsCmpHasConsent',
+      defaultval: false,
+      showIndicator: false,
+      onTap: (context) {
+        // The completer stuff is when we can access the consent status programmatically
+        // Right now, we cannot due to it being stored on native NSUserDefaults(iOS) or SharedPreferences(Android) values which we cannot access directly
+        // See https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#in-app-details
+        //final completer = Completer<bool>();
+
+        ConsentInformation.instance.requestConsentInfoUpdate(
+          ConsentRequestParameters(
+            consentDebugSettings: ConsentDebugSettings(),
+          ),
+          () async {
+            final status = await ConsentInformation.instance.getConsentStatus();
+            print("STATUS1: $status");
+            if (await ConsentInformation.instance.isConsentFormAvailable()) {
+              ConsentForm.loadConsentForm(
+                (ConsentForm consentForm) async {
+                  consentForm.show((FormError? error) {
+                    if (error != null) {
+                      debugPrint(error.toString());
+                      //completer.complete(false);
+                    }
+
+                    //completer.complete(() async {
+                    //  final status =
+                    //      await ConsentInformation.instance.getConsentStatus();
+                    //  print("STATUS2: $status");
+                    //  // THIS DOES NOT GUARANTEE that "Do not consent" HAS BEEN PRESSED
+                    //  // WHYY
+                    //  return status == ConsentStatus.obtained;
+                    //}());
+                  });
+                },
+                (FormError error) {
+                  debugPrint(error.toString());
+                  //completer.complete(false);
+                },
+              );
+            }
+          },
+          (FormError error) {
+            debugPrint(error.errorCode.toString());
+            debugPrint(error.message);
+            //completer.complete(false);
+          },
+        );
+        //return completer.future;
+      },
+    ),
+    // TODO add tiles for seeing the CMP values
+    // https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md
+    //SettingTile(
+    //  id: 'cmpSdkId',
+    //  key: 'IABTCF_CmpSdkID',
+    //  subtitle: prefs.get('IABTCF_CmpSdkID').toString(),
+    //  defaultval: null,
+    //  onTap: (context) async {
+    //    final pref = await SharedPreferences.getInstance();
+    //    print(pref.get('IABTCF_CmpSdkID').toString());
+    //    //Clipboard.setData(ClipboardData(text: ''));
+    //  },
+    //),
+    SettingTile(id: 'adrequest', key: '', defaultval: null, isAdvanced: true),
+    SettingTile<int>(
+      // in seconds
+      id: 'adrequestHttpTimeout',
+      key: 'adsAdrequestHttpTimeout',
+      // based from https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest.Builder#public-adrequest.builder-sethttptimeoutmillis-int-httptimeoutmillis
+      defaultval: 60,
+      isAdvanced: true,
+      // because AdRequest.httpTimeoutMillis is only on Android
+      isVisible: !kIsWeb && Platform.isAndroid,
+      options: [5, 300],
+    ),
+    SettingTile(
+      id: 'adrequestAddKeywords',
+      key: 'adsAdrequestAddKeywords',
+      defaultval: true,
+      isAdvanced: true,
+    ),
+  ],
   SettingCategory(id: 'miscellaneous', icon: MdiIcons.cogs): [
     SettingTile(
       id: 'advanced',
@@ -161,9 +251,12 @@ final Map<SettingCategory, List<SettingTile>> settings = {
       id: 'reset',
       key: '',
       defaultval: null,
-      onTap: () async {
+      onTap: (context) async {
         var prefs = await SharedPreferences.getInstance();
         prefs.clear();
+
+        // Resets ad consent state
+        ConsentInformation.instance.reset();
       },
     )
   ]
@@ -189,7 +282,7 @@ Future<bool> setSettings(String categoryId, String tileId, dynamic value) =>
 class SettingCategory {
   final String id;
   final IconData icon;
-  final VoidCallback onTap;
+  final void Function() onTap;
   final bool isVisible;
 
   const SettingCategory({
@@ -205,27 +298,42 @@ class SettingTile<T> {
   final String key;
   final T defaultval;
   final IconData icon;
-  final VoidCallback? onTap;
+  final void Function(BuildContext context)? onTap;
   final List<T>? options;
   final bool isVisible;
   final bool isAdvanced;
+  final String? subtitle;
+  final bool showIndicator;
   final String? prerequisiteIdCategory;
   final String? prerequisiteIdTile;
+
+  /// Called before a value gets changed.
+  ///
+  /// Return `true` if the new [value] will be saved. <br/>
+  /// Return `false` to retain the current `getValue()` value.
+  final Future<bool> Function(dynamic value) onChanged;
+
+  ///
+  final Future<dynamic> Function(dynamic value)? modifyValue;
+
+  static Future<bool> _onChanged(_) async => true;
 
   const SettingTile({
     required this.id,
     required this.key,
     required this.defaultval,
     this.icon = kEmptyIcon,
+    this.subtitle,
     this.onTap,
+    this.onChanged = _onChanged,
     this.options,
     this.isVisible = true,
     this.isAdvanced = false,
+    this.showIndicator = true,
     this.prerequisiteIdCategory,
     this.prerequisiteIdTile,
+    this.modifyValue,
   });
-
-  void onChanged(T value) {}
 
   dynamic getValue() {
     var value = () {

@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -144,8 +144,9 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
               (strings[
                       "settings.${widget.category.key.id}.tiles.${tile.id}.title"] ??
                   tile.id);
-          final String? tileSubtitle = strings[
-              'settings.${widget.category.key.id}.tiles.${tile.id}.subtitle'];
+          final String? tileSubtitle = tile.subtitle ??
+              strings[
+                  'settings.${widget.category.key.id}.tiles.${tile.id}.subtitle'];
 
           //THE DIFFERENT SETTING TYPES
           switch (tile.defaultval.runtimeType) {
@@ -167,7 +168,7 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
                   title: Text(tileTitle),
                   subtitle: (tileSubtitle == null) ? null : Text(tileSubtitle),
                   onTap: () {
-                    tile.onTap!();
+                    tile.onTap!(context2);
                     setState(() {});
                   },
                 );
@@ -186,48 +187,66 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
                             (tileSubtitle == null) ? null : Text(tileSubtitle),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton<String>(
-                        value: tileValue,
-                        items: tile.options!
-                            .map((e) => DropdownMenuItem<String>(
-                                  value: e,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(strings[
-                                            "settings.${widget.category.key.id}.tiles.${tile.id}.options.$e"] ??
-                                        e),
-                                  ),
-                                ))
-                            .toList(),
-                        onChanged: (value) async {
-                          await tile.setValue(value);
-                          setState(() {});
-                        },
+                    if (tile.showIndicator)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropdownButton<String>(
+                          value: tileValue,
+                          items: tile.options!
+                              .map((e) => DropdownMenuItem<String>(
+                                    value: e,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(strings[
+                                              "settings.${widget.category.key.id}.tiles.${tile.id}.options.$e"] ??
+                                          e),
+                                    ),
+                                  ))
+                              .toList(),
+                          onChanged: (value) async {
+                            if (tile.modifyValue != null) {
+                              value = await tile.modifyValue!(value);
+                            }
+
+                            if (await tile.onChanged(value)) {
+                              await tile.setValue(value);
+                              setState(() {});
+                            }
+                          },
+                        ),
                       ),
-                    ),
                   ],
                 ),
               );
-            case List<String>:
-              return ListTile(
-                title: Text(tileTitle),
-                subtitle: (tileSubtitle == null) ? null : Text(tileSubtitle),
-                onTap: tile.onTap,
-              );
+            //case List<String>:
+            //  return ListTile(
+            //    title: Text(tileTitle),
+            //    subtitle: (tileSubtitle == null) ? null : Text(tileSubtitle),
+            //    onTap: tile.onTap,
+            //  );
             case bool:
               return ListTile(
                 title: Text(tileTitle),
                 subtitle: (tileSubtitle == null) ? null : Text(tileSubtitle),
-                trailing: Switch(
-                  value: tileValue,
-                  onChanged: (value) async {
-                    await tile.setValue(value);
-                    setState(() {});
-                    //tile.onTap();
-                  },
-                ),
+                trailing: (tile.showIndicator)
+                    ? Switch(
+                        value: tileValue,
+                        onChanged: (value) async {
+                          if (tile.modifyValue != null) {
+                            value = await tile.modifyValue!(value);
+                          }
+                          if (await tile.onChanged(value)) {
+                            await tile.setValue(value);
+                            setState(() {});
+                          }
+                        },
+                      )
+                    : null,
+                onTap: (tile.onTap == null)
+                    ? null
+                    : () {
+                        tile.onTap!(context2);
+                      },
               );
             case int:
               return Container(
@@ -243,17 +262,23 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
                             (tileSubtitle == null) ? null : Text(tileSubtitle),
                       ),
                     ),
-                    Text(tileValue.toString()),
-                    Slider(
-                      value: tileValue.toDouble(),
-                      min: tile.options!.first.toDouble(),
-                      max: tile.options!.last.toDouble(),
-                      label: tileValue.toString(),
-                      onChanged: (value) async {
-                        await tile.setValue(value.toInt());
-                        setState(() {});
-                      },
-                    ),
+                    if (tile.showIndicator) Text(tileValue.toString()),
+                    if (tile.showIndicator)
+                      Slider(
+                        value: tileValue.toDouble(),
+                        min: tile.options!.first.toDouble(),
+                        max: tile.options!.last.toDouble(),
+                        label: tileValue.toString(),
+                        onChanged: (value) async {
+                          if (tile.modifyValue != null) {
+                            value = await tile.modifyValue!(value);
+                          }
+                          if (await tile.onChanged(value)) {
+                            await tile.setValue(value.toInt());
+                            setState(() {});
+                          }
+                        },
+                      ),
                   ],
                 ),
               );
@@ -271,24 +296,32 @@ class _SettingsSecondaryState extends State<_SettingsSecondary> {
                             (tileSubtitle == null) ? null : Text(tileSubtitle),
                       ),
                     ),
-                    Text(tileValue.toStringAsFixed(0)),
-                    Slider(
-                      value: tileValue,
-                      min: tile.options!.first,
-                      max: tile.options!.last,
-                      label: (tileValue as double).toStringAsFixed(0),
-                      onChanged: (value) async {
-                        await tile.setValue(value);
-                        setState(() {});
-                      },
-                    ),
+                    if (tile.showIndicator) Text(tileValue.toStringAsFixed(0)),
+                    if (tile.showIndicator)
+                      Slider(
+                        value: tileValue,
+                        min: tile.options!.first,
+                        max: tile.options!.last,
+                        label: (tileValue as double).toStringAsFixed(0),
+                        onChanged: (value) async {
+                          if (tile.modifyValue != null) {
+                            value = await tile.modifyValue!(value);
+                          }
+                          if (await tile.onChanged(value)) {
+                            await tile.setValue(value);
+                            setState(() {});
+                          }
+                        },
+                      ),
                   ],
                 ),
               );
             default:
               return ListTile(
                 title: Text(tileTitle),
-                onTap: tile.onTap,
+                onTap: () {
+                  if (tile.onTap != null) tile.onTap!(context2);
+                },
               );
           }
         },

@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -18,6 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 import 'package:salita/env.dart';
+import 'package:salita/settings.dart';
 import 'package:salita/utils/functions.dart';
 import '/opensource/adaptive.dart';
 import '/strings.g.dart';
@@ -36,10 +37,8 @@ class DefinitionActivity extends StatefulWidget {
     super.key,
     required this.title,
     required this.mode,
-    required this.isOnline,
     this.redirect,
     this.heading,
-    required this.isWikititle,
   });
 
   DefinitionActivity.web({
@@ -48,14 +47,10 @@ class DefinitionActivity extends StatefulWidget {
     required this.mode,
     this.redirect,
     this.heading,
-  })  : isOnline = true,
-        // always true as we cannot search the displaytitle (aka title) from online
-        isWikititle = true;
+  });
 
   String title;
-  bool isWikititle;
   final Namespace mode;
-  bool isOnline;
   final String? redirect;
   String? heading;
 
@@ -76,7 +71,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
     definitionAdBanner = !kIsWeb && (Platform.isAndroid || Platform.isIOS)
         ? BannerAd(
             size: AdSize.banner,
-            //adUnitId: '',
             adUnitId: Platform.isAndroid
                 ? Configuration.current.keyAdAndroidDefinition
                 : Configuration.current.keyAdIosDefinition,
@@ -89,7 +83,17 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                 });
               },
             ),
-            request: AdRequest(),
+            request: AdRequest(
+              keywords: (getSettings('ads', 'adrequestAddKeywords'))
+                  ? [
+                      widget.title,
+                      widget.mode.namespaceName,
+                    ]
+                  : null,
+              nonPersonalizedAds: !getSettings('ads', 'cmpHasConsent'),
+              httpTimeoutMillis:
+                  getSettings('ads', 'adrequestHttpTimeout') * 1000,
+            ),
           )
         : null;
     definitionAdBanner?.load();
@@ -130,7 +134,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                   context: context,
                   delegate: DefinitionSearchDelegate(
                     mode: widget.mode,
-                    isOnline: widget.isOnline,
                   ),
                 );
               },
@@ -175,7 +178,7 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
             //),
             //padding: const EdgeInsets.all(8.0),
             color: Theme.of(context).primaryColor,
-            elevation:4,
+            elevation: 4,
             child: Row(
               children: [
                 Expanded(
@@ -229,17 +232,11 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
               initialData: cache,
               future: cache != null
                   ? null
-                  : widget.isWikititle
-                      ? EntryConnection.getEntryFromWikititle(
-                          context: context,
-                          wikititle: widget.title,
-                          isOnline: widget.isOnline,
-                          redirectFrom: widget.redirect,
-                        )
-                      : EntryConnection.getEntryFromTitle(
-                          title: widget.title,
-                          redirectFrom: widget.redirect,
-                        ),
+                  : EntryConnection.getEntryFromWikititle(
+                      context: context,
+                      wikititle: widget.title,
+                      redirectFrom: widget.redirect,
+                    ),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
@@ -259,7 +256,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                       return DictionaryFragment(
                         entry: snapshot.data!,
                         heading: widget.heading,
-                        isOnline: widget.isOnline,
                       );
                     } else if (snapshot.error is NoTitleExeption) {
                       return Text("The page you specified doesn't exist.");
@@ -267,7 +263,6 @@ class _DefinitionActivityState extends State<DefinitionActivity> {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         (snapshot.error as RedirectExeption).link.go(
                           context,
-                          isOnline: widget.isOnline,
                           extra: {
                             'redirect': widget.title,
                           },

@@ -22,7 +22,6 @@ import '/utils/extensions.dart';
 class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
   DefinitionSearchDelegate({
     this.mode = const NamespaceDictionary(),
-    this.isOnline = true,
   });
 
   Namespace mode;
@@ -30,7 +29,6 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
 
   final scrollController = ScrollController();
   String? contine;
-  bool isOnline;
 
   @override
   InputDecorationTheme? get searchFieldDecorationTheme => InputDecorationTheme(
@@ -95,32 +93,32 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
               onTap: () {},
             ),
             actions: [
-              IconButton(
-                tooltip: isOnline ? 'Online mode' : 'Offline mode',
-                onPressed: kIsWeb
-                    ? null
-                    : () {
-                        showUnsupportedSnackbar(context);
-                        // setState(() {
-                        //   isOnline = !isOnline;
-                        // });
-                        // ScaffoldMessenger.of(context)
-                        //   ..clearSnackBars()
-                        //   ..showSnackBar(SnackBar(
-                        //     content: Text(
-                        //       isOnline
-                        //           ? 'Searching in online mode'
-                        //           : 'Searching in offline mode',
-                        //     ),
-                        //     behavior: SnackBarBehavior.floating,
-                        //   ));
-                        // //to trigger a search again
-                        // query = query;
-                      },
-                icon: Icon(
-                  isOnline ? Icons.cloud_outlined : Icons.cloud_off,
-                ),
-              )
+              //IconButton(
+              //  tooltip: isOnline ? 'Online mode' : 'Offline mode',
+              //  onPressed: kIsWeb
+              //      ? null
+              //      : () {
+              //          showUnsupportedSnackbar(context);
+              //          // setState(() {
+              //          //   isOnline = !isOnline;
+              //          // });
+              //          // ScaffoldMessenger.of(context)
+              //          //   ..clearSnackBars()
+              //          //   ..showSnackBar(SnackBar(
+              //          //     content: Text(
+              //          //       isOnline
+              //          //           ? 'Searching in online mode'
+              //          //           : 'Searching in offline mode',
+              //          //     ),
+              //          //     behavior: SnackBarBehavior.floating,
+              //          //   ));
+              //          // //to trigger a search again
+              //          // query = query;
+              //        },
+              //  icon: Icon(
+              //    isOnline ? Icons.cloud_outlined : Icons.cloud_off,
+              //  ),
+              //)
             ],
           );
         },
@@ -147,7 +145,6 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
     ScaffoldMessenger.of(context).clearMaterialBanners();
     result.go(
       context,
-      isOnline: isOnline,
     );
     super.close(context, result);
   }
@@ -228,7 +225,7 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
 
     return FutureBuilder<List<EntryLink?>>(
       future: EntryConnection.getEntryLinksFromWikititle(
-          wikititle: query, isOnline: isOnline, namespaceId: mode.namespaceId),
+          wikititle: query, namespaceId: mode.namespaceId),
       builder: (context, snapshot) {
         bool isLoading = false;
         switch (snapshot.connectionState) {
@@ -317,7 +314,6 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                                         EntryConnection
                                             .getEntryLinksFromWikititle(
                                           wikititle: query,
-                                          isOnline: isOnline,
                                           offset: list.length - 1,
                                           namespaceId: mode.namespaceId,
                                         ).then((value) {
@@ -375,11 +371,9 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
 class DefinitionSearchField extends StatefulWidget {
   const DefinitionSearchField({
     super.key,
-    this.isOnline = true,
     required this.isAppbar,
   });
 
-  final bool isOnline;
   final bool isAppbar;
 
   @override
@@ -528,7 +522,7 @@ class _DefinitionSearchFieldState extends State<DefinitionSearchField> {
         },
         onSelected: (option) {
           print(option);
-          option.go(context, isOnline: widget.isOnline);
+          option.go(context);
           focusNode.unfocus();
         },
         displayStringForOption: (option) {
@@ -539,7 +533,6 @@ class _DefinitionSearchFieldState extends State<DefinitionSearchField> {
 
           var result = await EntryConnection.getEntryLinksFromWikititle(
             wikititle: value.text,
-            isOnline: widget.isOnline,
             namespaceId: mode.namespaceId,
           );
 

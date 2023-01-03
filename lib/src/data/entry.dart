@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -271,7 +271,8 @@ class EntryLink {
   String toString() {
     return jsonEncode({
       'text': text,
-      'wikititle': wikititle,
+      //'wikititle': wikititle.tryEncodeUri(),
+      'wikititle': Uri.encodeComponent(wikititle),
       'heading': heading,
       'doesExist': doesExist
     });
@@ -279,14 +280,18 @@ class EntryLink {
 
   void go(
     BuildContext context, {
-    required bool isOnline,
     Map<String, String> extra = const {},
   }) {
-    final path =
-        '/definition/${wikititle.tryEncodeUri()}?online=$isOnline&mode=${mode.id}&heading=${heading.tryEncodeUri()}';
+    //final path =
+    //    '/definition/${wikititle.tryEncodeUri()}?online=$isOnline&mode=${mode.id}&heading=${heading.tryEncodeUri()}';
 
     GoRouter.of(context).go(
-      path,
+      Uri(
+        path: '/definition/${Uri.encodeComponent(wikititle)}',
+        queryParameters: {
+          if (heading != "") 'heading': heading,
+        },
+      ).toString(),
       extra: extra,
     );
     //SettingsKeys.appDefinitionHistory = [

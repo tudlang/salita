@@ -23,11 +23,9 @@ class DefinitionHtml extends StatefulWidget {
     super.key,
     required this.data,
     this.isNested = false,
-    required this.isOnline,
   });
   final String data;
   final bool isNested;
-  final bool isOnline;
   @override
   State<StatefulWidget> createState() => _DefinitionHtmlState();
 }
@@ -78,7 +76,7 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
             DefinitionHtmlFactory(context: context, sourceWiktionary: source),
         onTapUrl: (url) {
           var link = EntryLink.fromHref(url);
-          link.go(context, isOnline: widget.isOnline);
+          link.go(context);
           return true;
         },
         customWidgetBuilder: (element) {
@@ -86,14 +84,14 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
             context: context,
             element: element,
             bottomsheet: _bottomsheet,
-            isOnline: widget.isOnline,
             htmlwidget: DefinitionHtml.new,
           );
         },
         // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
         // See: https://github.com/daohoangson/flutter_widget_from_html/issues/199
+        // when show raw button is on, use columnmode since the scrolling is handled elsewhere
         renderMode:
-            kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux
+            kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux ||( getSettings('definition', 'htmlShowRaw') && !widget.isNested)
                 ? const ColumnMode()
                 : ListViewMode(
                     controller: _scrollController,
@@ -310,7 +308,6 @@ _bottomsheet(
   BuildContext context, {
   required String title,
   required List<Widget> children,
-  required bool isOnline,
 }) {
   showModalBottomSheetScaffold<EntryLink>(
     context: context,
@@ -322,7 +319,7 @@ _bottomsheet(
   ).then((link) {
     if (link != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        link.go(context, isOnline: isOnline);
+        link.go(context);
       });
     }
   });
@@ -345,7 +342,6 @@ class DefinitionHtmlFactory extends WidgetFactory {
       meta: meta,
       context: context,
       bottomsheet: _bottomsheet,
-      isOnline: true,
       htmlwidget: DefinitionHtml.new,
       strings: strings,
     );
