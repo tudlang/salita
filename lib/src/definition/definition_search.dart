@@ -521,7 +521,7 @@ class _DefinitionSearchFieldState extends State<DefinitionSearchField> {
           });
         },
         onSelected: (option) {
-          print(option);
+          printIfDebug(option);
           option.go(context);
           focusNode.unfocus();
         },
@@ -577,10 +577,10 @@ class _DefinitionSearchFieldState extends State<DefinitionSearchField> {
                   fillColor: Theme.of(context).brightness == Brightness.dark
                       ? Colors.white.withOpacity(0.2)
                       : Colors.grey.shade300,
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.cloud_outlined),
-                  ),
+                  //suffixIcon: IconButton(
+                  //  onPressed: () {},
+                  //  icon: Icon(Icons.cloud_outlined),
+                  //),
                   errorText: !widget.isAppbar && entryNotFound
                       ? 'Entry not found'
                       : null,

@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -23,7 +23,6 @@ Future<T?> showModalBottomSheetScaffold<T>({
       bottom,
   bool isScrollable = false,
 }) {
-
   return showModalBottomSheet<T>(
     context: context,
     backgroundColor: Colors.transparent,
@@ -119,4 +118,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
     behavior: SnackBarBehavior.floating,
     content: Text(strings.general.snackbar.unsupported),
   ));
+}
+
+void printIfDebug(Object? object) {
+  if (kDebugMode) print(object);
 }

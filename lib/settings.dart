@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salita/src/data/wiktionary.dart';
+import 'package:salita/utils/functions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'main.dart';
@@ -117,7 +118,7 @@ final Map<SettingCategory, List<SettingTile>> settings = {
     SettingTile<String>(
       id: 'overviewLanguagesListing',
       key: 'settingsDefinitionOverviewLanguageListing',
-      defaultval: 'list',
+      defaultval: isPlatformDesktop() ? 'card' : 'list',
       options: ['list', 'card'],
     ),
     SettingTile(
@@ -173,7 +174,7 @@ final Map<SettingCategory, List<SettingTile>> settings = {
           ),
           () async {
             final status = await ConsentInformation.instance.getConsentStatus();
-            print("STATUS1: $status");
+            printIfDebug("STATUS1: $status");
             if (await ConsentInformation.instance.isConsentFormAvailable()) {
               ConsentForm.loadConsentForm(
                 (ConsentForm consentForm) async {
@@ -186,7 +187,7 @@ final Map<SettingCategory, List<SettingTile>> settings = {
                     //completer.complete(() async {
                     //  final status =
                     //      await ConsentInformation.instance.getConsentStatus();
-                    //  print("STATUS2: $status");
+                    //  printIfDebug("STATUS2: $status");
                     //  // THIS DOES NOT GUARANTEE that "Do not consent" HAS BEEN PRESSED
                     //  // WHYY
                     //  return status == ConsentStatus.obtained;
@@ -256,7 +257,9 @@ final Map<SettingCategory, List<SettingTile>> settings = {
         prefs.clear();
 
         // Resets ad consent state
-        ConsentInformation.instance.reset();
+        if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+          ConsentInformation.instance.reset();
+        }
       },
     )
   ]
@@ -353,7 +356,7 @@ class SettingTile<T> {
       }
     }();
 
-    print('GET $key  ${value.runtimeType} : $value');
+    printIfDebug('GET $key  ${value.runtimeType} : $value');
 
     return value ?? defaultval;
   }
@@ -373,7 +376,7 @@ class SettingTile<T> {
     else if (value is double)
       output = await prefs.setDouble(key, value);
     else if (value is int) output = await prefs.setInt(key, value);
-    print('SET $key ${value.runtimeType} TO $value');
+    printIfDebug('SET $key ${value.runtimeType} TO $value');
 
     return output;
   }

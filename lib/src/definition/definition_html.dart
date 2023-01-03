@@ -100,7 +100,7 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
                   ),
 
         onLoadingBuilder: (context, element, loadingProgress) {
-          print(loadingProgress);
+          printIfDebug(loadingProgress);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
