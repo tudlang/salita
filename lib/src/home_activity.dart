@@ -1,13 +1,15 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:animated_background/animated_background.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
@@ -59,50 +61,69 @@ class _HomeActivityState extends State<HomeActivity>
         parent: (child) => AnimatedBackground(
           behaviour: HomeParticleBehaviour(
             options: HomeParticleOptions(
-              wordCount: getSettings('display', 'homeBgWordCount'),
-              targetSize: getSettings('display', 'homeBgTargetSize'),
-              scaleFactor: getSettings('display', 'homeBgScaleFactor')
-            ),
+                wordCount: getSettings('display', 'homeBgWordCount'),
+                targetSize: getSettings('display', 'homeBgTargetSize'),
+                scaleFactor: getSettings('display', 'homeBgScaleFactor')),
           ),
           vsync: this,
           child: child,
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                strings.general.app.title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline1?.copyWith(
-                    fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
-              ),
-              Text(
-                strings.general.app.subtitle,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
-              ),
-              if (isPlatformDesktop())
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 300),
-                  child: DefinitionSearchField(
-                    isAppbar: false,
-                  ),
-                )
-              else
-                OutlinedButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: DefinitionSearchDelegate(
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      strings.general.app.title,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
+                    ),
+                    Text(
+                      strings.general.app.subtitle,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline4?.copyWith(
+                          fontWeight: FontWeight.w500, fontFamily: 'Raleway'),
+                    ),
+                    if (isPlatformDesktop())
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: 300),
+                        child: DefinitionSearchField(
+                          isAppbar: false,
+                        ),
+                      )
+                    else
+                      OutlinedButton(
+                        onPressed: () {
+                          showSearch(
+                            context: context,
+                            delegate: DefinitionSearchDelegate(),
+                          );
+                        },
+                        child: Text('Search'),
                       ),
-                    );
-                  },
-                  child: Text('Search'),
+                  ],
                 ),
-            ],
-          ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Salita for ${(){
+                  if (kIsWeb) return 'Web';
+                  if (Platform.isAndroid) return 'Android';
+                  if (Platform.isIOS) return 'iOS';
+                  if (Platform.isWindows) return 'Windows';
+                  if (Platform.isMacOS) return 'macOS';
+                  if (Platform.isLinux) return 'Linux';
+                  if (Platform.isFuchsia) return 'Fuchsia';
+                }()}: Alpha version. Please contact the developer for any issues!',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ),
       ),
     );

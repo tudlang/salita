@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -40,11 +40,11 @@ abstract class SourceWiktionary {
 
   factory SourceWiktionary.fromCode(String code) => map[code]!;
   //TODO put this method as an extension method when this becomes a package
-  factory SourceWiktionary.fromSettings() => 
+  factory SourceWiktionary.fromSettings() =>
       SourceWiktionary.fromCode(getSettings('definition', 'language'));
 
   /// The complete map of all wiktionary languages
-  /// 
+  ///
   /// The key is the MediaWiki language id, the value is the instance of that class
   static const map = <String, SourceWiktionary>{
     // ACTIVE
@@ -218,7 +218,6 @@ abstract class SourceWiktionary {
 
     // DARK THEME COLOR CHANGER
     if (Theme.of(context).brightness == Brightness.dark) {
-
       // CHANGE BACKGROUND COLOR
       source.querySelectorAll("[style*=background]").forEach((element) {
         final a = (element.styles
@@ -227,9 +226,9 @@ abstract class SourceWiktionary {
         late final Color color;
         if (a is HexColorTerm) {
           final _ = (element.styles
-                  .firstWhere((e) => e.property.contains('background'))
-                  .value! as HexColorTerm);
-              
+              .firstWhere((e) => e.property.contains('background'))
+              .value! as HexColorTerm);
+
           if (_.value is int) color = Color(_.value);
           // Skip the element if it has BAD_HEX_VALUE
           if (_.value is BAD_HEX_VALUE) return;
@@ -247,8 +246,6 @@ abstract class SourceWiktionary {
           poleBgColor: Theme.of(context).backgroundColor,
         ).toCssString()};";
       });
-
-      
     }
 
     return source;
@@ -259,8 +256,7 @@ abstract class SourceWiktionary {
     required BuildContext context,
     required Element element,
     required Function(BuildContext context,
-            {required String title,
-            required List<Widget> children})
+            {required String title, required List<Widget> children})
         bottomsheet,
     required Widget Function({
       Key? key,
@@ -418,14 +414,17 @@ abstract class SourceWiktionary {
   BuildMetadata parseHtmlWidgetAdvanced({
     required BuildContext context,
     required BuildMetadata meta,
-    required Function(BuildContext context,
-            {required String title,
-            required List<Widget> children,})
+    required Function(
+      BuildContext context, {
+      required String title,
+      required List<Widget> children,
+    })
         bottomsheet,
-    required Widget Function(
-            {Key? key,
-            required String data,
-            bool isNested,})
+    required Widget Function({
+      Key? key,
+      required String data,
+      bool isNested,
+    })
         htmlwidget,
     required dynamic strings,
   }) {
@@ -443,54 +442,15 @@ abstract class SourceWiktionary {
             Tooltip(
               message: element.attributes['title'] ??
                   strings.general.snackbar.noDescription,
-              child: InkResponse(
-                //if the display is desktop, then make it not clickable
-                onTap: isPlatformDesktop()
-                    ? null
-                    : () {
-                        ScaffoldMessenger.of(context)
-                          ..clearSnackBars()
-                          ..showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            content: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    border:
-                                        Border.all(color: Colors.blueAccent),
-                                  ),
-                                  child: Text(
-                                    element.text,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      element.attributes['title'] ??
-                                          strings
-                                              .general.snackbar.noDescription,
-                                      softWrap: true,
-                                      maxLines: 3,
-                                      overflow: TextOverflow.fade,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ));
-                      },
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: Colors.blueAccent),
-                  ),
-                  child: Text(
-                    element.text,
-                  ),
+              triggerMode: TooltipTriggerMode.tap,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: Colors.blueAccent),
+                ),
+                child: Text(
+                  element.text,
                 ),
               ),
             ),

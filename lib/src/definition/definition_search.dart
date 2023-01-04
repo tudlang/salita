@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Tudlang
-// 
+//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -7,6 +7,7 @@
 import 'dart:collection';
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,10 +23,12 @@ import '/utils/extensions.dart';
 class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
   DefinitionSearchDelegate({
     this.mode = const NamespaceDictionary(),
+    this.retries = 0,
   });
 
   Namespace mode;
   List<EntryLink?> list = [];
+  int retries;
 
   final scrollController = ScrollController();
   String? contine;
@@ -355,11 +358,44 @@ class DefinitionSearchDelegate extends SearchDelegate<EntryLink> {
                 },
               );
             } else if (snapshot.error is SocketException) {
-              //Refresh if SocketException
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                query = query;
-              });
-              return Container();
+              if (retries <= 5) {
+                //Refresh if SocketException
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  query = query;
+                });
+                retries++;
+                return Container();
+              } else {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/svg/definition_search_none.svg',
+                        width: 200,
+                        height: 200,
+                      ),
+                      Text(
+                        "No internet connection",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              retries = 0;
+                              query = query;
+                            });
+                          },
+                          child: Text('Retry'),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
             }
             return Text('${snapshot.error}\n${snapshot.stackTrace}');
         }
