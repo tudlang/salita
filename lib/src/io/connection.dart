@@ -30,7 +30,7 @@ class EntryConnection {
       context,
       //json,
       jsonDecode(await db.post(
-        url: source.url,
+        url: source.urlApi,
         body: {
           'origin': '*', //for CORS stuff
           'action': 'parse',
@@ -62,7 +62,7 @@ class EntryConnection {
     output = EntryLink.fromJson(
       source,
       jsonDecode(await db.post(
-        url: source.url,
+        url: source.urlApi,
         body: {
           'origin': '*', //for CORS stuff
           'action': 'query',

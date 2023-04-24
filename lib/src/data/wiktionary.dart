@@ -18,27 +18,51 @@ import 'package:salita/strings.g.dart';
 import 'package:salita/utils/functions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../settings.dart';
+import '../definition/definition_html.dart';
 import '/utils/extensions.dart';
 
 import 'namespace.dart';
 import 'wiktionary_languages.dart';
 
-abstract class SourceWiktionary {
-  final String url;
+/// A class that stores each Wiktionary language, to be used by the parser.
+///
+/// Use [SourceWiktionary.map] for the complete list of languages.
+abstract class SourceWiktionary with SourceWiktionaryFunctions{
+  /// The URL for the MediaWiki API
+  final String urlApi;
+
+  /// The name for the language
   final String name;
+
+  /// The number of entries for the language
+  ///
+  /// This number is hardcoded for simplicity.
   final int numberEntries;
+
+  /// The HTML tag that separates languages in an entry. Defaults to `h2`.
   final String languageBreakpoint;
+
+  /// The list of namespaces.
   final List<Namespace> namespaces;
 
   const SourceWiktionary({
-    required this.url,
+    required this.urlApi,
     required this.name,
     this.numberEntries = 0,
     this.languageBreakpoint = 'h2',
     required this.namespaces,
   });
 
-  factory SourceWiktionary.fromCode(String code) => map[code]!;
+  /// Gets the corresponding SourceWiktionary from the given language [code].
+  ///
+  /// Throws `ArgumentError` if [code] not valid.
+  factory SourceWiktionary.fromCode(String code) {
+    final output = map[code];
+    if (output == null) throw ArgumentError.value(code);
+    return output;
+  }
+
+  /// Gets the current SourceWiktionary based from the settings
   //TODO put this method as an extension method when this becomes a package
   factory SourceWiktionary.fromSettings() =>
       SourceWiktionary.fromCode(getSettings('definition', 'language'));
@@ -201,6 +225,13 @@ abstract class SourceWiktionary {
     //'als': SourceWiktionaryAls.instance,
   };
 
+  /// Do any alterations to the source HTML string here.
+  ///
+  /// When subclassing:
+  /// * When transforming the HTML, reassign the transformed string back into [html].
+  /// * Your return statement must be `return super(context, html)`.
+  ///
+  /// This function is called before converting the HTML into widgets.
   @mustCallSuper
   Element parseHtmlString(BuildContext context, String html) {
     // PROMOTE HEADING COUNT BY 2 (<h3> -> <h1>)
@@ -251,19 +282,11 @@ abstract class SourceWiktionary {
     return source;
   }
 
+  /// Do any simple HTML element to widget conversion here.
   @mustCallSuper
   Widget? parseHtmlWidgetSimple({
     required BuildContext context,
     required Element element,
-    required Function(BuildContext context,
-            {required String title, required List<Widget> children})
-        bottomsheet,
-    required Widget Function({
-      Key? key,
-      required String data,
-      bool isNested,
-    })
-        htmlwidget,
   }) {
     // Quotation handler, turns quotations into the button
     if (element.parent?.localName == 'li' &&
@@ -282,11 +305,11 @@ abstract class SourceWiktionary {
         padding: const EdgeInsets.all(8.0),
         child: OutlinedButton(
           onPressed: () {
-            bottomsheet(
+            showBottomsheet(
               context,
               title: strings.definition.html.quotations.title,
               children: [
-                htmlwidget(
+                DefinitionHtml(
                   isNested: true,
                   data: element.outerHtml.trim(),
                 ),
@@ -315,11 +338,11 @@ abstract class SourceWiktionary {
         children: [
           OutlinedButton(
             onPressed: () {
-              bottomsheet(
+              showBottomsheet(
                 context,
                 title: strings.definition.html.translations.title,
                 children: [
-                  htmlwidget(
+                  DefinitionHtml(
                     isNested: true,
                     data: element.innerHtml.trim(),
                   ),
@@ -351,11 +374,11 @@ abstract class SourceWiktionary {
         children: [
           OutlinedButton(
             onPressed: () {
-              bottomsheet(
+              showBottomsheet(
                 context,
                 title: strings.definition.html.termlist.title,
                 children: [
-                  htmlwidget(
+                  DefinitionHtml(
                     isNested: true,
                     data: element.innerHtml.trim(),
                   ),
@@ -385,11 +408,11 @@ abstract class SourceWiktionary {
         element.querySelector('.translations') == null) {
       return OutlinedButton(
         onPressed: () {
-          bottomsheet(
+          showBottomsheet(
             context,
             title: element.querySelector('.NavHead')!.text.trim(),
             children: [
-              htmlwidget(
+              DefinitionHtml(
                 isNested: true,
                 data: () {
                   final e = element.clone(true);
@@ -410,22 +433,13 @@ abstract class SourceWiktionary {
     return null;
   }
 
+  /// Do any advanced parser data to widget data conversion here.
+  ///
+  /// For subclasses, call `super` first.
   @mustCallSuper
   BuildMetadata parseHtmlWidgetAdvanced({
     required BuildContext context,
     required BuildMetadata meta,
-    required Function(
-      BuildContext context, {
-      required String title,
-      required List<Widget> children,
-    })
-        bottomsheet,
-    required Widget Function({
-      Key? key,
-      required String data,
-      bool isNested,
-    })
-        htmlwidget,
     required dynamic strings,
   }) {
     final element = meta.element;
@@ -463,5 +477,30 @@ abstract class SourceWiktionary {
     return meta;
   }
 
+  /// Gets an overview exerpt for the given [entry].
+  // TODO add better functionality
   String getOverviewExerpt(EntryLanguage entry) => entry.source.text.trim();
+}
+
+mixin SourceWiktionaryFunctions {
+  Future<T?> showBottomsheet<T>(
+    BuildContext context, {
+    required String title,
+    required List<Widget> children,
+  }) {
+    return showModalBottomSheetScaffold<EntryLink>(
+      context: context,
+      title: title,
+      builder: (context2, setState) {
+        return children;
+      },
+      isScrollable: true,
+    ).then((link) {
+      if (link != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          link.go(context);
+        });
+      }
+    });
+  }
 }

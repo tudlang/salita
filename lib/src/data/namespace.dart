@@ -8,11 +8,17 @@ import 'package:flutter/material.dart' hide Element;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:salita/strings.g.dart';
 
+/// Class containing a valid Namespace.
 abstract class Namespace {
+  /// The id, used for switch-case stuff
   final String id;
+  /// The numerical namespace ID, used in MediaWiki
   final int namespaceId;
+  /// The name of the namespace
   final String namespaceName;
+  /// A list of aliases for the namespace
   final List<String> namespaceAlias;
+  /// An icon for the namespace
   final IconData icon;
   
   const Namespace({
@@ -23,7 +29,10 @@ abstract class Namespace {
     this.namespaceAlias = const [],
   });
 
-  String get nameLocalized => namespaceName.replaceAll(":", '');
+  /// The localized name for the namespace.
+  /// 
+  /// Must be overriden with a translated string.
+  String get nameLocalized => namespaceName.replaceFirst(":", '');
 
   String removePrefix(String old){
     if (old.toLowerCase().startsWith(namespaceName.toLowerCase())){

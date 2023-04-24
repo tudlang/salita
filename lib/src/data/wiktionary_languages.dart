@@ -13,7 +13,7 @@ import 'wiktionary.dart';
 class SourceWiktionaryAng extends SourceWiktionary {
   const SourceWiktionaryAng._()
       : super(
-          url: 'https://ang.wiktionary.org/w/api.php',
+          urlApi: 'https://ang.wiktionary.org/w/api.php',
           name: 'Ænglisc',
           numberEntries: 2195,
           namespaces: const [
@@ -27,7 +27,7 @@ class SourceWiktionaryAng extends SourceWiktionary {
 class SourceWiktionaryAf extends SourceWiktionary {
   const SourceWiktionaryAf._()
       : super(
-          url: 'https://af.wiktionary.org/w/api.php',
+          urlApi: 'https://af.wiktionary.org/w/api.php',
           name: 'Afrikaans',
           numberEntries: 22073,
           namespaces: const [
@@ -40,7 +40,7 @@ class SourceWiktionaryAf extends SourceWiktionary {
 class SourceWiktionaryAn extends SourceWiktionary {
   const SourceWiktionaryAn._()
       : super(
-          url: 'https://an.wiktionary.org/w/api.php',
+          urlApi: 'https://an.wiktionary.org/w/api.php',
           name: 'aragonés',
           numberEntries: 2649,
           namespaces: const [
@@ -53,7 +53,7 @@ class SourceWiktionaryAn extends SourceWiktionary {
 class SourceWiktionaryRoaRup extends SourceWiktionary {
   const SourceWiktionaryRoaRup._()
       : super(
-          url: 'https://roa-rup.wiktionary.org/w/api.php',
+          urlApi: 'https://roa-rup.wiktionary.org/w/api.php',
           name: 'armãneashti',
           numberEntries: 1308,
           namespaces: const [
@@ -66,7 +66,7 @@ class SourceWiktionaryRoaRup extends SourceWiktionary {
 class SourceWiktionaryAst extends SourceWiktionary {
   const SourceWiktionaryAst._()
       : super(
-          url: 'https://ast.wiktionary.org/w/api.php',
+          urlApi: 'https://ast.wiktionary.org/w/api.php',
           name: 'asturianu',
           numberEntries: 43596,
           namespaces: const [
@@ -79,7 +79,7 @@ class SourceWiktionaryAst extends SourceWiktionary {
 class SourceWiktionaryGn extends SourceWiktionary {
   const SourceWiktionaryGn._()
       : super(
-          url: 'https://gn.wiktionary.org/w/api.php',
+          urlApi: 'https://gn.wiktionary.org/w/api.php',
           name: 'Avañe\'ẽ',
           numberEntries: 1785,
           namespaces: const [
@@ -92,7 +92,7 @@ class SourceWiktionaryGn extends SourceWiktionary {
 class SourceWiktionaryAy extends SourceWiktionary {
   const SourceWiktionaryAy._()
       : super(
-          url: 'https://ay.wiktionary.org/w/api.php',
+          urlApi: 'https://ay.wiktionary.org/w/api.php',
           name: 'Aymar aru',
           numberEntries: 1048,
           namespaces: const [
@@ -105,7 +105,7 @@ class SourceWiktionaryAy extends SourceWiktionary {
 class SourceWiktionaryAz extends SourceWiktionary {
   const SourceWiktionaryAz._()
       : super(
-          url: 'https://az.wiktionary.org/w/api.php',
+          urlApi: 'https://az.wiktionary.org/w/api.php',
           name: 'azərbaycanca',
           numberEntries: 55958,
           namespaces: const [
@@ -119,7 +119,7 @@ class SourceWiktionaryAz extends SourceWiktionary {
 class SourceWiktionaryId extends SourceWiktionary {
   const SourceWiktionaryId._()
       : super(
-          url: 'https://id.wiktionary.org/w/api.php',
+          urlApi: 'https://id.wiktionary.org/w/api.php',
           name: 'Bahasa Indonesia',
           numberEntries: 143897,
           namespaces: const [
@@ -134,7 +134,7 @@ class SourceWiktionaryId extends SourceWiktionary {
 class SourceWiktionaryMs extends SourceWiktionary {
   const SourceWiktionaryMs._()
       : super(
-          url: 'https://ms.wiktionary.org/w/api.php',
+          urlApi: 'https://ms.wiktionary.org/w/api.php',
           name: 'Bahasa Melayu',
           numberEntries: 11743,
           namespaces: const [
@@ -157,7 +157,7 @@ class SourceWiktionaryMs extends SourceWiktionary {
 class SourceWiktionaryZhMinNan extends SourceWiktionary {
   const SourceWiktionaryZhMinNan._()
       : super(
-          url: 'https://zh-min-nan.wiktionary.org/w/api.php',
+          urlApi: 'https://zh-min-nan.wiktionary.org/w/api.php',
           name: 'Bân-lâm-gú',
           numberEntries: 21860,
           namespaces: const [
@@ -170,7 +170,7 @@ class SourceWiktionaryZhMinNan extends SourceWiktionary {
 class SourceWiktionaryJv extends SourceWiktionary {
   const SourceWiktionaryJv._()
       : super(
-          url: 'https://jv.wiktionary.org/w/api.php',
+          urlApi: 'https://jv.wiktionary.org/w/api.php',
           name: 'Basa Jawa',
           numberEntries: 60892,
           namespaces: const [
@@ -183,7 +183,7 @@ class SourceWiktionaryJv extends SourceWiktionary {
 class SourceWiktionarySu extends SourceWiktionary {
   const SourceWiktionarySu._()
       : super(
-          url: 'https://su.wiktionary.org/w/api.php',
+          urlApi: 'https://su.wiktionary.org/w/api.php',
           name: 'Basa Sunda',
           numberEntries: 3327,
           namespaces: const [
@@ -196,7 +196,7 @@ class SourceWiktionarySu extends SourceWiktionary {
 class SourceWiktionaryBcl extends SourceWiktionary {
   const SourceWiktionaryBcl._()
       : super(
-          url: 'https://bcl.wiktionary.org/w/api.php',
+          urlApi: 'https://bcl.wiktionary.org/w/api.php',
           name: 'Bikol',
           numberEntries: 2854,
           namespaces: const [
@@ -209,7 +209,7 @@ class SourceWiktionaryBcl extends SourceWiktionary {
 class SourceWiktionaryBs extends SourceWiktionary {
   const SourceWiktionaryBs._()
       : super(
-          url: 'https://bs.wiktionary.org/w/api.php',
+          urlApi: 'https://bs.wiktionary.org/w/api.php',
           name: 'bosanski',
           numberEntries: 7851,
           namespaces: const [
@@ -224,7 +224,7 @@ class SourceWiktionaryBs extends SourceWiktionary {
 class SourceWiktionaryBr extends SourceWiktionary {
   const SourceWiktionaryBr._()
       : super(
-          url: 'https://br.wiktionary.org/w/api.php',
+          urlApi: 'https://br.wiktionary.org/w/api.php',
           name: 'brezhoneg',
           numberEntries: 47231,
           namespaces: const [
@@ -238,7 +238,7 @@ class SourceWiktionaryBr extends SourceWiktionary {
 class SourceWiktionaryCa extends SourceWiktionary {
   const SourceWiktionaryCa._()
       : super(
-          url: 'https://ca.wiktionary.org/w/api.php',
+          urlApi: 'https://ca.wiktionary.org/w/api.php',
           name: 'català',
           numberEntries: 557932,
           namespaces: const [
@@ -251,7 +251,7 @@ class SourceWiktionaryCa extends SourceWiktionary {
 class SourceWiktionaryCs extends SourceWiktionary {
   const SourceWiktionaryCs._()
       : super(
-          url: 'https://cs.wiktionary.org/w/api.php',
+          urlApi: 'https://cs.wiktionary.org/w/api.php',
           name: 'čeština',
           numberEntries: 138744,
           namespaces: const [
@@ -265,7 +265,7 @@ class SourceWiktionaryCs extends SourceWiktionary {
 class SourceWiktionaryCo extends SourceWiktionary {
   const SourceWiktionaryCo._()
       : super(
-          url: 'https://co.wiktionary.org/w/api.php',
+          urlApi: 'https://co.wiktionary.org/w/api.php',
           name: 'corsu',
           numberEntries: 9512,
           namespaces: const [
@@ -278,7 +278,7 @@ class SourceWiktionaryCo extends SourceWiktionary {
 class SourceWiktionaryCy extends SourceWiktionary {
   const SourceWiktionaryCy._()
       : super(
-          url: 'https://cy.wiktionary.org/w/api.php',
+          urlApi: 'https://cy.wiktionary.org/w/api.php',
           name: 'Cymraeg',
           numberEntries: 24775,
           namespaces: const [
@@ -294,7 +294,7 @@ class SourceWiktionaryCy extends SourceWiktionary {
 class SourceWiktionaryDa extends SourceWiktionary {
   const SourceWiktionaryDa._()
       : super(
-          url: 'https://da.wiktionary.org/w/api.php',
+          urlApi: 'https://da.wiktionary.org/w/api.php',
           name: 'dansk',
           numberEntries: 39036,
           namespaces: const [
@@ -307,7 +307,7 @@ class SourceWiktionaryDa extends SourceWiktionary {
 class SourceWiktionaryDe extends SourceWiktionary {
   const SourceWiktionaryDe._()
       : super(
-          url: 'https://de.wiktionary.org/w/api.php',
+          urlApi: 'https://de.wiktionary.org/w/api.php',
           name: 'Deutsch',
           numberEntries: 1051330,
           namespaces: const [
@@ -326,7 +326,7 @@ class SourceWiktionaryDe extends SourceWiktionary {
 class SourceWiktionaryNa extends SourceWiktionary {
   const SourceWiktionaryNa._()
       : super(
-          url: 'https://na.wiktionary.org/w/api.php',
+          urlApi: 'https://na.wiktionary.org/w/api.php',
           name: 'dorerin Naoero',
           numberEntries: 620,
           namespaces: const [
@@ -339,7 +339,7 @@ class SourceWiktionaryNa extends SourceWiktionary {
 class SourceWiktionaryEt extends SourceWiktionary {
   const SourceWiktionaryEt._()
       : super(
-          url: 'https://et.wiktionary.org/w/api.php',
+          urlApi: 'https://et.wiktionary.org/w/api.php',
           name: 'eesti',
           numberEntries: 148278,
           namespaces: const [
@@ -352,7 +352,7 @@ class SourceWiktionaryEt extends SourceWiktionary {
 class SourceWiktionaryEn extends SourceWiktionary {
   const SourceWiktionaryEn._()
       : super(
-          url: 'https://en.wiktionary.org/w/api.php',
+          urlApi: 'https://en.wiktionary.org/w/api.php',
           name: 'English',
           numberEntries: 7126215,
           namespaces: const [
@@ -396,7 +396,7 @@ class SourceWiktionaryEn extends SourceWiktionary {
 class SourceWiktionaryEs extends SourceWiktionary {
   const SourceWiktionaryEs._()
       : super(
-          url: 'https://es.wiktionary.org/w/api.php',
+          urlApi: 'https://es.wiktionary.org/w/api.php',
           name: 'español',
           numberEntries: 913311,
           namespaces: const [
@@ -410,7 +410,7 @@ class SourceWiktionaryEs extends SourceWiktionary {
 class SourceWiktionaryEo extends SourceWiktionary {
   const SourceWiktionaryEo._()
       : super(
-          url: 'https://eo.wiktionary.org/w/api.php',
+          urlApi: 'https://eo.wiktionary.org/w/api.php',
           name: 'Esperanto',
           numberEntries: 107655,
           namespaces: const [
@@ -424,7 +424,7 @@ class SourceWiktionaryEo extends SourceWiktionary {
 class SourceWiktionaryEu extends SourceWiktionary {
   const SourceWiktionaryEu._()
       : super(
-          url: 'https://eu.wiktionary.org/w/api.php',
+          urlApi: 'https://eu.wiktionary.org/w/api.php',
           name: 'euskara',
           numberEntries: 54639,
           namespaces: const [
@@ -437,7 +437,7 @@ class SourceWiktionaryEu extends SourceWiktionary {
 class SourceWiktionaryFo extends SourceWiktionary {
   const SourceWiktionaryFo._()
       : super(
-          url: 'https://fo.wiktionary.org/w/api.php',
+          urlApi: 'https://fo.wiktionary.org/w/api.php',
           name: 'føroyskt',
           numberEntries: 2108,
           namespaces: const [
@@ -450,7 +450,7 @@ class SourceWiktionaryFo extends SourceWiktionary {
 class SourceWiktionaryFr extends SourceWiktionary {
   const SourceWiktionaryFr._()
       : super(
-          url: 'https://fr.wiktionary.org/w/api.php',
+          urlApi: 'https://fr.wiktionary.org/w/api.php',
           name: 'français',
           numberEntries: 4463763,
           namespaces: const [
@@ -473,7 +473,7 @@ class SourceWiktionaryFr extends SourceWiktionary {
 class SourceWiktionaryFy extends SourceWiktionary {
   const SourceWiktionaryFy._()
       : super(
-          url: 'https://fy.wiktionary.org/w/api.php',
+          urlApi: 'https://fy.wiktionary.org/w/api.php',
           name: 'Frysk',
           numberEntries: 14045,
           namespaces: const [
@@ -486,7 +486,7 @@ class SourceWiktionaryFy extends SourceWiktionary {
 class SourceWiktionaryGa extends SourceWiktionary {
   const SourceWiktionaryGa._()
       : super(
-          url: 'https://ga.wiktionary.org/w/api.php',
+          urlApi: 'https://ga.wiktionary.org/w/api.php',
           name: 'Gaeilge',
           numberEntries: 2903,
           namespaces: const [
@@ -500,7 +500,7 @@ class SourceWiktionaryGa extends SourceWiktionary {
 class SourceWiktionaryGv extends SourceWiktionary {
   const SourceWiktionaryGv._()
       : super(
-          url: 'https://gv.wiktionary.org/w/api.php',
+          urlApi: 'https://gv.wiktionary.org/w/api.php',
           name: 'Gaelg',
           numberEntries: 555,
           namespaces: const [
@@ -513,7 +513,7 @@ class SourceWiktionaryGv extends SourceWiktionary {
 class SourceWiktionarySm extends SourceWiktionary {
   const SourceWiktionarySm._()
       : super(
-          url: 'https://sm.wiktionary.org/w/api.php',
+          urlApi: 'https://sm.wiktionary.org/w/api.php',
           name: 'Gagana Samoa',
           numberEntries: 4317,
           namespaces: const [
@@ -526,7 +526,7 @@ class SourceWiktionarySm extends SourceWiktionary {
 class SourceWiktionaryGd extends SourceWiktionary {
   const SourceWiktionaryGd._()
       : super(
-          url: 'https://gd.wiktionary.org/w/api.php',
+          urlApi: 'https://gd.wiktionary.org/w/api.php',
           name: 'Gàidhlig',
           numberEntries: 2913,
           namespaces: const [
@@ -539,7 +539,7 @@ class SourceWiktionaryGd extends SourceWiktionary {
 class SourceWiktionaryGl extends SourceWiktionary {
   const SourceWiktionaryGl._()
       : super(
-          url: 'https://gl.wiktionary.org/w/api.php',
+          urlApi: 'https://gl.wiktionary.org/w/api.php',
           name: 'galego',
           numberEntries: 73724,
           namespaces: const [
@@ -553,7 +553,7 @@ class SourceWiktionaryGl extends SourceWiktionary {
 class SourceWiktionaryHa extends SourceWiktionary {
   const SourceWiktionaryHa._()
       : super(
-          url: 'https://ha.wiktionary.org/w/api.php',
+          urlApi: 'https://ha.wiktionary.org/w/api.php',
           name: 'Hausa',
           numberEntries: 1136,
           namespaces: const [
@@ -566,7 +566,7 @@ class SourceWiktionaryHa extends SourceWiktionary {
 class SourceWiktionaryHr extends SourceWiktionary {
   const SourceWiktionaryHr._()
       : super(
-          url: 'https://hr.wiktionary.org/w/api.php',
+          urlApi: 'https://hr.wiktionary.org/w/api.php',
           name: 'hrvatski',
           numberEntries: 32864,
           namespaces: const [
@@ -579,7 +579,7 @@ class SourceWiktionaryHr extends SourceWiktionary {
 class SourceWiktionaryIo extends SourceWiktionary {
   const SourceWiktionaryIo._()
       : super(
-          url: 'https://io.wiktionary.org/w/api.php',
+          urlApi: 'https://io.wiktionary.org/w/api.php',
           name: 'Ido',
           numberEntries: 308896,
           namespaces: const [
@@ -592,7 +592,7 @@ class SourceWiktionaryIo extends SourceWiktionary {
 class SourceWiktionaryIa extends SourceWiktionary {
   const SourceWiktionaryIa._()
       : super(
-          url: 'https://ia.wiktionary.org/w/api.php',
+          urlApi: 'https://ia.wiktionary.org/w/api.php',
           name: 'interlingua',
           numberEntries: 2198,
           namespaces: const [
@@ -606,7 +606,7 @@ class SourceWiktionaryIa extends SourceWiktionary {
 class SourceWiktionaryIe extends SourceWiktionary {
   const SourceWiktionaryIe._()
       : super(
-          url: 'https://ie.wiktionary.org/w/api.php',
+          urlApi: 'https://ie.wiktionary.org/w/api.php',
           name: 'Interlingue',
           numberEntries: 1711,
           namespaces: const [
@@ -619,7 +619,7 @@ class SourceWiktionaryIe extends SourceWiktionary {
 class SourceWiktionaryIk extends SourceWiktionary {
   const SourceWiktionaryIk._()
       : super(
-          url: 'https://ik.wiktionary.org/w/api.php',
+          urlApi: 'https://ik.wiktionary.org/w/api.php',
           name: 'Iñupiak',
           numberEntries: 143,
           namespaces: const [
@@ -632,7 +632,7 @@ class SourceWiktionaryIk extends SourceWiktionary {
 class SourceWiktionaryZu extends SourceWiktionary {
   const SourceWiktionaryZu._()
       : super(
-          url: 'https://zu.wiktionary.org/w/api.php',
+          urlApi: 'https://zu.wiktionary.org/w/api.php',
           name: 'isiZulu',
           numberEntries: 1121,
           namespaces: const [
@@ -645,7 +645,7 @@ class SourceWiktionaryZu extends SourceWiktionary {
 class SourceWiktionaryIs extends SourceWiktionary {
   const SourceWiktionaryIs._()
       : super(
-          url: 'https://is.wiktionary.org/w/api.php',
+          urlApi: 'https://is.wiktionary.org/w/api.php',
           name: 'íslenska',
           numberEntries: 40150,
           namespaces: const [
@@ -661,7 +661,7 @@ class SourceWiktionaryIs extends SourceWiktionary {
 class SourceWiktionaryIt extends SourceWiktionary {
   const SourceWiktionaryIt._()
       : super(
-          url: 'https://it.wiktionary.org/w/api.php',
+          urlApi: 'https://it.wiktionary.org/w/api.php',
           name: 'italiano',
           numberEntries: 557513,
           namespaces: const [
@@ -675,7 +675,7 @@ class SourceWiktionaryIt extends SourceWiktionary {
 class SourceWiktionaryKl extends SourceWiktionary {
   const SourceWiktionaryKl._()
       : super(
-          url: 'https://kl.wiktionary.org/w/api.php',
+          urlApi: 'https://kl.wiktionary.org/w/api.php',
           name: 'kalaallisut',
           numberEntries: 1172,
           namespaces: const [
@@ -688,7 +688,7 @@ class SourceWiktionaryKl extends SourceWiktionary {
 class SourceWiktionaryCsb extends SourceWiktionary {
   const SourceWiktionaryCsb._()
       : super(
-          url: 'https://csb.wiktionary.org/w/api.php',
+          urlApi: 'https://csb.wiktionary.org/w/api.php',
           name: 'kaszëbsczi',
           numberEntries: 1678,
           namespaces: const [
@@ -701,7 +701,7 @@ class SourceWiktionaryCsb extends SourceWiktionary {
 class SourceWiktionaryKw extends SourceWiktionary {
   const SourceWiktionaryKw._()
       : super(
-          url: 'https://kw.wiktionary.org/w/api.php',
+          urlApi: 'https://kw.wiktionary.org/w/api.php',
           name: 'kernowek',
           numberEntries: 521,
           namespaces: const [
@@ -714,7 +714,7 @@ class SourceWiktionaryKw extends SourceWiktionary {
 class SourceWiktionaryRw extends SourceWiktionary {
   const SourceWiktionaryRw._()
       : super(
-          url: 'https://rw.wiktionary.org/w/api.php',
+          urlApi: 'https://rw.wiktionary.org/w/api.php',
           name: 'Ikinyarwanda',
           numberEntries: 399,
           namespaces: const [
@@ -727,7 +727,7 @@ class SourceWiktionaryRw extends SourceWiktionary {
 class SourceWiktionarySw extends SourceWiktionary {
   const SourceWiktionarySw._()
       : super(
-          url: 'https://sw.wiktionary.org/w/api.php',
+          urlApi: 'https://sw.wiktionary.org/w/api.php',
           name: 'Kiswahili',
           numberEntries: 14089,
           namespaces: const [
@@ -740,7 +740,7 @@ class SourceWiktionarySw extends SourceWiktionary {
 class SourceWiktionaryKu extends SourceWiktionary {
   const SourceWiktionaryKu._()
       : super(
-          url: 'https://ku.wiktionary.org/w/api.php',
+          urlApi: 'https://ku.wiktionary.org/w/api.php',
           name: 'kurdî',
           numberEntries: 738314,
           namespaces: const [
@@ -758,7 +758,7 @@ class SourceWiktionaryKu extends SourceWiktionary {
 class SourceWiktionaryLa extends SourceWiktionary {
   const SourceWiktionaryLa._()
       : super(
-          url: 'https://la.wiktionary.org/w/api.php',
+          urlApi: 'https://la.wiktionary.org/w/api.php',
           name: 'Latina',
           numberEntries: 34098,
           namespaces: const [
@@ -771,7 +771,7 @@ class SourceWiktionaryLa extends SourceWiktionary {
 class SourceWiktionaryLv extends SourceWiktionary {
   const SourceWiktionaryLv._()
       : super(
-          url: 'https://lv.wiktionary.org/w/api.php',
+          urlApi: 'https://lv.wiktionary.org/w/api.php',
           name: 'latviešu',
           numberEntries: 11304,
           namespaces: const [
@@ -785,7 +785,7 @@ class SourceWiktionaryLv extends SourceWiktionary {
 class SourceWiktionaryLb extends SourceWiktionary {
   const SourceWiktionaryLb._()
       : super(
-          url: 'https://lb.wiktionary.org/w/api.php',
+          urlApi: 'https://lb.wiktionary.org/w/api.php',
           name: 'Lëtzebuergesch',
           numberEntries: 9554,
           namespaces: const [
@@ -799,7 +799,7 @@ class SourceWiktionaryLb extends SourceWiktionary {
 class SourceWiktionaryLt extends SourceWiktionary {
   const SourceWiktionaryLt._()
       : super(
-          url: 'https://lt.wiktionary.org/w/api.php',
+          urlApi: 'https://lt.wiktionary.org/w/api.php',
           name: 'lietuvių',
           numberEntries: 618784,
           namespaces: const [
@@ -814,7 +814,7 @@ class SourceWiktionaryLt extends SourceWiktionary {
 class SourceWiktionaryLi extends SourceWiktionary {
   const SourceWiktionaryLi._()
       : super(
-          url: 'https://li.wiktionary.org/w/api.php',
+          urlApi: 'https://li.wiktionary.org/w/api.php',
           name: 'Limburgs',
           numberEntries: 116417,
           namespaces: const [
@@ -827,7 +827,7 @@ class SourceWiktionaryLi extends SourceWiktionary {
 class SourceWiktionaryLn extends SourceWiktionary {
   const SourceWiktionaryLn._()
       : super(
-          url: 'https://ln.wiktionary.org/w/api.php',
+          urlApi: 'https://ln.wiktionary.org/w/api.php',
           name: 'lingála',
           numberEntries: 693,
           namespaces: const [
@@ -840,7 +840,7 @@ class SourceWiktionaryLn extends SourceWiktionary {
 class SourceWiktionaryJbo extends SourceWiktionary {
   const SourceWiktionaryJbo._()
       : super(
-          url: 'https://jbo.wiktionary.org/w/api.php',
+          urlApi: 'https://jbo.wiktionary.org/w/api.php',
           name: 'la .lojban.',
           numberEntries: 884,
           namespaces: const [
@@ -853,7 +853,7 @@ class SourceWiktionaryJbo extends SourceWiktionary {
 class SourceWiktionaryHu extends SourceWiktionary {
   const SourceWiktionaryHu._()
       : super(
-          url: 'https://hu.wiktionary.org/w/api.php',
+          urlApi: 'https://hu.wiktionary.org/w/api.php',
           name: 'magyar',
           numberEntries: 370317,
           namespaces: const [
@@ -868,7 +868,7 @@ class SourceWiktionaryHu extends SourceWiktionary {
 class SourceWiktionaryMg extends SourceWiktionary {
   const SourceWiktionaryMg._()
       : super(
-          url: 'https://mg.wiktionary.org/w/api.php',
+          urlApi: 'https://mg.wiktionary.org/w/api.php',
           name: 'Malagasy',
           numberEntries: 1753439,
           namespaces: const [
@@ -882,7 +882,7 @@ class SourceWiktionaryMg extends SourceWiktionary {
 class SourceWiktionaryMt extends SourceWiktionary {
   const SourceWiktionaryMt._()
       : super(
-          url: 'https://mt.wiktionary.org/w/api.php',
+          urlApi: 'https://mt.wiktionary.org/w/api.php',
           name: 'Malti',
           numberEntries: 2178,
           namespaces: const [
@@ -895,7 +895,7 @@ class SourceWiktionaryMt extends SourceWiktionary {
 class SourceWiktionaryMi extends SourceWiktionary {
   const SourceWiktionaryMi._()
       : super(
-          url: 'https://mi.wiktionary.org/w/api.php',
+          urlApi: 'https://mi.wiktionary.org/w/api.php',
           name: 'Māori',
           numberEntries: 1095,
           namespaces: const [
@@ -908,7 +908,7 @@ class SourceWiktionaryMi extends SourceWiktionary {
 class SourceWiktionaryFj extends SourceWiktionary {
   const SourceWiktionaryFj._()
       : super(
-          url: 'https://fj.wiktionary.org/w/api.php',
+          urlApi: 'https://fj.wiktionary.org/w/api.php',
           name: 'Na Vosa Vakaviti',
           numberEntries: 31356,
           namespaces: const [
@@ -921,7 +921,7 @@ class SourceWiktionaryFj extends SourceWiktionary {
 class SourceWiktionaryNah extends SourceWiktionary {
   const SourceWiktionaryNah._()
       : super(
-          url: 'https://nah.wiktionary.org/w/api.php',
+          urlApi: 'https://nah.wiktionary.org/w/api.php',
           name: 'Nāhuatl',
           numberEntries: 7058,
           namespaces: const [
@@ -934,7 +934,7 @@ class SourceWiktionaryNah extends SourceWiktionary {
 class SourceWiktionaryNl extends SourceWiktionary {
   const SourceWiktionaryNl._()
       : super(
-          url: 'https://nl.wiktionary.org/w/api.php',
+          urlApi: 'https://nl.wiktionary.org/w/api.php',
           name: 'Nederlands',
           numberEntries: 820449,
           namespaces: const [
@@ -947,7 +947,7 @@ class SourceWiktionaryNl extends SourceWiktionary {
 class SourceWiktionaryNo extends SourceWiktionary {
   const SourceWiktionaryNo._()
       : super(
-          url: 'https://no.wiktionary.org/w/api.php',
+          urlApi: 'https://no.wiktionary.org/w/api.php',
           name: 'Norsk Bokmål',
           numberEntries: 156031,
           namespaces: const [
@@ -961,7 +961,7 @@ class SourceWiktionaryNo extends SourceWiktionary {
 class SourceWiktionaryNn extends SourceWiktionary {
   const SourceWiktionaryNn._()
       : super(
-          url: 'https://nn.wiktionary.org/w/api.php',
+          urlApi: 'https://nn.wiktionary.org/w/api.php',
           name: 'Nynorsk',
           numberEntries: 12184,
           namespaces: const [
@@ -974,7 +974,7 @@ class SourceWiktionaryNn extends SourceWiktionary {
 class SourceWiktionaryOc extends SourceWiktionary {
   const SourceWiktionaryOc._()
       : super(
-          url: 'https://oc.wiktionary.org/w/api.php',
+          urlApi: 'https://oc.wiktionary.org/w/api.php',
           name: 'occitan',
           numberEntries: 63735,
           namespaces: const [
@@ -988,7 +988,7 @@ class SourceWiktionaryOc extends SourceWiktionary {
 class SourceWiktionaryOm extends SourceWiktionary {
   const SourceWiktionaryOm._()
       : super(
-          url: 'https://om.wiktionary.org/w/api.php',
+          urlApi: 'https://om.wiktionary.org/w/api.php',
           name: 'Oromoo',
           numberEntries: 23323,
           namespaces: const [
@@ -1001,7 +1001,7 @@ class SourceWiktionaryOm extends SourceWiktionary {
 class SourceWiktionaryUz extends SourceWiktionary {
   const SourceWiktionaryUz._()
       : super(
-          url: 'https://uz.wiktionary.org/w/api.php',
+          urlApi: 'https://uz.wiktionary.org/w/api.php',
           name: 'oʻzbekcha/ўзбекча',
           numberEntries: 117007,
           namespaces: const [
@@ -1014,7 +1014,7 @@ class SourceWiktionaryUz extends SourceWiktionary {
 class SourceWiktionaryNds extends SourceWiktionary {
   const SourceWiktionaryNds._()
       : super(
-          url: 'https://nds.wiktionary.org/w/api.php',
+          urlApi: 'https://nds.wiktionary.org/w/api.php',
           name: 'Plattdüütsch',
           numberEntries: 10038,
           namespaces: const [
@@ -1029,7 +1029,7 @@ class SourceWiktionaryNds extends SourceWiktionary {
 class SourceWiktionaryPl extends SourceWiktionary {
   const SourceWiktionaryPl._()
       : super(
-          url: 'https://pl.wiktionary.org/w/api.php',
+          urlApi: 'https://pl.wiktionary.org/w/api.php',
           name: 'polski',
           numberEntries: 763016,
           namespaces: const [
@@ -1044,7 +1044,7 @@ class SourceWiktionaryPl extends SourceWiktionary {
 class SourceWiktionaryPt extends SourceWiktionary {
   const SourceWiktionaryPt._()
       : super(
-          url: 'https://pt.wiktionary.org/w/api.php',
+          urlApi: 'https://pt.wiktionary.org/w/api.php',
           name: 'português',
           numberEntries: 271109,
           namespaces: const [
@@ -1061,7 +1061,7 @@ class SourceWiktionaryPt extends SourceWiktionary {
 class SourceWiktionaryRo extends SourceWiktionary {
   const SourceWiktionaryRo._()
       : super(
-          url: 'https://ro.wiktionary.org/w/api.php',
+          urlApi: 'https://ro.wiktionary.org/w/api.php',
           name: 'română',
           numberEntries: 163333,
           namespaces: const [
@@ -1075,7 +1075,7 @@ class SourceWiktionaryRo extends SourceWiktionary {
 class SourceWiktionaryQu extends SourceWiktionary {
   const SourceWiktionaryQu._()
       : super(
-          url: 'https://qu.wiktionary.org/w/api.php',
+          urlApi: 'https://qu.wiktionary.org/w/api.php',
           name: 'Runa Simi',
           numberEntries: 351,
           namespaces: const [
@@ -1088,7 +1088,7 @@ class SourceWiktionaryQu extends SourceWiktionary {
 class SourceWiktionarySg extends SourceWiktionary {
   const SourceWiktionarySg._()
       : super(
-          url: 'https://sg.wiktionary.org/w/api.php',
+          urlApi: 'https://sg.wiktionary.org/w/api.php',
           name: 'Sängö',
           numberEntries: 31903,
           namespaces: const [
@@ -1101,7 +1101,7 @@ class SourceWiktionarySg extends SourceWiktionary {
 class SourceWiktionarySt extends SourceWiktionary {
   const SourceWiktionarySt._()
       : super(
-          url: 'https://st.wiktionary.org/w/api.php',
+          urlApi: 'https://st.wiktionary.org/w/api.php',
           name: 'Sesotho',
           numberEntries: 1374,
           namespaces: const [
@@ -1114,7 +1114,7 @@ class SourceWiktionarySt extends SourceWiktionary {
 class SourceWiktionaryTn extends SourceWiktionary {
   const SourceWiktionaryTn._()
       : super(
-          url: 'https://tn.wiktionary.org/w/api.php',
+          urlApi: 'https://tn.wiktionary.org/w/api.php',
           name: 'Setswana',
           numberEntries: 100,
           namespaces: const [
@@ -1127,7 +1127,7 @@ class SourceWiktionaryTn extends SourceWiktionary {
 class SourceWiktionarySq extends SourceWiktionary {
   const SourceWiktionarySq._()
       : super(
-          url: 'https://sq.wiktionary.org/w/api.php',
+          urlApi: 'https://sq.wiktionary.org/w/api.php',
           name: 'shqip',
           numberEntries: 10086,
           namespaces: const [
@@ -1140,7 +1140,7 @@ class SourceWiktionarySq extends SourceWiktionary {
 class SourceWiktionaryScn extends SourceWiktionary {
   const SourceWiktionaryScn._()
       : super(
-          url: 'https://scn.wiktionary.org/w/api.php',
+          urlApi: 'https://scn.wiktionary.org/w/api.php',
           name: 'sicilianu',
           numberEntries: 18784,
           namespaces: const [
@@ -1153,7 +1153,7 @@ class SourceWiktionaryScn extends SourceWiktionary {
 class SourceWiktionarySimple extends SourceWiktionary {
   const SourceWiktionarySimple._()
       : super(
-          url: 'https://simple.wiktionary.org/w/api.php',
+          urlApi: 'https://simple.wiktionary.org/w/api.php',
           name: 'Simple English',
           numberEntries: 36722,
           namespaces: const [
@@ -1166,7 +1166,7 @@ class SourceWiktionarySimple extends SourceWiktionary {
 class SourceWiktionarySs extends SourceWiktionary {
   const SourceWiktionarySs._()
       : super(
-          url: 'https://ss.wiktionary.org/w/api.php',
+          urlApi: 'https://ss.wiktionary.org/w/api.php',
           name: 'SiSwati',
           numberEntries: 326,
           namespaces: const [
@@ -1179,7 +1179,7 @@ class SourceWiktionarySs extends SourceWiktionary {
 class SourceWiktionaryTl extends SourceWiktionary {
   const SourceWiktionaryTl._()
       : super(
-          url: 'https://tl.wiktionary.org/w/api.php',
+          urlApi: 'https://tl.wiktionary.org/w/api.php',
           name: 'Tagalog',
           numberEntries: 16012,
           namespaces: const [
@@ -1192,7 +1192,7 @@ class SourceWiktionaryTl extends SourceWiktionary {
 class SourceWiktionaryVi extends SourceWiktionary {
   const SourceWiktionaryVi._()
       : super(
-          url: 'https://vi.wiktionary.org/w/api.php',
+          urlApi: 'https://vi.wiktionary.org/w/api.php',
           name: 'Tiếng Việt',
           numberEntries: 242103,
           namespaces: const [
@@ -1206,7 +1206,7 @@ class SourceWiktionaryVi extends SourceWiktionary {
 class SourceWiktionaryTpi extends SourceWiktionary {
   const SourceWiktionaryTpi._()
       : super(
-          url: 'https://tpi.wiktionary.org/w/api.php',
+          urlApi: 'https://tpi.wiktionary.org/w/api.php',
           name: 'Tok Pisin',
           numberEntries: 1211,
           namespaces: const [
@@ -1219,7 +1219,7 @@ class SourceWiktionaryTpi extends SourceWiktionary {
 class SourceWiktionaryTr extends SourceWiktionary {
   const SourceWiktionaryTr._()
       : super(
-          url: 'https://tr.wiktionary.org/w/api.php',
+          urlApi: 'https://tr.wiktionary.org/w/api.php',
           name: 'Türkçe',
           numberEntries: 350848,
           namespaces: const [
@@ -1236,7 +1236,7 @@ class SourceWiktionaryTr extends SourceWiktionary {
 class SourceWiktionaryTk extends SourceWiktionary {
   const SourceWiktionaryTk._()
       : super(
-          url: 'https://tk.wiktionary.org/w/api.php',
+          urlApi: 'https://tk.wiktionary.org/w/api.php',
           name: 'Türkmençe',
           numberEntries: 4674,
           namespaces: const [
@@ -1249,7 +1249,7 @@ class SourceWiktionaryTk extends SourceWiktionary {
 class SourceWiktionaryVo extends SourceWiktionary {
   const SourceWiktionaryVo._()
       : super(
-          url: 'https://vo.wiktionary.org/w/api.php',
+          urlApi: 'https://vo.wiktionary.org/w/api.php',
           name: 'Volapük',
           numberEntries: 23434,
           namespaces: const [
@@ -1262,7 +1262,7 @@ class SourceWiktionaryVo extends SourceWiktionary {
 class SourceWiktionaryWa extends SourceWiktionary {
   const SourceWiktionaryWa._()
       : super(
-          url: 'https://wa.wiktionary.org/w/api.php',
+          urlApi: 'https://wa.wiktionary.org/w/api.php',
           name: 'walon',
           numberEntries: 28944,
           namespaces: const [
@@ -1281,7 +1281,7 @@ class SourceWiktionaryWa extends SourceWiktionary {
 class SourceWiktionaryWo extends SourceWiktionary {
   const SourceWiktionaryWo._()
       : super(
-          url: 'https://wo.wiktionary.org/w/api.php',
+          urlApi: 'https://wo.wiktionary.org/w/api.php',
           name: 'Wolof',
           numberEntries: 2607,
           namespaces: const [
@@ -1294,7 +1294,7 @@ class SourceWiktionaryWo extends SourceWiktionary {
 class SourceWiktionaryTs extends SourceWiktionary {
   const SourceWiktionaryTs._()
       : super(
-          url: 'https://ts.wiktionary.org/w/api.php',
+          urlApi: 'https://ts.wiktionary.org/w/api.php',
           name: 'Xitsonga',
           numberEntries: 394,
           namespaces: const [
@@ -1307,7 +1307,7 @@ class SourceWiktionaryTs extends SourceWiktionary {
 class SourceWiktionaryEl extends SourceWiktionary {
   const SourceWiktionaryEl._()
       : super(
-          url: 'https://el.wiktionary.org/w/api.php',
+          urlApi: 'https://el.wiktionary.org/w/api.php',
           name: 'Ελληνικά',
           numberEntries: 803919,
           namespaces: const [
@@ -1321,7 +1321,7 @@ class SourceWiktionaryEl extends SourceWiktionary {
 class SourceWiktionaryBe extends SourceWiktionary {
   const SourceWiktionaryBe._()
       : super(
-          url: 'https://be.wiktionary.org/w/api.php',
+          urlApi: 'https://be.wiktionary.org/w/api.php',
           name: 'беларуская',
           numberEntries: 4909,
           namespaces: const [
@@ -1334,7 +1334,7 @@ class SourceWiktionaryBe extends SourceWiktionary {
 class SourceWiktionaryBg extends SourceWiktionary {
   const SourceWiktionaryBg._()
       : super(
-          url: 'https://bg.wiktionary.org/w/api.php',
+          urlApi: 'https://bg.wiktionary.org/w/api.php',
           name: 'български',
           numberEntries: 29195,
           namespaces: const [
@@ -1348,7 +1348,7 @@ class SourceWiktionaryBg extends SourceWiktionary {
 class SourceWiktionaryKy extends SourceWiktionary {
   const SourceWiktionaryKy._()
       : super(
-          url: 'https://ky.wiktionary.org/w/api.php',
+          urlApi: 'https://ky.wiktionary.org/w/api.php',
           name: 'кыргызча',
           numberEntries: 29807,
           namespaces: const [
@@ -1361,7 +1361,7 @@ class SourceWiktionaryKy extends SourceWiktionary {
 class SourceWiktionaryKk extends SourceWiktionary {
   const SourceWiktionaryKk._()
       : super(
-          url: 'https://kk.wiktionary.org/w/api.php',
+          urlApi: 'https://kk.wiktionary.org/w/api.php',
           name: 'қазақша',
           numberEntries: 5827,
           namespaces: const [
@@ -1374,7 +1374,7 @@ class SourceWiktionaryKk extends SourceWiktionary {
 class SourceWiktionaryMk extends SourceWiktionary {
   const SourceWiktionaryMk._()
       : super(
-          url: 'https://mk.wiktionary.org/w/api.php',
+          urlApi: 'https://mk.wiktionary.org/w/api.php',
           name: 'македонски',
           numberEntries: 4512,
           namespaces: const [
@@ -1387,7 +1387,7 @@ class SourceWiktionaryMk extends SourceWiktionary {
 class SourceWiktionaryMn extends SourceWiktionary {
   const SourceWiktionaryMn._()
       : super(
-          url: 'https://mn.wiktionary.org/w/api.php',
+          urlApi: 'https://mn.wiktionary.org/w/api.php',
           name: 'монгол',
           numberEntries: 9397,
           namespaces: const [
@@ -1400,7 +1400,7 @@ class SourceWiktionaryMn extends SourceWiktionary {
 class SourceWiktionaryRu extends SourceWiktionary {
   const SourceWiktionaryRu._()
       : super(
-          url: 'https://ru.wiktionary.org/w/api.php',
+          urlApi: 'https://ru.wiktionary.org/w/api.php',
           name: 'Русский',
           numberEntries: 1200882,
           namespaces: const [
@@ -1418,7 +1418,7 @@ class SourceWiktionaryRu extends SourceWiktionary {
 class SourceWiktionarySr extends SourceWiktionary {
   const SourceWiktionarySr._()
       : super(
-          url: 'https://sr.wiktionary.org/w/api.php',
+          urlApi: 'https://sr.wiktionary.org/w/api.php',
           name: 'српски / srpski',
           numberEntries: 223248,
           namespaces: const [
@@ -1432,7 +1432,7 @@ class SourceWiktionarySr extends SourceWiktionary {
 class SourceWiktionaryTt extends SourceWiktionary {
   const SourceWiktionaryTt._()
       : super(
-          url: 'https://tt.wiktionary.org/w/api.php',
+          urlApi: 'https://tt.wiktionary.org/w/api.php',
           name: 'татарча/tatarça',
           numberEntries: 2089,
           namespaces: const [
@@ -1445,7 +1445,7 @@ class SourceWiktionaryTt extends SourceWiktionary {
 class SourceWiktionaryTg extends SourceWiktionary {
   const SourceWiktionaryTg._()
       : super(
-          url: 'https://tg.wiktionary.org/w/api.php',
+          urlApi: 'https://tg.wiktionary.org/w/api.php',
           name: 'тоҷикӣ',
           numberEntries: 30677,
           namespaces: const [
@@ -1458,7 +1458,7 @@ class SourceWiktionaryTg extends SourceWiktionary {
 class SourceWiktionaryUk extends SourceWiktionary {
   const SourceWiktionaryUk._()
       : super(
-          url: 'https://uk.wiktionary.org/w/api.php',
+          urlApi: 'https://uk.wiktionary.org/w/api.php',
           name: 'українська',
           numberEntries: 52888,
           namespaces: const [
@@ -1473,7 +1473,7 @@ class SourceWiktionaryUk extends SourceWiktionary {
 class SourceWiktionaryHy extends SourceWiktionary {
   const SourceWiktionaryHy._()
       : super(
-          url: 'https://hy.wiktionary.org/w/api.php',
+          urlApi: 'https://hy.wiktionary.org/w/api.php',
           name: 'հայերեն',
           numberEntries: 303106,
           namespaces: const [
@@ -1486,7 +1486,7 @@ class SourceWiktionaryHy extends SourceWiktionary {
 class SourceWiktionaryKa extends SourceWiktionary {
   const SourceWiktionaryKa._()
       : super(
-          url: 'https://ka.wiktionary.org/w/api.php',
+          urlApi: 'https://ka.wiktionary.org/w/api.php',
           name: 'ქართული',
           numberEntries: 11816,
           namespaces: const [
@@ -1501,7 +1501,7 @@ class SourceWiktionaryKa extends SourceWiktionary {
 class SourceWiktionaryGom extends SourceWiktionary {
   const SourceWiktionaryGom._()
       : super(
-          url: 'https://gom.wiktionary.org/w/api.php',
+          urlApi: 'https://gom.wiktionary.org/w/api.php',
           name: 'गोंयची कोंकणी / Gõychi Konknni',
           numberEntries: 2706,
           namespaces: const [
@@ -1514,7 +1514,7 @@ class SourceWiktionaryGom extends SourceWiktionary {
 class SourceWiktionaryKs extends SourceWiktionary {
   const SourceWiktionaryKs._()
       : super(
-          url: 'https://ks.wiktionary.org/w/api.php',
+          urlApi: 'https://ks.wiktionary.org/w/api.php',
           name: 'कॉशुर / کٲشُر',
           numberEntries: 3699,
           namespaces: const [
@@ -1527,7 +1527,7 @@ class SourceWiktionaryKs extends SourceWiktionary {
 class SourceWiktionaryNe extends SourceWiktionary {
   const SourceWiktionaryNe._()
       : super(
-          url: 'https://ne.wiktionary.org/w/api.php',
+          urlApi: 'https://ne.wiktionary.org/w/api.php',
           name: 'नेपाली',
           numberEntries: 431,
           namespaces: const [
@@ -1540,7 +1540,7 @@ class SourceWiktionaryNe extends SourceWiktionary {
 class SourceWiktionaryMr extends SourceWiktionary {
   const SourceWiktionaryMr._()
       : super(
-          url: 'https://mr.wiktionary.org/w/api.php',
+          urlApi: 'https://mr.wiktionary.org/w/api.php',
           name: 'मराठी',
           numberEntries: 2717,
           namespaces: const [
@@ -1554,7 +1554,7 @@ class SourceWiktionaryMr extends SourceWiktionary {
 class SourceWiktionarySa extends SourceWiktionary {
   const SourceWiktionarySa._()
       : super(
-          url: 'https://sa.wiktionary.org/w/api.php',
+          urlApi: 'https://sa.wiktionary.org/w/api.php',
           name: 'संस्कृतम्',
           numberEntries: 6021,
           namespaces: const [
@@ -1567,7 +1567,7 @@ class SourceWiktionarySa extends SourceWiktionary {
 class SourceWiktionaryHi extends SourceWiktionary {
   const SourceWiktionaryHi._()
       : super(
-          url: 'https://hi.wiktionary.org/w/api.php',
+          urlApi: 'https://hi.wiktionary.org/w/api.php',
           name: 'हिन्दी',
           numberEntries: 183550,
           namespaces: const [
@@ -1580,7 +1580,7 @@ class SourceWiktionaryHi extends SourceWiktionary {
 class SourceWiktionaryHif extends SourceWiktionary {
   const SourceWiktionaryHif._()
       : super(
-          url: 'https://hif.wiktionary.org/w/api.php',
+          urlApi: 'https://hif.wiktionary.org/w/api.php',
           name: 'Fiji Hindi',
           numberEntries: 1194,
           namespaces: const [
@@ -1593,7 +1593,7 @@ class SourceWiktionaryHif extends SourceWiktionary {
 class SourceWiktionaryHsb extends SourceWiktionary {
   const SourceWiktionaryHsb._()
       : super(
-          url: 'https://hsb.wiktionary.org/w/api.php',
+          urlApi: 'https://hsb.wiktionary.org/w/api.php',
           name: 'hornjoserbsce',
           numberEntries: 4217,
           namespaces: const [
@@ -1606,7 +1606,7 @@ class SourceWiktionaryHsb extends SourceWiktionary {
 class SourceWiktionaryBn extends SourceWiktionary {
   const SourceWiktionaryBn._()
       : super(
-          url: 'https://bn.wiktionary.org/w/api.php',
+          urlApi: 'https://bn.wiktionary.org/w/api.php',
           name: 'বাংলা',
           numberEntries: 35221,
           namespaces: const [
@@ -1620,7 +1620,7 @@ class SourceWiktionaryBn extends SourceWiktionary {
 class SourceWiktionaryPa extends SourceWiktionary {
   const SourceWiktionaryPa._()
       : super(
-          url: 'https://pa.wiktionary.org/w/api.php',
+          urlApi: 'https://pa.wiktionary.org/w/api.php',
           name: 'ਪੰਜਾਬੀ',
           numberEntries: 15450,
           namespaces: const [
@@ -1633,7 +1633,7 @@ class SourceWiktionaryPa extends SourceWiktionary {
 class SourceWiktionaryGu extends SourceWiktionary {
   const SourceWiktionaryGu._()
       : super(
-          url: 'https://gu.wiktionary.org/w/api.php',
+          urlApi: 'https://gu.wiktionary.org/w/api.php',
           name: 'ગુજરાતી',
           numberEntries: 672,
           namespaces: const [
@@ -1646,7 +1646,7 @@ class SourceWiktionaryGu extends SourceWiktionary {
 class SourceWiktionaryOr extends SourceWiktionary {
   const SourceWiktionaryOr._()
       : super(
-          url: 'https://or.wiktionary.org/w/api.php',
+          urlApi: 'https://or.wiktionary.org/w/api.php',
           name: 'ଓଡ଼ିଆ',
           numberEntries: 108627,
           namespaces: const [
@@ -1661,7 +1661,7 @@ class SourceWiktionaryOr extends SourceWiktionary {
 class SourceWiktionaryTa extends SourceWiktionary {
   const SourceWiktionaryTa._()
       : super(
-          url: 'https://ta.wiktionary.org/w/api.php',
+          urlApi: 'https://ta.wiktionary.org/w/api.php',
           name: 'தமிழ்',
           numberEntries: 404133,
           namespaces: const [
@@ -1674,7 +1674,7 @@ class SourceWiktionaryTa extends SourceWiktionary {
 class SourceWiktionaryTe extends SourceWiktionary {
   const SourceWiktionaryTe._()
       : super(
-          url: 'https://te.wiktionary.org/w/api.php',
+          urlApi: 'https://te.wiktionary.org/w/api.php',
           name: 'తెలుగు',
           numberEntries: 106436,
           namespaces: const [
@@ -1687,7 +1687,7 @@ class SourceWiktionaryTe extends SourceWiktionary {
 class SourceWiktionaryKn extends SourceWiktionary {
   const SourceWiktionaryKn._()
       : super(
-          url: 'https://kn.wiktionary.org/w/api.php',
+          urlApi: 'https://kn.wiktionary.org/w/api.php',
           name: 'ಕನ್ನಡ',
           numberEntries: 264277,
           namespaces: const [
@@ -1700,7 +1700,7 @@ class SourceWiktionaryKn extends SourceWiktionary {
 class SourceWiktionaryMin extends SourceWiktionary {
   const SourceWiktionaryMin._()
       : super(
-          url: 'https://min.wiktionary.org/w/api.php',
+          urlApi: 'https://min.wiktionary.org/w/api.php',
           name: 'Minangkabau',
           numberEntries: 10253,
           namespaces: const [
@@ -1713,7 +1713,7 @@ class SourceWiktionaryMin extends SourceWiktionary {
 class SourceWiktionaryMl extends SourceWiktionary {
   const SourceWiktionaryMl._()
       : super(
-          url: 'https://ml.wiktionary.org/w/api.php',
+          urlApi: 'https://ml.wiktionary.org/w/api.php',
           name: 'മലയാളം',
           numberEntries: 131087,
           namespaces: const [
@@ -1726,7 +1726,7 @@ class SourceWiktionaryMl extends SourceWiktionary {
 class SourceWiktionarySi extends SourceWiktionary {
   const SourceWiktionarySi._()
       : super(
-          url: 'https://si.wiktionary.org/w/api.php',
+          urlApi: 'https://si.wiktionary.org/w/api.php',
           name: 'සිංහල',
           numberEntries: 1393,
           namespaces: const [
@@ -1739,7 +1739,7 @@ class SourceWiktionarySi extends SourceWiktionary {
 class SourceWiktionaryTh extends SourceWiktionary {
   const SourceWiktionaryTh._()
       : super(
-          url: 'https://th.wiktionary.org/w/api.php',
+          urlApi: 'https://th.wiktionary.org/w/api.php',
           name: 'ไทย',
           numberEntries: 214634,
           namespaces: const [
@@ -1756,7 +1756,7 @@ class SourceWiktionaryTh extends SourceWiktionary {
 class SourceWiktionaryMy extends SourceWiktionary {
   const SourceWiktionaryMy._()
       : super(
-          url: 'https://my.wiktionary.org/w/api.php',
+          urlApi: 'https://my.wiktionary.org/w/api.php',
           name: 'မြန်မာဘာသာ',
           numberEntries: 124525,
           namespaces: const [
@@ -1770,7 +1770,7 @@ class SourceWiktionaryMy extends SourceWiktionary {
 class SourceWiktionaryLo extends SourceWiktionary {
   const SourceWiktionaryLo._()
       : super(
-          url: 'https://lo.wiktionary.org/w/api.php',
+          urlApi: 'https://lo.wiktionary.org/w/api.php',
           name: 'ລາວ',
           numberEntries: 37774,
           namespaces: const [
@@ -1783,7 +1783,7 @@ class SourceWiktionaryLo extends SourceWiktionary {
 class SourceWiktionaryKm extends SourceWiktionary {
   const SourceWiktionaryKm._()
       : super(
-          url: 'https://km.wiktionary.org/w/api.php',
+          urlApi: 'https://km.wiktionary.org/w/api.php',
           name: 'ភាសាខ្មែរ',
           numberEntries: 5651,
           namespaces: const [
@@ -1796,7 +1796,7 @@ class SourceWiktionaryKm extends SourceWiktionary {
 class SourceWiktionaryIu extends SourceWiktionary {
   const SourceWiktionaryIu._()
       : super(
-          url: 'https://iu.wiktionary.org/w/api.php',
+          urlApi: 'https://iu.wiktionary.org/w/api.php',
           name: 'ᐃᓄᒃᑎᑐᑦ/inuktitut',
           numberEntries: 316,
           namespaces: const [
@@ -1809,7 +1809,7 @@ class SourceWiktionaryIu extends SourceWiktionary {
 class SourceWiktionaryChr extends SourceWiktionary {
   const SourceWiktionaryChr._()
       : super(
-          url: 'https://chr.wiktionary.org/w/api.php',
+          urlApi: 'https://chr.wiktionary.org/w/api.php',
           name: 'ᏣᎳᎩ',
           numberEntries: 312,
           namespaces: const [
@@ -1822,7 +1822,7 @@ class SourceWiktionaryChr extends SourceWiktionary {
 class SourceWiktionaryTi extends SourceWiktionary {
   const SourceWiktionaryTi._()
       : super(
-          url: 'https://ti.wiktionary.org/w/api.php',
+          urlApi: 'https://ti.wiktionary.org/w/api.php',
           name: 'ትግርኛ',
           numberEntries: 148,
           namespaces: const [
@@ -1835,7 +1835,7 @@ class SourceWiktionaryTi extends SourceWiktionary {
 class SourceWiktionaryAm extends SourceWiktionary {
   const SourceWiktionaryAm._()
       : super(
-          url: 'https://am.wiktionary.org/w/api.php',
+          urlApi: 'https://am.wiktionary.org/w/api.php',
           name: 'አማርኛ',
           numberEntries: 449,
           namespaces: const [
@@ -1848,7 +1848,7 @@ class SourceWiktionaryAm extends SourceWiktionary {
 class SourceWiktionaryKo extends SourceWiktionary {
   const SourceWiktionaryKo._()
       : super(
-          url: 'https://ko.wiktionary.org/w/api.php',
+          urlApi: 'https://ko.wiktionary.org/w/api.php',
           name: '한국어',
           numberEntries: 297839,
           namespaces: const [
@@ -1862,7 +1862,7 @@ class SourceWiktionaryKo extends SourceWiktionary {
 class SourceWiktionaryJa extends SourceWiktionary {
   const SourceWiktionaryJa._()
       : super(
-          url: 'https://ja.wiktionary.org/w/api.php',
+          urlApi: 'https://ja.wiktionary.org/w/api.php',
           name: '日本語',
           numberEntries: 300948,
           namespaces: const [
@@ -1876,7 +1876,7 @@ class SourceWiktionaryJa extends SourceWiktionary {
 class SourceWiktionaryZh extends SourceWiktionary {
   const SourceWiktionaryZh._()
       : super(
-          url: 'https://zh.wiktionary.org/w/api.php',
+          urlApi: 'https://zh.wiktionary.org/w/api.php',
           name: '中文',
           numberEntries: 1204369,
           namespaces: const [
@@ -1895,7 +1895,7 @@ class SourceWiktionaryZh extends SourceWiktionary {
 class SourceWiktionaryYue extends SourceWiktionary {
   const SourceWiktionaryYue._()
       : super(
-          url: 'https://yue.wiktionary.org/w/api.php',
+          urlApi: 'https://yue.wiktionary.org/w/api.php',
           name: '粵語',
           numberEntries: 6920,
           namespaces: const [
@@ -1911,7 +1911,7 @@ class SourceWiktionaryYue extends SourceWiktionary {
 class SourceWiktionaryYi extends SourceWiktionary {
   const SourceWiktionaryYi._()
       : super(
-          url: 'https://yi.wiktionary.org/w/api.php',
+          urlApi: 'https://yi.wiktionary.org/w/api.php',
           name: 'ייִדיש',
           numberEntries: 714,
           namespaces: const [
@@ -1924,7 +1924,7 @@ class SourceWiktionaryYi extends SourceWiktionary {
 class SourceWiktionaryHe extends SourceWiktionary {
   const SourceWiktionaryHe._()
       : super(
-          url: 'https://he.wiktionary.org/w/api.php',
+          urlApi: 'https://he.wiktionary.org/w/api.php',
           name: 'עברית',
           numberEntries: 23145,
           namespaces: const [
@@ -1938,7 +1938,7 @@ class SourceWiktionaryHe extends SourceWiktionary {
 class SourceWiktionaryUr extends SourceWiktionary {
   const SourceWiktionaryUr._()
       : super(
-          url: 'https://ur.wiktionary.org/w/api.php',
+          urlApi: 'https://ur.wiktionary.org/w/api.php',
           name: 'اردو',
           numberEntries: 26622,
           namespaces: const [
@@ -1961,7 +1961,7 @@ class SourceWiktionaryUr extends SourceWiktionary {
 class SourceWiktionaryAr extends SourceWiktionary {
   const SourceWiktionaryAr._()
       : super(
-          url: 'https://ar.wiktionary.org/w/api.php',
+          urlApi: 'https://ar.wiktionary.org/w/api.php',
           name: 'العربية',
           numberEntries: 67109,
           namespaces: const [
@@ -1974,7 +1974,7 @@ class SourceWiktionaryAr extends SourceWiktionary {
 class SourceWiktionaryPs extends SourceWiktionary {
   const SourceWiktionaryPs._()
       : super(
-          url: 'https://ps.wiktionary.org/w/api.php',
+          urlApi: 'https://ps.wiktionary.org/w/api.php',
           name: 'پښتو',
           numberEntries: 25576,
           namespaces: const [
@@ -1987,7 +1987,7 @@ class SourceWiktionaryPs extends SourceWiktionary {
 class SourceWiktionaryPnb extends SourceWiktionary {
   const SourceWiktionaryPnb._()
       : super(
-          url: 'https://pnb.wiktionary.org/w/api.php',
+          urlApi: 'https://pnb.wiktionary.org/w/api.php',
           name: 'پنجابی',
           numberEntries: 9313,
           namespaces: const [
@@ -2000,7 +2000,7 @@ class SourceWiktionaryPnb extends SourceWiktionary {
 class SourceWiktionarySd extends SourceWiktionary {
   const SourceWiktionarySd._()
       : super(
-          url: 'https://sd.wiktionary.org/w/api.php',
+          urlApi: 'https://sd.wiktionary.org/w/api.php',
           name: 'سنڌي',
           numberEntries: 2107,
           namespaces: const [
@@ -2013,7 +2013,7 @@ class SourceWiktionarySd extends SourceWiktionary {
 class SourceWiktionaryShn extends SourceWiktionary {
   const SourceWiktionaryShn._()
       : super(
-          url: 'https://shn.wiktionary.org/w/api.php',
+          urlApi: 'https://shn.wiktionary.org/w/api.php',
           name: 'ၽႃႇသႃႇတႆး',
           numberEntries: 27258,
           namespaces: const [
@@ -2026,7 +2026,7 @@ class SourceWiktionaryShn extends SourceWiktionary {
 class SourceWiktionaryShy extends SourceWiktionary {
   const SourceWiktionaryShy._()
       : super(
-          url: 'https://shy.wiktionary.org/w/api.php',
+          urlApi: 'https://shy.wiktionary.org/w/api.php',
           name: 'tacawit',
           numberEntries: 3651,
           namespaces: const [
@@ -2039,7 +2039,7 @@ class SourceWiktionaryShy extends SourceWiktionary {
 class SourceWiktionaryVec extends SourceWiktionary {
   const SourceWiktionaryVec._()
       : super(
-          url: 'https://vec.wiktionary.org/w/api.php',
+          urlApi: 'https://vec.wiktionary.org/w/api.php',
           name: 'vèneto',
           numberEntries: 4938,
           namespaces: const [
@@ -2052,7 +2052,7 @@ class SourceWiktionaryVec extends SourceWiktionary {
 class SourceWiktionaryFa extends SourceWiktionary {
   const SourceWiktionaryFa._()
       : super(
-          url: 'https://fa.wiktionary.org/w/api.php',
+          urlApi: 'https://fa.wiktionary.org/w/api.php',
           name: 'فارسی',
           numberEntries: 103915,
           namespaces: const [
@@ -2066,7 +2066,7 @@ class SourceWiktionaryFa extends SourceWiktionary {
 class SourceWiktionaryUg extends SourceWiktionary {
   const SourceWiktionaryUg._()
       : super(
-          url: 'https://ug.wiktionary.org/w/api.php',
+          urlApi: 'https://ug.wiktionary.org/w/api.php',
           name: 'ئۇيغۇرچە / Uyghurche',
           numberEntries: 1570,
           namespaces: const [
@@ -2079,7 +2079,7 @@ class SourceWiktionaryUg extends SourceWiktionary {
 class SourceWiktionaryDv extends SourceWiktionary {
   const SourceWiktionaryDv._()
       : super(
-          url: 'https://dv.wiktionary.org/w/api.php',
+          urlApi: 'https://dv.wiktionary.org/w/api.php',
           name: 'ދިވެހިބަސް',
           numberEntries: 226,
           namespaces: const [

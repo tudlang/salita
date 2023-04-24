@@ -83,8 +83,6 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
           return source.parseHtmlWidgetSimple(
             context: context,
             element: element,
-            bottomsheet: _bottomsheet,
-            htmlwidget: DefinitionHtml.new,
           );
         },
         // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
@@ -304,27 +302,6 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
   }
 }
 
-_bottomsheet(
-  BuildContext context, {
-  required String title,
-  required List<Widget> children,
-}) {
-  showModalBottomSheetScaffold<EntryLink>(
-    context: context,
-    title: title,
-    builder: (context2, setState) {
-      return children;
-    },
-    isScrollable: true,
-  ).then((link) {
-    if (link != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        link.go(context);
-      });
-    }
-  });
-}
-
 class DefinitionHtmlFactory extends WidgetFactory {
   DefinitionHtmlFactory({
     required this.context,
@@ -341,8 +318,6 @@ class DefinitionHtmlFactory extends WidgetFactory {
     sourceWiktionary.parseHtmlWidgetAdvanced(
       meta: meta,
       context: context,
-      bottomsheet: _bottomsheet,
-      htmlwidget: DefinitionHtml.new,
       strings: strings,
     );
 
