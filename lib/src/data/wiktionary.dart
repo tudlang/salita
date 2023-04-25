@@ -303,28 +303,30 @@ abstract class SourceWiktionary with SourceWiktionaryFunctions{
             element.children.tryFirst?.className == 'maintenance-line')) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: OutlinedButton(
-          onPressed: () {
-            showBottomsheet(
-              context,
-              title: strings.definition.html.quotations.title,
+        child: SelectionContainer.disabled(
+          child: OutlinedButton(
+            onPressed: () {
+              showBottomsheet(
+                context,
+                title: strings.definition.html.quotations.title,
+                children: [
+                  DefinitionHtml(
+                    isNested: true,
+                    data: element.outerHtml.trim(),
+                  ),
+                ],
+              );
+            },
+            child: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                DefinitionHtml(
-                  isNested: true,
-                  data: element.outerHtml.trim(),
+                const Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Icon(Icons.format_quote),
                 ),
+                Text(strings.definition.html.quotations.button),
               ],
-            );
-          },
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Icon(Icons.format_quote),
-              ),
-              Text(strings.definition.html.quotations.button),
-            ],
+            ),
           ),
         ),
       );
@@ -334,33 +336,35 @@ abstract class SourceWiktionary with SourceWiktionaryFunctions{
     if (element.localName == 'table' &&
         element.classes.contains('translations')) {
       // add wrap so that the button's height & width is wrap content
-      return Wrap(
-        children: [
-          OutlinedButton(
-            onPressed: () {
-              showBottomsheet(
-                context,
-                title: strings.definition.html.translations.title,
+      return SelectionContainer.disabled(
+        child: Wrap(
+          children: [
+            OutlinedButton(
+              onPressed: () {
+                showBottomsheet(
+                  context,
+                  title: strings.definition.html.translations.title,
+                  children: [
+                    DefinitionHtml(
+                      isNested: true,
+                      data: element.innerHtml.trim(),
+                    ),
+                  ],
+                );
+              },
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  DefinitionHtml(
-                    isNested: true,
-                    data: element.innerHtml.trim(),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8),
+                    child: Icon(Icons.translate),
                   ),
+                  Text(strings.definition.html.translations.button),
                 ],
-              );
-            },
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 8),
-                  child: Icon(Icons.translate),
-                ),
-                Text(strings.definition.html.translations.button),
-              ],
-            ),
-          )
-        ],
+              ),
+            )
+          ],
+        ),
       );
     }
 
@@ -370,33 +374,35 @@ abstract class SourceWiktionary with SourceWiktionaryFunctions{
         element.parent?.localName == 'div' &&
         element.parent?.classes.contains('list-switcher') == true) {
       // add wrap so that the button's height & width is wrap content
-      return Wrap(
-        children: [
-          OutlinedButton(
-            onPressed: () {
-              showBottomsheet(
-                context,
-                title: strings.definition.html.termlist.title,
+      return SelectionContainer.disabled(
+        child: Wrap(
+          children: [
+            OutlinedButton(
+              onPressed: () {
+                showBottomsheet(
+                  context,
+                  title: strings.definition.html.termlist.title,
+                  children: [
+                    DefinitionHtml(
+                      isNested: true,
+                      data: element.innerHtml.trim(),
+                    ),
+                  ],
+                );
+              },
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  DefinitionHtml(
-                    isNested: true,
-                    data: element.innerHtml.trim(),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8),
+                    child: Icon(Icons.list_alt),
                   ),
+                  Text(strings.definition.html.termlist.button),
                 ],
-              );
-            },
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 8),
-                  child: Icon(Icons.list_alt),
-                ),
-                Text(strings.definition.html.termlist.button),
-              ],
-            ),
-          )
-        ],
+              ),
+            )
+          ],
+        ),
       );
     }
 
@@ -406,26 +412,28 @@ abstract class SourceWiktionary with SourceWiktionaryFunctions{
         element.querySelector('.NavHead') != null &&
         element.querySelector('.NavContent') != null &&
         element.querySelector('.translations') == null) {
-      return OutlinedButton(
-        onPressed: () {
-          showBottomsheet(
-            context,
-            title: element.querySelector('.NavHead')!.text.trim(),
-            children: [
-              DefinitionHtml(
-                isNested: true,
-                data: () {
-                  final e = element.clone(true);
-                  e.querySelectorAll('.NavToggle, .NavHead').forEach((element) {
-                    element.remove();
-                  });
-                  return e.innerHtml.trim();
-                }(),
-              ),
-            ],
-          );
-        },
-        child: Text(element.querySelector('.NavHead')!.text.trim()),
+      return SelectionContainer.disabled(
+        child: OutlinedButton(
+          onPressed: () {
+            showBottomsheet(
+              context,
+              title: element.querySelector('.NavHead')!.text.trim(),
+              children: [
+                DefinitionHtml(
+                  isNested: true,
+                  data: () {
+                    final e = element.clone(true);
+                    e.querySelectorAll('.NavToggle, .NavHead').forEach((element) {
+                      element.remove();
+                    });
+                    return e.innerHtml.trim();
+                  }(),
+                ),
+              ],
+            );
+          },
+          child: Text(element.querySelector('.NavHead')!.text.trim()),
+        ),
       );
     }
 

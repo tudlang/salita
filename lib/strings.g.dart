@@ -7,7 +7,7 @@
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
-
+import 'package:slang/builder/model/node.dart';
 import 'package:slang/slang.dart';
 export 'package:slang/slang.dart';
 
@@ -19,7 +19,7 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - LocaleSettings.setLocale(AppLocale.en) // set locale
 /// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
-enum AppLocale with BaseAppLocale<_StringsEn> {
+enum AppLocale with BaseAppLocale<AppLocale, _StringsEn> {
 	en(languageCode: 'en', build: _StringsEn.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
@@ -27,7 +27,7 @@ enum AppLocale with BaseAppLocale<_StringsEn> {
 	@override final String languageCode;
 	@override final String? scriptCode;
 	@override final String? countryCode;
-	@override final TranslationBuilder<_StringsEn> build;
+	@override final TranslationBuilder<AppLocale, _StringsEn> build;
 
 	/// Gets current instance managed by [LocaleSettings].
 	_StringsEn get translations => LocaleSettings.instance.translationMap[this]!;
@@ -46,20 +46,16 @@ _StringsEn get strings => LocaleSettings.instance.currentTranslations;
 
 /// Manages all translation instances and the current locale
 class LocaleSettings extends BaseLocaleSettings<AppLocale, _StringsEn> {
-	LocaleSettings._() : super(
-		locales: AppLocale.values,
-		baseLocale: _baseLocale,
-		utils: AppLocaleUtils.instance,
-	);
+	LocaleSettings._() : super(utils: AppLocaleUtils.instance);
 
 	static final instance = LocaleSettings._();
 
 	// static aliases (checkout base methods for documentation)
 	static AppLocale get currentLocale => instance.currentLocale;
 	static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
-	static AppLocale setLocale(AppLocale locale) => instance.setLocale(locale);
-	static AppLocale setLocaleRaw(String rawLocale) => instance.setLocaleRaw(rawLocale);
-	static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
+	static AppLocale setLocale(AppLocale locale, {bool? listenToDeviceLocale = false}) => instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
+	static AppLocale setLocaleRaw(String rawLocale, {bool? listenToDeviceLocale = false}) => instance.setLocaleRaw(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
+	@Deprecated('Use [AppLocaleUtils.supportedLocalesRaw]') static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
 	static void setPluralResolver({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) => instance.setPluralResolver(
 		language: language,
 		locale: locale,
@@ -77,27 +73,32 @@ class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, _StringsEn> {
 	// static aliases (checkout base methods for documentation)
 	static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
 	static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) => instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
+	static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
 }
 
 // translations
 
 // Path: <root>
-class _StringsEn implements BaseTranslations {
+class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsEn.build({PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: _cardinalResolver = cardinalResolver,
-		  _ordinalResolver = ordinalResolver;
+	_StringsEn.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = TranslationMetadata(
+		    locale: AppLocale.en,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ) {
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <en>.
+	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
 
 	/// Access flat map
-	dynamic operator[](String key) => _flatMap[key];
-
-	// Internal flat map initialized lazily
-	late final Map<String, dynamic> _flatMap = _buildFlatMap();
-
-	final PluralResolver? _cardinalResolver; // ignore: unused_field
-	final PluralResolver? _ordinalResolver; // ignore: unused_field
+	dynamic operator[](String key) => $meta.getTranslation(key);
 
 	late final _StringsEn _root = this; // ignore: unused_field
 
@@ -753,93 +754,94 @@ class _StringsSettingsDefinitionTilesOverviewLanguagesListingOptionsEn {
 /// Only for edge cases! For simple maps, use the map function of this library.
 
 extension on _StringsEn {
-	Map<String, dynamic> _buildFlatMap() {
-		return <String, dynamic>{
-			'definition.snackbar.entryNotExist': ({required Object title}) => 'Entry \"${title}\" doesn\'t exist yet.',
-			'definition.html.quotations.title': 'Quotations',
-			'definition.html.quotations.button': 'View quotations',
-			'definition.html.translations.title': 'Translations',
-			'definition.html.translations.button': 'View translations',
-			'definition.html.pronounciations.title': 'Pronounciations',
-			'definition.html.pronounciations.button': 'View pronounciations',
-			'definition.html.termlist.title': 'Terms',
-			'definition.html.termlist.button': 'View terms',
-			'definition.namespace.dictionary.name': 'Dictionary',
-			'definition.namespace.thesaurus.name': 'Thesaurus',
-			'definition.namespace.rhymes.name': 'Rhymes',
-			'definition.namespace.reconstruction.name': 'Reconstruction',
-			'definition.namespace.concordance.name': 'Concordance',
-			'definition.namespace.citations.name': 'Citations',
-			'definition.namespace.signgloss.name': 'Sign language gloss',
-			'definition.namespace.appendix.name': 'Appendix',
-			'definition.namespace.index.name': 'Index',
-			'definition.namespace.inflection.name': 'Inflection',
-			'definition.namespace.root.name': 'Root',
-			'definitionDictionary.name': 'Dictionary',
-			'definitionDictionary.description': 'View definitions',
-			'definitionDictionary.overview.name': 'Overview',
-			'definitionDictionary.overview.seealso': 'See also',
-			'definitionDictionary.overview.languages.name': 'Languages',
-			'definitionDictionary.overview.information.name': 'Entry information',
-			'definitionDictionary.overview.information.dateRetrieved': 'Date retrieved:',
-			'definitionDictionary.overview.information.wikititle': 'Full title:',
-			'definitionDictionary.overview.information.idPage': 'Page ID:',
-			'definitionDictionary.overview.information.idRevision': 'Revision ID:',
-			'definitionDictionary.overview.information.wotd': 'Selected for the Word of the Day:',
-			'definitionDictionary.overview.information.redirect': 'Redirected from:',
-			'definitionDictionary.snackbar.headingNotExist': ({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.',
-			'general.app.title': 'Salita',
-			'general.app.subtitle': 'All-in-one Dictionary',
-			'general.tooltip.openInBrowser': 'Open in browser',
-			'general.tooltip.refresh': 'Refresh',
-			'general.tooltip.search': 'Search',
-			'general.tooltip.copyToClipboard': 'Copy to clipboard',
-			'general.snackbar.copyToClipboard': ({required Object message}) => 'Copied \"${message}\" to clipboard',
-			'general.snackbar.noDescription': 'No description provided',
-			'general.snackbar.unsupported': 'This feature is currently unsupported.',
-			'settings.display.title': 'Display',
-			'settings.display.tiles.mode.title': 'Display mode',
-			'settings.display.tiles.mode.options.system': 'Use system default',
-			'settings.display.tiles.mode.options.light': 'Light mode',
-			'settings.display.tiles.mode.options.dark': 'Dark mode',
-			'settings.display.tiles.home': 'Home settings',
-			'settings.display.tiles.homeBgEnable.title': 'Animated background',
-			'settings.display.tiles.homeBgEnable.subtitle': 'Enables the cool animated background in the home screen',
-			'settings.display.tiles.homeBgWordCount.title': 'Animated background word count',
-			'settings.display.tiles.homeBgWordCount.subtitle': 'The maximum number of words to show at a single time',
-			'settings.display.tiles.homeBgTargetSize.title': 'Animated background word size',
-			'settings.display.tiles.homeBgTargetSize.subtitle': 'The maximum size each word can grow',
-			'settings.display.tiles.homeBgScaleFactor.title': 'Animated background word growth',
-			'settings.display.tiles.homeBgScaleFactor.subtitle': 'The speed of size growth for each word',
-			'settings.definition.title': 'Definition',
-			'settings.definition.tiles.edit': 'Editing settings',
-			'settings.definition.tiles.editMode.title': 'Enable edit mode',
-			'settings.definition.tiles.overview': 'Overview settings',
-			'settings.definition.tiles.overviewLanguagesListing.title': 'Language list type',
-			'settings.definition.tiles.overviewLanguagesListing.subtitle': 'Controls how languges should be listed in the Overview',
-			'settings.definition.tiles.overviewLanguagesListing.options.list': 'List',
-			'settings.definition.tiles.overviewLanguagesListing.options.card': 'Card',
-			'settings.definition.tiles.overviewShowLanguageExerpt.title': 'Show definition exerpt for each language',
-			'settings.definition.tiles.overviewShowIdPage.title': 'Show Wiktionary page ID',
-			'settings.definition.tiles.overviewShowIdRevision.title': 'Show Wiktionary revision ID',
-			'settings.definition.tiles.html': 'HTML settings',
-			'settings.definition.tiles.htmlSelectableText.title': 'Make text selectable',
-			'settings.definition.tiles.htmlShowRaw.title': 'Show raw HTML',
-			'settings.definition.tiles.htmlShowRaw.subtitle': 'Shows a button to toggle between seeing the raw HTML and the rendered result. May decrease performance.',
-			'settings.ads.title': 'Ads',
-			'settings.ads.tiles.adrequest': 'AdRequest settings',
-			'settings.ads.tiles.adrequestHttpTimeout.title': 'HTTPS call timeout',
-			'settings.ads.tiles.adrequestHttpTimeout.subtitle': 'The timeout in milliseconds for HTTPS calls made by the Google Mobile Ads SDK during an ad request',
-			'settings.ads.tiles.adrequestAddKeywords.title': 'Add entry details as keywords',
-			'settings.ads.tiles.adrequestAddKeywords.subtitle': 'Whether to add details of the currently viewed entry as keywords for the ad request',
-			'settings.ads.tiles.cmp': 'GDPR Transparency and Consent Framework',
-			'settings.ads.tiles.cmpHasConsent.title': 'Consent settings',
-			'settings.ads.tiles.cmpHasConsent.subtitle': 'You need to provide consent to show personalized ads',
-			'settings.miscellaneous.title': 'Miscellaneous',
-			'settings.miscellaneous.tiles.advanced.title': 'Show advanced settings',
-			'settings.miscellaneous.tiles.advanced.subtitle': 'Advanced settings are preceeded with a \"\uD83C\uDD30\"',
-			'settings.miscellaneous.tiles.reset.title': 'Reset',
-			'settings.miscellaneous.tiles.reset.subtitle': 'Resets all settings to their default values',
-		};
+	dynamic _flatMapFunction(String path) {
+		switch (path) {
+			case 'definition.snackbar.entryNotExist': return ({required Object title}) => 'Entry \"${title}\" doesn\'t exist yet.';
+			case 'definition.html.quotations.title': return 'Quotations';
+			case 'definition.html.quotations.button': return 'View quotations';
+			case 'definition.html.translations.title': return 'Translations';
+			case 'definition.html.translations.button': return 'View translations';
+			case 'definition.html.pronounciations.title': return 'Pronounciations';
+			case 'definition.html.pronounciations.button': return 'View pronounciations';
+			case 'definition.html.termlist.title': return 'Terms';
+			case 'definition.html.termlist.button': return 'View terms';
+			case 'definition.namespace.dictionary.name': return 'Dictionary';
+			case 'definition.namespace.thesaurus.name': return 'Thesaurus';
+			case 'definition.namespace.rhymes.name': return 'Rhymes';
+			case 'definition.namespace.reconstruction.name': return 'Reconstruction';
+			case 'definition.namespace.concordance.name': return 'Concordance';
+			case 'definition.namespace.citations.name': return 'Citations';
+			case 'definition.namespace.signgloss.name': return 'Sign language gloss';
+			case 'definition.namespace.appendix.name': return 'Appendix';
+			case 'definition.namespace.index.name': return 'Index';
+			case 'definition.namespace.inflection.name': return 'Inflection';
+			case 'definition.namespace.root.name': return 'Root';
+			case 'definitionDictionary.name': return 'Dictionary';
+			case 'definitionDictionary.description': return 'View definitions';
+			case 'definitionDictionary.overview.name': return 'Overview';
+			case 'definitionDictionary.overview.seealso': return 'See also';
+			case 'definitionDictionary.overview.languages.name': return 'Languages';
+			case 'definitionDictionary.overview.information.name': return 'Entry information';
+			case 'definitionDictionary.overview.information.dateRetrieved': return 'Date retrieved:';
+			case 'definitionDictionary.overview.information.wikititle': return 'Full title:';
+			case 'definitionDictionary.overview.information.idPage': return 'Page ID:';
+			case 'definitionDictionary.overview.information.idRevision': return 'Revision ID:';
+			case 'definitionDictionary.overview.information.wotd': return 'Selected for the Word of the Day:';
+			case 'definitionDictionary.overview.information.redirect': return 'Redirected from:';
+			case 'definitionDictionary.snackbar.headingNotExist': return ({required Object language}) => 'Language \"${language}\" doesn\'t exist for this entry.';
+			case 'general.app.title': return 'Salita';
+			case 'general.app.subtitle': return 'All-in-one Dictionary';
+			case 'general.tooltip.openInBrowser': return 'Open in browser';
+			case 'general.tooltip.refresh': return 'Refresh';
+			case 'general.tooltip.search': return 'Search';
+			case 'general.tooltip.copyToClipboard': return 'Copy to clipboard';
+			case 'general.snackbar.copyToClipboard': return ({required Object message}) => 'Copied \"${message}\" to clipboard';
+			case 'general.snackbar.noDescription': return 'No description provided';
+			case 'general.snackbar.unsupported': return 'This feature is currently unsupported.';
+			case 'settings.display.title': return 'Display';
+			case 'settings.display.tiles.mode.title': return 'Display mode';
+			case 'settings.display.tiles.mode.options.system': return 'Use system default';
+			case 'settings.display.tiles.mode.options.light': return 'Light mode';
+			case 'settings.display.tiles.mode.options.dark': return 'Dark mode';
+			case 'settings.display.tiles.home': return 'Home settings';
+			case 'settings.display.tiles.homeBgEnable.title': return 'Animated background';
+			case 'settings.display.tiles.homeBgEnable.subtitle': return 'Enables the cool animated background in the home screen';
+			case 'settings.display.tiles.homeBgWordCount.title': return 'Animated background word count';
+			case 'settings.display.tiles.homeBgWordCount.subtitle': return 'The maximum number of words to show at a single time';
+			case 'settings.display.tiles.homeBgTargetSize.title': return 'Animated background word size';
+			case 'settings.display.tiles.homeBgTargetSize.subtitle': return 'The maximum size each word can grow';
+			case 'settings.display.tiles.homeBgScaleFactor.title': return 'Animated background word growth';
+			case 'settings.display.tiles.homeBgScaleFactor.subtitle': return 'The speed of size growth for each word';
+			case 'settings.definition.title': return 'Definition';
+			case 'settings.definition.tiles.edit': return 'Editing settings';
+			case 'settings.definition.tiles.editMode.title': return 'Enable edit mode';
+			case 'settings.definition.tiles.overview': return 'Overview settings';
+			case 'settings.definition.tiles.overviewLanguagesListing.title': return 'Language list type';
+			case 'settings.definition.tiles.overviewLanguagesListing.subtitle': return 'Controls how languges should be listed in the Overview';
+			case 'settings.definition.tiles.overviewLanguagesListing.options.list': return 'List';
+			case 'settings.definition.tiles.overviewLanguagesListing.options.card': return 'Card';
+			case 'settings.definition.tiles.overviewShowLanguageExerpt.title': return 'Show definition exerpt for each language';
+			case 'settings.definition.tiles.overviewShowIdPage.title': return 'Show Wiktionary page ID';
+			case 'settings.definition.tiles.overviewShowIdRevision.title': return 'Show Wiktionary revision ID';
+			case 'settings.definition.tiles.html': return 'HTML settings';
+			case 'settings.definition.tiles.htmlSelectableText.title': return 'Make text selectable';
+			case 'settings.definition.tiles.htmlShowRaw.title': return 'Show raw HTML';
+			case 'settings.definition.tiles.htmlShowRaw.subtitle': return 'Shows a button to toggle between seeing the raw HTML and the rendered result. May decrease performance.';
+			case 'settings.ads.title': return 'Ads';
+			case 'settings.ads.tiles.adrequest': return 'AdRequest settings';
+			case 'settings.ads.tiles.adrequestHttpTimeout.title': return 'HTTPS call timeout';
+			case 'settings.ads.tiles.adrequestHttpTimeout.subtitle': return 'The timeout in milliseconds for HTTPS calls made by the Google Mobile Ads SDK during an ad request';
+			case 'settings.ads.tiles.adrequestAddKeywords.title': return 'Add entry details as keywords';
+			case 'settings.ads.tiles.adrequestAddKeywords.subtitle': return 'Whether to add details of the currently viewed entry as keywords for the ad request';
+			case 'settings.ads.tiles.cmp': return 'GDPR Transparency and Consent Framework';
+			case 'settings.ads.tiles.cmpHasConsent.title': return 'Consent settings';
+			case 'settings.ads.tiles.cmpHasConsent.subtitle': return 'You need to provide consent to show personalized ads';
+			case 'settings.miscellaneous.title': return 'Miscellaneous';
+			case 'settings.miscellaneous.tiles.advanced.title': return 'Show advanced settings';
+			case 'settings.miscellaneous.tiles.advanced.subtitle': return 'Advanced settings are preceeded with a \"\uD83C\uDD30\"';
+			case 'settings.miscellaneous.tiles.reset.title': return 'Reset';
+			case 'settings.miscellaneous.tiles.reset.subtitle': return 'Resets all settings to their default values';
+			default: return null;
+		}
 	}
 }

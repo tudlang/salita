@@ -63,7 +63,7 @@ class App extends StatelessWidget {
         GoRoute(path: '/', builder: (context, state) => HomeActivity()),
         GoRoute(
           path: '/definition',
-          redirect: (state) => '/',
+          redirect: (context, state) => '/',
         ),
         GoRoute(
           path: '/definition/:wikititle',

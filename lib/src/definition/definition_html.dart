@@ -68,52 +68,54 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
   Widget build(BuildContext context) {
     final source = SourceWiktionary.fromSettings();
     return _conditionalscroll(
-      child: HtmlWidget(
-        widget.data,
-        buildAsync: true,
-        isSelectable: getSettings('definition', 'htmlSelectableText'),
-        factoryBuilder: () =>
-            DefinitionHtmlFactory(context: context, sourceWiktionary: source),
-        onTapUrl: (url) {
-          var link = EntryLink.fromHref(url);
-          link.go(context);
-          return true;
-        },
-        customWidgetBuilder: (element) {
-          return source.parseHtmlWidgetSimple(
-            context: context,
-            element: element,
-          );
-        },
-        // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
-        // See: https://github.com/daohoangson/flutter_widget_from_html/issues/199
-        // when show raw button is on, use columnmode since the scrolling is handled elsewhere
-        renderMode:
-            kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux ||( getSettings('definition', 'htmlShowRaw') && !widget.isNested)
-                ? const ColumnMode()
-                : ListViewMode(
-                    controller: _scrollController,
-                    primary: false,
-                    padding: _padding,
+      child: SelectionArea(
+        child: HtmlWidget(
+          widget.data,
+          buildAsync: true,
+          //isSelectable: getSettings('definition', 'htmlSelectableText'),
+          factoryBuilder: () =>
+              DefinitionHtmlFactory(context: context, sourceWiktionary: source),
+          onTapUrl: (url) {
+            var link = EntryLink.fromHref(url);
+            link.go(context);
+            return true;
+          },
+          customWidgetBuilder: (element) {
+            return source.parseHtmlWidgetSimple(
+              context: context,
+              element: element,
+            );
+          },
+          // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
+          // See: https://github.com/daohoangson/flutter_widget_from_html/issues/199
+          // when show raw button is on, use columnmode since the scrolling is handled elsewhere
+          renderMode:
+              kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux ||( getSettings('definition', 'htmlShowRaw') && !widget.isNested)
+                  ? const ColumnMode()
+                  : ListViewMode(
+                      controller: _scrollController,
+                      primary: false,
+                      padding: _padding,
+                    ),
+      
+          onLoadingBuilder: (context, element, loadingProgress) {
+            printIfDebug(loadingProgress);
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text("Loading " + element.localName!),
+                  LinearProgressIndicator(
+                    value: loadingProgress,
                   ),
-
-        onLoadingBuilder: (context, element, loadingProgress) {
-          printIfDebug(loadingProgress);
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Text("Loading " + element.localName!),
-                LinearProgressIndicator(
-                  value: loadingProgress,
-                ),
-              ],
-            ),
-          );
-        },
-        onErrorBuilder: (context, element, error) {
-          return Text(error.toString());
-        },
+                ],
+              ),
+            );
+          },
+          onErrorBuilder: (context, element, error) {
+            return Text(error.toString());
+          },
+        ),
       ),
     );
 /*
