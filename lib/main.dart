@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
+import 'package:salita/src/create/create_activity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -102,6 +103,7 @@ class App extends StatelessWidget {
         ),
         GoRoute(
             path: '/settings', builder: (context, state) => SettingsActivity()),
+        GoRoute(path: '/create', builder: (context, state) =>CreateActivity(),),
       ],
     );
 

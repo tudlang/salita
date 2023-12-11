@@ -260,7 +260,7 @@ abstract class SourceWiktionary with SourceWiktionaryFunctions{
               .firstWhere((e) => e.property.contains('background'))
               .value! as HexColorTerm);
 
-          if (_.value is int) color = Color(_.value);
+          if (_.value is int) color = Color(_.value as int);
           // Skip the element if it has BAD_HEX_VALUE
           if (_.value is BAD_HEX_VALUE) return;
         } else if (a is FunctionTerm) {

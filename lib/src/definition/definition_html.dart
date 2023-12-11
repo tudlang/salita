@@ -89,15 +89,18 @@ class _DefinitionHtmlState extends State<DefinitionHtml> {
           // for android / ios, use the lazyloading of listviews (for performance reasons) but no scrollbar, otherwise just use a column with the aforementioned _conditionalscroll() because it has funkiness with the visible scrollbar
           // See: https://github.com/daohoangson/flutter_widget_from_html/issues/199
           // when show raw button is on, use columnmode since the scrolling is handled elsewhere
-          renderMode:
-              kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux ||( getSettings('definition', 'htmlShowRaw') && !widget.isNested)
-                  ? const ColumnMode()
-                  : ListViewMode(
-                      controller: _scrollController,
-                      primary: false,
-                      padding: _padding,
-                    ),
-      
+          renderMode: kIsWeb ||
+                  Platform.isWindows ||
+                  Platform.isMacOS ||
+                  Platform.isLinux ||
+                  (getSettings('definition', 'htmlShowRaw') && !widget.isNested)
+              ? const ColumnMode()
+              : ListViewMode(
+                  controller: _scrollController,
+                  primary: false,
+                  padding: _padding,
+                ),
+
           onLoadingBuilder: (context, element, loadingProgress) {
             printIfDebug(loadingProgress);
             return Padding(

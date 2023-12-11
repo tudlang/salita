@@ -590,6 +590,9 @@ final destinations = <Destination>[
       showUnsupportedSnackbar(context);
     },
   ),
+  Destination(name: 'Add entry', icon: Icons.abc, tooltip: 'Add entry', onTap: (context){
+    GoRouter.of(context).go('/create');
+  },),
   //Destination(
   //  name: 'Bookmarks',
   //  icon: MdiIcons.bookmarkMultipleOutline,

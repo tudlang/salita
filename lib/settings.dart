@@ -343,7 +343,7 @@ class SettingTile<T> {
       switch (defaultval.runtimeType) {
         case String:
           return prefs.getString(key);
-        case List<String>:
+        case const (List<String>):
           return prefs.getStringList(key);
         case bool:
           return prefs.getBool(key);

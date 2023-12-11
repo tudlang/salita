@@ -417,7 +417,7 @@ class _DictionaryOverviewFragmentState
                     PopupMenuItem(
                       onTap: () {
                         Clipboard.setData(ClipboardData(
-                          text: i.html.htmlTryText(),
+                          text: i.html.htmlTryText()!,
                         )).then((_) {
                           ScaffoldMessenger.of(context)
                             ..clearSnackBars()
