@@ -5,7 +5,7 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 -->
-
+![Untitled-2](https://github.com/tudlang/salita/assets/69418786/5f785684-a52c-452a-af78-c73ae6edf011)
 # **Salita** <br/>*The all-in-one dictionary*
 
 Welcome to the official repository of **Salita**!
